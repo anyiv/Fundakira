@@ -1,0 +1,26 @@
+@(nombre: String, apellido: String)
+
+<div class="ui labeled icon inverted menu">
+    <a class="item" href="#">
+        <i class="home icon"></i>
+        Inicio
+    </a>
+    <a class="item" href="#">
+        <i class="shopping cart icon"></i>
+        Mi Carrito
+    </a>
+    <a class="item" href="#">
+        <i class="shopping bag icon"></i>
+        Mis compras
+    </a>
+    <div class="right menu">
+        <a class="item" href="#">
+            <img class="ui tiny circular centered image" style="width:32px;height:auto;" src="http://placekitten.com/g/200/200">
+            @nombre @apellido
+        </a>
+        <a class="item" onclick="javascript:void;">
+            <i class="sign-out icon"></i>
+            Cerrar Sesión
+        </a>
+    </div>
+</div>
