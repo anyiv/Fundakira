@@ -6,9 +6,16 @@
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("semantic/semantic.min.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <style type="text/css">
+            body {
+              background-color: #b2b2b2;
+            }
+            body > .grid {
+              height: 100%;
+            }
+          </style>
     </head>
-    @topbar("Zeus", "von Ratten")
-    @leftsidebar()
+    @topbar("Zeus", "von Ratten") 
     <body>
         @content
     </body>

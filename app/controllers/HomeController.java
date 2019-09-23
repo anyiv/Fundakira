@@ -18,8 +18,8 @@ public class HomeController extends Controller {
         return ok(views.html.index.render());
     }
 
-    public Result prueba() {
-        return ok(views.html.prueba.render());
+    public Result inicio() {
+        return ok(views.html.inicio.render());
     }
 
 }
