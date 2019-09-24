@@ -1,4 +1,87 @@
-@main("Sistema de fundaciones"){
+@main("Bienvenido Zeus!"){
 
-
+<div class="ui middle centered grid">
+    <div class="six wide tablet eight wide computer column">
+        <div class="ui segment" style="background-color: #a8bbbc;">
+            <h2 class="ui header" style="margin-top:10px;">Crear solicitudes</h2>
+            <div class="ui two column grid">
+                <div class="column">
+                    <div class="ui input">
+                        <input placeholder="Cédula" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui input">
+                        <input placeholder="Nombre" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui input">
+                        <input placeholder="Apellido" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui input">
+                        <input placeholder="Dirección" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui input">
+                        <input placeholder="Teléfono" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui input">
+                        <input placeholder="Correo" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <select class="ui dropdown">
+                        <option value="">Fundaciones</option>
+                        <option value="0">La de los niños</option>
+                        <option value="1">la de las mujeres</option>
+                        <option value="2">discapacitados</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <select name="Servicios" multiple="" class="ui fluid dropdown" id="servicios">
+                        <option value="">Servicios</option>
+                        <option value="Odontología">Odontología</option>
+                        <option value="Psicología">Psicología</option>
+                    </select>
+                </div>
+                <div class="ui row">
+                    <div class="ui form">
+                        <div class="inline fields">
+                            <label style="margin-left: 15px;">Prioridad:</label>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input name="Prioridad" checked="checked" type="radio">
+                                    <label>Alta</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input name="Prioridad" type="radio">
+                                    <label>Media</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input name="Prioridad" type="radio">
+                                    <label>Baja</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui segment" style="border: none; background-color: #a8bbbc; box-shadow: none; text-align: center">
+                <button class="ui medium green button" style="display: inline-block;">
+                    Crear
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 }
