@@ -30,5 +30,8 @@ public class HomeController extends Controller {
         return ok(views.html.servicios.render());
     }
 
+    public Result solicitudes() {
+        return ok(views.html.solicitudes.render());
+    }
 }
 
