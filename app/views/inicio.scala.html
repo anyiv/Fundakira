@@ -1,49 +1,48 @@
 @main("Bienvenido Zeus!"){
-
-<div class="ui middle centered grid">
+<!--PARA USUARIO EMPLEADO-->
+<div class="ui middle centered grid" style="margin-top: 2em;">
     <div class="six wide tablet eight wide computer column">
         <div class="ui segment" style="background-color: #a8bbbc;">
             <h2 class="ui header" style="margin-top:10px;">Crear solicitudes</h2>
             <div class="ui two column grid">
                 <div class="column">
+                    <p><b>Cédula:</b></p>
                     <div class="ui input">
                         <input placeholder="Cédula" type="text">
                     </div>
                 </div>
                 <div class="column">
+                    <p><b>Nombre:</b></p>
                     <div class="ui input">
                         <input placeholder="Nombre" type="text">
                     </div>
                 </div>
                 <div class="column">
+                    <p><b>Apellido:</b></p>
                     <div class="ui input">
                         <input placeholder="Apellido" type="text">
                     </div>
                 </div>
                 <div class="column">
+                    <p><b>Dirección:</b></p>
                     <div class="ui input">
                         <input placeholder="Dirección" type="text">
                     </div>
                 </div>
                 <div class="column">
+                    <p><b>Teléfono:</b></p>
                     <div class="ui input">
                         <input placeholder="Teléfono" type="text">
                     </div>
                 </div>
                 <div class="column">
+                    <p><b>Correo:</b></p>
                     <div class="ui input">
                         <input placeholder="Correo" type="text">
                     </div>
                 </div>
                 <div class="column">
-                    <select class="ui dropdown">
-                        <option value="">Fundaciones</option>
-                        <option value="0">La de los niños</option>
-                        <option value="1">la de las mujeres</option>
-                        <option value="2">discapacitados</option>
-                    </select>
-                </div>
-                <div class="column">
+                    <p><b>Seleccione los servicios:</b></p>
                     <select name="Servicios" multiple="" class="ui fluid dropdown" id="servicios"
                         style="margin-right:20px;">
                         <option value="">Servicios</option>
@@ -52,10 +51,10 @@
                         <option value="General">General</option>
                     </select>
                 </div>
-                <div class="ui row">
+                <div class="column">
+                    <p><b>Prioridad:</b></p>
                     <div class="ui form">
                         <div class="inline fields">
-                            <label style="margin-left: 15px;">Prioridad:</label>
                             <div class="field">
                                 <div class="ui radio checkbox">
                                     <input name="Prioridad" checked="checked" type="radio">
@@ -79,7 +78,7 @@
                 </div>
             </div>
             <div class="ui container center aligned">
-                <button class="ui medium green button" style="display: inline-block;">
+                <button class="ui medium green button" style="margin-top: 2em;">
                     Crear
                 </button>
             </div>

@@ -10,6 +10,7 @@ GET     /servicios/                 controllers.HomeController.servicios
 GET     /solicitudes/               controllers.HomeController.solicitudes
 GET     /reportes/                  controllers.HomeController.reportes
 GET     /fundaciones/incluir/       controllers.HomeController.incl_fundacion
+GET     /servicios/incluir/         controllers.HomeController.incl_servicio
 GET     /reportes/solicitantes      controllers.HomeController.rp_solicitantes
 
 # Map static resources from the /public folder to the /assets URL path
