@@ -49,5 +49,9 @@ public class HomeController extends Controller {
     public Result incl_servicio() {
         return ok(views.html.incluir_servicio.render());
     }
+
+    public Result rp_presupuesto() {
+        return ok(views.html.reporte_presupuesto.render());
+    }
 }
 

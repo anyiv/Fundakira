@@ -1,0 +1,93 @@
+@main("Reporte presupuesto"){
+<div class="row">
+    <div class="ui grid" style="margin-left: 2em;">
+        <div class="three wide column">
+            <a href="@routes.HomeController.reportes">
+                <button class="ui left floated blue button" style="margin-top:1em;margin-left: 2em;">Atrás</button>
+            </a>
+        </div>
+        <div class="four wide column">
+            <div class="ui segment" style="background-color: lightslategray;">
+                <h4>Estatus</h4>
+                <select class="ui dropdown">
+                    <option value="">Estatus</option>
+                    <option value="0">Todos</option>
+                    <option value="1">Pendiente</option>
+                    <option value="2">Aprobada</option>
+                    <option value="3">Negada</option>
+                </select>
+                <div class="ui container center aligned">
+                    <button class="ui green button" style="margin-top:1em;">Filtrar</button>
+                </div>
+            </div>
+        </div>
+        <div class="five wide column">
+            <div class="ui segment" style="background-color: lightslategray;">
+                <h4>Presupuesto por fundación</h4>
+                <select class="ui dropdown">
+                    <option value="">Fundaciones</option>
+                    <option value="0">Todos</option>
+                    <option value="1">Lade los niños</option>
+                    <option value="2">La de las mujeres</option>
+                    <option value="3">La de los discapacitados</option>
+                </select>
+                <button class="ui right floated green button">Calcular</button>
+                <div class="ui container" style="margin-top:10px;">
+                    <div class="ui two column grid">
+                        <div class="column">
+                            <label>Disponible</label>
+                        </div>
+                        <div class="column">
+                            <div class="ui input">
+                                <input placeholder="bs" type="text">
+                            </div>
+                        </div>
+                        <div class="column">
+                            <label>Porcentaje gastado</label>
+                        </div>
+                        <div class="column">
+                            <div class="ui input">
+                                <input placeholder="%" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide column">
+            <button class="ui right floated red button" style="margin-top:1em;margin-right: 4em;">Exportar
+                PDF</button>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 2em;">
+    <div class="ui content center aligned" style="margin-right: 10em;margin-left: 10em;">
+        <table class="ui celled inverted grey table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre del Solicitante</th>
+                    <th>Costo total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SL-0001</td>
+                    <td>María Paredes</td>
+                    <td>11000</td>
+                </tr>
+                <tr>
+                    <td>SL-0002</td>
+                    <td>María Rico</td>
+                    <td>23000</td>
+                </tr>
+                <tr>
+                    <td>SL-0003</td>
+                    <td>Omerly Mendoza</td>
+                    <td>30000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+}
