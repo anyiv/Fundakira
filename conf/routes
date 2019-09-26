@@ -7,7 +7,10 @@ GET     /                           controllers.HomeController.index
 GET     /inicio/                    controllers.HomeController.inicio
 GET     /fundaciones/               controllers.HomeController.fundaciones
 GET     /servicios/                 controllers.HomeController.servicios
-GET     /solicitudes/                 controllers.HomeController.solicitudes
+GET     /solicitudes/               controllers.HomeController.solicitudes
+GET     /reportes/                  controllers.HomeController.reportes
+GET     /fundaciones/incluir/       controllers.HomeController.incl_fundacion
+GET     /reportes/solicitantes      controllers.HomeController.rp_solicitantes
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
