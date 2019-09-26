@@ -1,3 +1,47 @@
 @main("Solicitudes"){
-
+<div class="row">
+    <div class="ui center aligned grid">
+        <div class="four wide column">
+            <div class="ui segment" style="background-color: lightslategray;">
+                <h4>Filtrar por estatus</h4>
+                <select class="ui dropdown">
+                    <option value="">Estatus</option>
+                    <option value="0">Pendiente</option>
+                    <option value="1">Aprobada</option>
+                    <option value="2">Negada</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 2em;">
+    <div class="ui content center aligned" style="margin-right: 10em;margin-left: 10em;">
+        <table class="ui single line inverted grey table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre del solicitante</th>
+                    <th>Estatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SL-0001</td>
+                    <td>September 14, 2013</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>SL-0002</td>
+                    <td>January 11, 2014</td>
+                    <td>Si</td>
+                </tr>
+                <tr>
+                    <td>SL-0003</td>
+                    <td>May 11, 2014</td>
+                    <td>Si</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 }
