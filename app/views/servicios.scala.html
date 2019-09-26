@@ -1,3 +1,40 @@
 @main("Servicios"){
     <!--PARA USUARIO ADMMINISTRADOR-->
+
+    <div class="ui middle centered grid">
+    <div class="three wide tablet seven wide computer column">
+        <div class="ui segment" style="background-color: #a8bbbc;">
+            <h2 class="ui header" style="margin-top:10px;">Crear servicios</h2>
+            <div class="ui two column grid">
+                <div class="column">
+                    <div class="ui disabled input">
+                        <input placeholder="Código" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui input">
+                        <input placeholder="Nombre" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui input">
+                        <input placeholder="Costo" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <select name="Tipos" multiple="" class="ui dropdown" id="Tipos">
+                        <option value="">Tipo</option>
+                        <option value="Médico">Médico</option>
+                        <option value="Donación">Donación</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ui container center aligned">
+                <button class="ui medium green button" style="display: inline-block;">
+                    Crear
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 }
