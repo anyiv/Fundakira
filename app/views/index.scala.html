@@ -1,35 +1,35 @@
 @main("Gestión de fundaciones") {
 <style type="text/css">
-  .image {
-    margin-top: -100px;
-  }
-
-  .column {
-    max-width: 450px;
-  }
+    .image {
+        margin-top: -100px;
+    }
+    
+    .column {
+        max-width: 450px;
+    }
 </style>
 
-<div class="ui center aligned grid">
-  <div class="column">
-    <div class="ui large segment" style="background-color:#86ba90">
-      <form class="ui large form">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="username" id="login_username" placeholder="Nombre de usuario:" required autofocus>
-          </div>
+<div class="ui center aligned grid" style="margin-top: 100px">
+    <div class="column">
+        <div class="ui large segment" style="background-color:#4f706d">
+            <form class="ui large form">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" id="login_username" placeholder="Nombre de usuario:" required autofocus>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Constraseña:" required>
+                    </div>
+                </div>
+                <div class="ui error message"></div>
+                <button class="ui fluid large teal submit button" type="submit">Iniciar sesión</button>
+            </form>
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Constraseña:" required>
-          </div>
-        </div>
-        <div class="ui error message"></div>
-        <button class="ui fluid large teal submit button" type="submit">Iniciar sesión</button>
-      </form>
     </div>
-  </div>
 </div>
 
 }
