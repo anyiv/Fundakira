@@ -5,7 +5,7 @@
     <div class="three wide tablet seven wide computer column">
         <div class="ui segment" style="background-color: #e6d4b3;">
             <h2 class="ui header" style="margin-top:10px;">Incluir servicios</h2>
-            <div class="ui two column grid">
+            <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
@@ -20,15 +20,23 @@
                 </div>
                 <div class="column">
                     <p><b>Tipo:</b></p>
-                    <select name="Tipos" multiple="" class="ui dropdown" id="Tipos">
+                    <select name="Tipos" class="ui dropdown" id="Tipos">
                         <option value="">Tipo</option>
                         <option value="Médico">Médico</option>
                         <option value="Donación">Donación</option>
                     </select>
                 </div>
             </div>
-            <div class="ui container center aligned">
-                <button class="ui medium green button" style="margin-top: 2em;">
+            <div class="ui container ">
+                <button class="ui left floated blue button"
+                    style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                    Cancelar
+                </button>
+                <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
+                    Limpiar
+                </button>
+                <button class="ui right floated green button"
+                    style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
                     Incluir
                 </button>
             </div>
