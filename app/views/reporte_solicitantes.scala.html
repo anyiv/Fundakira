@@ -1,12 +1,16 @@
 @main("Reporte Solicitantes"){
+<!--PARA USUARIOS EMPLEADO Y ADMIN-->
 <div class="row">
-    <div class="ui center aligned grid">
+    <div class="ui center aligned grid" >
         <div class="four wide column">
             <a href="@routes.HomeController.reportes">
                 <button class="ui left floated blue button" style="margin-top:1em;margin-left: 2em;">Atrás</button>
             </a>
         </div>
-        <div class="four wide column">
+        <div class="five wide column">
+            <div class="ui container center aligned">
+                <h2>Reporte Solicitantes por fundación</h2>
+            </div>
             <div class="ui segment" style="background-color: lightslategray;">
                 <h4>Fundaciones</h4>
                 <select class="ui dropdown">

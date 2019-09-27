@@ -53,5 +53,13 @@ public class HomeController extends Controller {
     public Result rp_presupuesto() {
         return ok(views.html.reporte_presupuesto.render());
     }
+
+    public Result empleados() {
+        return ok(views.html.empleados.render());
+    }
+
+    public Result rp_solicitudes() {
+        return ok(views.html.reporte_solicitudes.render());
+    }
 }
 

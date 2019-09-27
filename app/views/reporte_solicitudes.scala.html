@@ -1,20 +1,31 @@
-@main("Solicitudes"){
+@main("Reporte solicitudes"){
 <div class="row">
     <div class="ui center aligned grid">
         <div class="four wide column">
+            <a href="@routes.HomeController.reportes">
+                <button class="ui left floated blue button" style="margin-top:1em;margin-left: 2em;">Atrás</button>
+            </a>
+        </div>
+        <div class="five wide column">
+                <div class="ui container center aligned">
+                        <h2>Reporte Solicitudes por responsable</h2>
+                    </div>
             <div class="ui segment" style="background-color: lightslategray;">
-                <h4>Filtrar por estatus</h4>
+                <h4>Filtrar Solicitudes por responsable</h4>
                 <select class="ui dropdown">
-                    <option value="">Estatus</option>
-                    <option value="0">Todos</option>
-                    <option value="1">Pendiente</option>
-                    <option value="2">Aprobada</option>
-                    <option value="3">Negada</option>
+                    <option value="">Empleados</option>
+                    <option value="0">Maria</option>
+                    <option value="1">Ana</option>
+                    <option value="2">Natalia</option>
+                    <option value="3">José</option>
                 </select>
                 <div class="ui container center aligned">
                     <button class="ui green button" style="margin-top:1em;">Filtrar</button>
                 </div>
             </div>
+        </div>
+        <div class="four wide column">
+            <button class="ui right floated red button" style="margin-top:1em;margin-right: 3em;">Exportar PDF</button>
         </div>
     </div>
 </div>
@@ -23,10 +34,8 @@
         <table class="ui single line inverted grey table">
             <thead>
                 <tr>
-                    <th>Código</th>
-                    <th>Nombre del solicitante</th>
-                    <th>Prioridad</th>
-                    <th>Presupuesto</th>
+                    <th>Nombre del Responsable</th>
+                    <th>Código de solicitud</th>
                     <th>Estatus</th>
                 </tr>
             </thead>
@@ -35,21 +44,15 @@
                     <td>SL-0001</td>
                     <td>September 14, 2013</td>
                     <td>No</td>
-                    <td>No</td>
-                    <td>No</td>
                 </tr>
                 <tr>
                     <td>SL-0002</td>
                     <td>January 11, 2014</td>
-                    <td>No</td>
-                    <td>No</td>
                     <td>Si</td>
                 </tr>
                 <tr>
                     <td>SL-0003</td>
                     <td>May 11, 2014</td>
-                    <td>No</td>
-                    <td>No</td>
                     <td>Si</td>
                 </tr>
             </tbody>
