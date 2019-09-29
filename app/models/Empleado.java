@@ -15,8 +15,8 @@ public class Empleado extends Model {
     @Column(length=9)
     public String cedula_B;
 
-    // @OnetoOne(mappedBy="cedula_B", cascade = CascadeType.ALL)
-    // public Usuario usuarioEmpleado;
+    @OneToOne
+    public Usuario usuario;
 
     @Constraints.Required(message = "Por favor ingrese el nombre")
     @Column(length = 30 )
@@ -40,6 +40,8 @@ public class Empleado extends Model {
     @Column(length=1)
     public char estatus;
 
+    @OneToOne
+    public Fundacion fundacion; //El que recibe la clave foranea
 
     public static Finder<Integer, Empleado> find = new Finder<>(Empleado.class);
     

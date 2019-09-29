@@ -15,9 +15,9 @@ public class Usuario extends Model{
     @Column(length=9)
     public String cedula_E;
 
-    // @OnetoOne
-    // @PrimaryKeyJoinColumn
-    // public Empleado empleado;
+    @OneToOne
+    @PrimaryKeyJoinColumn(name="cedula_E")
+    public Empleado empleado;
 
     @Constraints.Required(message = "Por favor ingrese la contraseña")
     @Column(length = 30)

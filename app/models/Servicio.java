@@ -17,6 +17,9 @@ public class Servicio extends Model {
     @GeneratedValue
     public String codServicio;
 
+    @Column(length=9,name="cod_fundacion")
+    public String cod_fundacion;
+
     @Constraints.Required(message = "Por favor ingrese la descripcion")
     @Column(columnDefinition = "TEXT")
     public String descripcion;
@@ -31,6 +34,10 @@ public class Servicio extends Model {
 
     @Column(length=1)
     public char estatus;
+
+    @ManyToOne(optional=false,fetch = FetchType.LAZY)
+    @JoinColumn(name="cod_fundacion")
+    public Fundacion fundacion;
 
     public static Finder<Integer, Servicio> find = new Finder<>(Servicio.class);
 }
