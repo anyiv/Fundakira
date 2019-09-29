@@ -1,3 +1,4 @@
+@(fundaciones:List[Fundacion])
 @main("Fundaciones"){
 <!--PARA USUARIO ADMINISTRADOR-->
 <div class="row">
@@ -6,12 +7,13 @@
                 style="margin-right: 6.5em">Incluir</button></a>
     </div>
 </div>
-
+@if(fundaciones.length!=0) {
 <div class="ui three column grid" style="margin-left: 95px; margin-top: 20px;">
+@for(fundacion <- fundaciones) {
     <div class="column">
         <div class="ui card" style="background-color: #dfd2ad">
             <div class="content">
-                <div class="header">Fundacion de los niños/as y Adolescentes</div>
+                <div class="header">@fundacion.getNombre()</div>
             </div>
             <div class="content">
                 <h4 class="ui sub header">Información</h4>
@@ -19,169 +21,49 @@
                     <div class="event">
                         <div class="content">
                             <label><b>Dirección:</b></label>
-                            <label>Carrera 30 con calle 30</label>
+                            <label>@fundacion.getDireccion()</label>
                         </div>
                     </div>
                     <div class="event">
                         <div class="content">
                             <label><b>Teléfono: </b></label>
-                            <label>0451-7365892</label>
+                            <label>@fundacion.getTelefono()</label>
                         </div>
                     </div>
                     <div class="event">
                         <div class="content">
                             <label><b>Correo: </b></label>
-                            <label>funda@@gmail.com</label>
+                            <label>@fundacion.getCorreo()</label>
                         </div>
                     </div>
                     <div class="event">
                         <div class="content">
                             <label><b>Partida Asignada: </b></label>
-                            <label>50.000bs</label>
+                            <label>@fundacion.getPorcPartida()%</label>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="extra content">
-
-                <button class="ui left floated blue button"><i class="edit icon"
-                        style="padding-left: 5px;"></i></button>
-                <button class="ui right floated red button"><i class="trash alternate icon"
-                        style="padding-left: 5px;"></i></button>
-
+                <a class="ui left floated blue button"
+                    href="@routes.CFundacion.consultarF(fundacion.getCod_fundacion())"><i class="edit icon"
+                        style="padding-left: 5px;"></i></a>
+                <a class="ui right floated red button"
+                    href="@routes.CFundacion.eliminarF(fundacion.getCod_fundacion())"><i class="trash alternate icon"
+                        style="padding-left: 5px;"></i></a>
             </div>
         </div>
     </div>
-    <div class="column">
-        <div class="ui card" style="background-color: #dfd2ad">
-            <div class="content">
-                <div class="header">Fundacion de los niños/as y Adolescentes</div>
-            </div>
-            <div class="content">
-                <h4 class="ui sub header">Información</h4>
-                <div class="ui small feed">
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Dirección:</b></label>
-                            <label>Carrera 30 con calle 30</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Teléfono: </b></label>
-                            <label>0451-7365892</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Correo: </b></label>
-                            <label>funda@@gmail.com</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Partida Asignada: </b></label>
-                            <label>50.000bs</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="extra content">
-
-                <button class="ui left floated blue button"><i class="edit icon"
-                        style="padding-left: 5px;"></i></button>
-                <button class="ui right floated red button"><i class="trash alternate icon"
-                        style="padding-left: 5px;"></i></button>
-
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui card" style="background-color: #dfd2ad">
-            <div class="content">
-                <div class="header">Fundacion de los niños/as y Adolescentes</div>
-            </div>
-            <div class="content">
-                <h4 class="ui sub header">Información</h4>
-                <div class="ui small feed">
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Dirección:</b></label>
-                            <label>Carrera 30 con calle 30</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Teléfono: </b></label>
-                            <label>0451-7365892</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Correo: </b></label>
-                            <label>funda@@gmail.com</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Partida Asignada: </b></label>
-                            <label>50.000bs</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="extra content">
-
-                <button class="ui left floated blue button"><i class="edit icon"
-                        style="padding-left: 5px;"></i></button>
-                <button class="ui right floated red button"><i class="trash alternate icon"
-                        style="padding-left: 5px;"></i></button>
-
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui card" style="background-color: #dfd2ad">
-            <div class="content">
-                <div class="header">Fundacion de los niños/as y Adolescentes</div>
-            </div>
-            <div class="content">
-                <h4 class="ui sub header">Información</h4>
-                <div class="ui small feed">
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Dirección:</b></label>
-                            <label>Carrera 30 con calle 30</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Teléfono: </b></label>
-                            <label>0451-7365892</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Correo: </b></label>
-                            <label>funda@@gmail.com</label>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <label><b>Partida Asignada: </b></label>
-                            <label>50.000bs</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="extra content">
-                <button class="ui left floated blue button"><i class="edit icon"
-                        style="padding-left: 5px;"></i></button>
-                <button class="ui right floated red button"><i class="trash alternate icon"
-                        style="padding-left: 5px;"></i></button>
-            </div>
-        </div>
-    </div>
+    }
 </div>
+    } else {
+    <div class="ui center aligned grid">
+        <div class="ui content center aligned">
+            <div class="ui segment" style="background-color: #dfd2ad;margin-top: 3em;">
+                <h3>No hay fundaciones adscritas a esta gobernación aún.</h3>
+            </div>
+        </div>
+    </div>
+    }
 
 }

@@ -26,10 +26,6 @@ public class HomeController extends Controller {
         return ok(views.html.inicio.render());
     }
 
-    public Result fundaciones() {
-        return ok(views.html.fundaciones.render());
-    }
-
     public Result servicios() {
         return ok(views.html.servicios.render());
     }

@@ -2,13 +2,16 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+#Methods with POST and csrf
 POST   /fundacionesC/               controllers.CFundacion.guardarF()
+GET    /fundacion/:id               controllers.CFundacion.consultarF(id : java.util.UUID)
+GET    /eliminarF/                   controllers.CFundacion.eliminarF(id : java.util.UUID)
 
 # An example controller showing a sample home page
 + nocsrf
 GET     /                           controllers.HomeController.index
 GET     /inicio/                    controllers.HomeController.inicio
-GET     /fundaciones/               controllers.HomeController.fundaciones
+GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /servicios/                 controllers.HomeController.servicios
 GET     /solicitudes/               controllers.HomeController.solicitudes
 GET     /reportes/                  controllers.HomeController.reportes
@@ -19,12 +22,6 @@ GET     /reportes/presupuesto       controllers.HomeController.rp_presupuesto
 GET     /empleados/                 controllers.HomeController.empleados
 GET     /empleados/incluir          controllers.HomeController.incl_empleado
 GET     /reporte/solicitudes        controllers.HomeController.rp_solicitudes
-
-#Methods
-#GET    /fundacionesC/               controllers.CFundacion.listaFundaciones
-#GET    /fundacionesC/nueva          controllers.CFundacion.createFundacion
-#GET    /fundacionesC/:ean           controllers.CFundacion.modificarF(ean: String)
-
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

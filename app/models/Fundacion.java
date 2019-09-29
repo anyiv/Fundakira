@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlID;
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import buscadores.BuscadorFundacion;
 
 @Entity
 @Table(name="Fundacion")
@@ -116,5 +117,11 @@ public class Fundacion extends Model {
         this.empleado = empleado;
     }
 
-    public static Finder<UUID, Fundacion> find = new Finder<>(Fundacion.class);
+    @Override
+    public String toString() {
+        return "{" + this.nombre + " " + this.estatus +
+            "}";
+    }
+
+    public static final BuscadorFundacion buscador = new BuscadorFundacion();
 }
