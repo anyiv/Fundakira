@@ -2,14 +2,17 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+POST   /fundacionesC/               controllers.CFundacion.guardarF()
+
 # An example controller showing a sample home page
++ nocsrf
 GET     /                           controllers.HomeController.index
 GET     /inicio/                    controllers.HomeController.inicio
 GET     /fundaciones/               controllers.HomeController.fundaciones
 GET     /servicios/                 controllers.HomeController.servicios
 GET     /solicitudes/               controllers.HomeController.solicitudes
 GET     /reportes/                  controllers.HomeController.reportes
-GET     /fundaciones/incluir        controllers.HomeController.incl_fundacion
+GET     /fundaciones/incluir        controllers.CFundacion.incl_fundacion
 GET     /servicios/incluir          controllers.HomeController.incl_servicio
 GET     /reportes/solicitantes      controllers.HomeController.rp_solicitantes
 GET     /reportes/presupuesto       controllers.HomeController.rp_presupuesto
@@ -21,7 +24,6 @@ GET     /reporte/solicitudes        controllers.HomeController.rp_solicitudes
 #GET    /fundacionesC/               controllers.CFundacion.listaFundaciones
 #GET    /fundacionesC/nueva          controllers.CFundacion.createFundacion
 #GET    /fundacionesC/:ean           controllers.CFundacion.modificarF(ean: String)
-#POST   /fundacionesC/               controllers.CFundacion.guardarF
 
 
 # Map static resources from the /public folder to the /assets URL path

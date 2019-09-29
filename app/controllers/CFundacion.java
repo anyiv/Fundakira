@@ -1,18 +1,37 @@
 package controllers;
 
 import play.mvc.*;
+
+import java.lang.ProcessBuilder.Redirect;
+
 import javax.inject.Inject;
 import play.data.Form;
 import play.data.FormFactory;
-import models.Servicio;
+import models.Fundacion;
+import io.ebean.*;
 
 public class CFundacion extends Controller {
 
-    private Form<Servicio> servicioForm;
+    private Form<Fundacion> fundacionForm;
 
     @Inject
     public CFundacion(FormFactory formFactory) {
-    this.servicioForm = formFactory.form(Servicio.class);
+    this.fundacionForm = formFactory.form(Fundacion.class);
+    }
+
+    public Result incl_fundacion() {
+        return ok(views.html.incluir_fundacion.render(fundacionForm));
+    }
+
+    public Result guardarF() {
+        Form<Fundacion> boundForm = fundacionForm.bindFromRequest();
+        if(boundForm.hasErrors()) {
+            flash("error", "Por favor haga bien el formulario.");
+            return badRequest(views.html.incluir_fundacion.render(boundForm));
+          }
+        Fundacion fundacion = boundForm.get();
+        Ebean.save(fundacion);
+        return redirect(routes.HomeController.fundaciones());
     }
 
 //      public Result listaFundaciones(){ //lista de fundaciones

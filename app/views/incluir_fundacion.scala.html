@@ -1,51 +1,59 @@
+@import helper._
+@(fundacionForm: Form[Fundacion])
 @main("Incluir fundación"){
 <!--PARA USUARIO ADMINISTRADOR-->
 <div class="ui middle centered grid" style="margin-top: 2em;">
     <div class="six wide tablet eight wide computer column">
         <div class="ui segment" style="background-color: #e6d4b3;">
             <h2 class="ui header" style="margin-top:10px;">Incluir fundación</h2>
+            @helper.form(action = routes.CFundacion.guardarF()) {
+            @CSRF.formField
             <div class="ui two column grid" style="margin-left: 30px;">
+                <input id="estatus" name="estatus" value="A" type="hidden">
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text">
+                        <input id="nombre" name="nombre" value="" placeholder="Nombre" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Dirección:</b></p>
                     <div class="ui input">
-                        <input placeholder="Dirección" type="text">
+                        <input id="direccion" name="direccion" value="" placeholder="Dirección" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Teléfono:</b></p>
                     <div class="ui input">
-                        <input placeholder="Teléfono" type="text">
+                        <input id="telefono" name="telefono" value="" placeholder="Teléfono" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Correo:</b></p>
                     <div class="ui input">
-                        <input placeholder="Correo" type="text">
+                        <input id="correo" name="correo" value="" placeholder="Correo" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Porcentaje de Partida:</b></p>
-                    <select name="Porcentaje" class="ui dropdown" id="Porcentaje">
+                    <select id="porcPartida" name="porcPartida" class="ui dropdown" >
                         <option value="">Porcentaje</option>
-                        <option value="10%">10%</option>
-                        <option value="20%">20%</option>
+                        <option value="10">10%</option>
+                        <option value="20">20%</option>
+                        <option value="30">30%</option>
                     </select>
                 </div>
                 <div class="ui container ">
-                    <button class="ui left floated blue button"
-                        style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 0.5em;">
-                        Cancelar
-                    </button>
-                    <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
+                    <a href="@routes.HomeController.fundaciones">
+                        <button class="ui left floated blue button"
+                            style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 0.5em;">
+                            Cancelar
+                        </button></a>
+                    <button type="reset" class="ui teal button"
+                        style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
                         Limpiar
                     </button>
-                    <button class="ui right floated green button"
+                    <button type="submit" value="guardarF" class="ui right floated green button"
                         style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 3em;">
                         Incluir
                     </button>
@@ -53,5 +61,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>}
 }
