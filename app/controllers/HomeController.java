@@ -58,6 +58,10 @@ public class HomeController extends Controller {
         return ok(views.html.empleados.render());
     }
 
+    public Result incl_empleado() {
+        return ok(views.html.incluir_empleado.render());
+    }
+
     public Result rp_solicitudes() {
         return ok(views.html.reporte_solicitudes.render());
     }

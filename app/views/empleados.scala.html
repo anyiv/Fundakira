@@ -1,68 +1,79 @@
 @main("Empleados"){
-   
-    <div class="row">
-        <div class="ui middle centered grid" style="margin: 100px;">
-            <div class="five wide tablet seven wide computer column">
-                <div class="ui segment" style="background-color: #e6d4b3;">
-                    <h2 class="ui header" style="margin-top:10px; text-align: center;">Empleados</h2>
-                    <div class="ui two column grid" style="margin-left: 30px;">
-                        <div class="column">
-                            <p><b>Cédula:</b></p>
-                            <div class="ui input">
-                                <input placeholder="Cédula" type="string">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <p><b>Nombre:</b></p>
-                            <div class="ui input">
-                                <input placeholder="Nombre" type="text">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <p><b>Teléfono:</b></p>
-                              <div class="ui input">
-                                  <input placeholder="Teléfono" type="int">
-                              </div>
-                        </div>
-                        <div class="column">
-                            <p><b>Correo:</b></p>
-                              <div class="ui input">
-                                  <input placeholder="Correo" type="string">
-                              </div>
-                        </div>
-                        <div class="column">
-                            <p><b>Dirección:</b></p>
-                              <div class="ui input">
-                                  <input placeholder="Dirección" type="string">
-                              </div>
-                        </div>
+<!--Solo para el Administrador-->
+<div class="ui raised segments" style="margin:60px">
+    <div class="ui segment" style="background-color:seagreen;">
+        <div class="ui two colum grid">
+            <div class="colum">
+                <h2 class="ui header" style="margin-left: 3em; margin-top: 1em; text-align: center">
+                    <i class="users icon"></i>
+                    <div class="content">
+                        Empleados
                     </div>
-                    
-                    <div class="ui container" style="margin-top: 2em; margin-left:2em; padding-bottom:2em;">
-                        <button class="ui blue button">
-                            Consultar
-                        </button>
-                        <button class="ui teal button">
-                            Modificar
-                        </button>
-                        <button class="ui green button">
-                            Incluir
-                        </button>
-                        <button class="ui button">
-                            Eliminar
-                        </button>
-                        <button class="ui right floated button">
-                            Cancelar
-                        </button>
-                    </div>
+                </h2>
+            </div>
+            <div class="column">
+                <div class="ui action input" style="margin-left: 40em">
+                    <input type="text" placeholder="Buscar...">
+                    <button class="ui icon button" style="background-color:darkgray">
+                        <i class="search icon"></i>
+                    </button>
                 </div>
             </div>
         </div>
-        }
-
-
-
-
-
     </div>
+    <div class="ui segment">
+        <table class="ui striped inverted table">
+            <thead>
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Fundación Asociada</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0000001</td>
+                    <td>Anyeli Villareal</td>
+                    <td>Las mujeres</td>
+                    <td><button class="circular ui icon button">
+                            <i class="icon eye"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>0000002</td>
+                    <td>María Rico</td>
+                    <td>Los niños</td>
+                    <td><button class="circular ui icon button">
+                            <i class="icon eye"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>0000003</td>
+                    <td>Omerly Mendoza</td>
+                    <td>Discapacitados</td>
+                    <td><button class="circular ui icon button">
+                            <i class="icon eye"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>0000004</td>
+                    <td>María Paredes</td>
+                    <td>Las mujeres</td>
+                    <td><button class="circular ui icon button">
+                            <i class="icon eye"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="@routes.HomeController.incl_empleado"><button class="ui centered floated blue button" style="margin-left: 35em;">
+            <i class="add icon"></i>
+                Añadir
+            </button></a>
+    </div>
+</div>
 }
