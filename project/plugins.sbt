@@ -6,3 +6,4 @@ addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.7.3")
 // sbt "g8Scaffold form"
 addSbtPlugin("org.foundweekends.giter8" % "sbt-giter8-scaffold" % "0.11.0")
 addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "5.0.2")
+addSbtPlugin("com.typesafe.sbt" % "sbt-play-enhancer" % "1.2.2")

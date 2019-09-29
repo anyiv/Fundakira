@@ -11,7 +11,6 @@ import play.data.validation.*;
 @Entity
 @Table(name="Servicio")
 public class Servicio extends Model {
-
     @Id 
     @Column(length=9)
     @GeneratedValue
@@ -39,5 +38,21 @@ public class Servicio extends Model {
     @JoinColumn(name="cod_fundacion")
     public Fundacion fundacion;
 
+    //Pruebas desde aqui
+    // public static Servicio EncontrarxID(String codServicio) {
+    //     for (Servicio candidate : Servicio) {
+    //       if (candidate.codServicio.equals(codServicio)) {
+    //         return candidate;
+    //       }
+    //     }
+    //     return null;
+    //   }
+
+    // public void guardar() {
+    // products.remove(EncontrarxID(this.codServicio));
+    // products.add(this);
+    // }
+
+    //aún no sabemos que hace exactamente 
     public static Finder<Integer, Servicio> find = new Finder<>(Servicio.class);
 }

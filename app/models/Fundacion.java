@@ -15,35 +15,37 @@ public class Fundacion extends Model {
     @Id 
     @Column(length=9)
     @GeneratedValue
-    public String cod_fundacion;
+    private String cod_fundacion;
 
     @Constraints.Required(message = "Por favor ingrese el nombre")
     @Column(length = 30 )
-    public String nombre;
+    private String nombre;
 
     @Constraints.Required
     @Column(length = 30)
-    public double porcPartida;;
+    private double porcPartida;
 
     @Constraints.Required(message = "Por favor ingrese la dirección")
     @Column(length = 50)
-    public String direccion;
+    private String direccion;
 
     @Constraints.Required(message = "Por favor ingrese el correo")
     @Constraints.Email(message = "Por favor verifique el correo")
-    public String correo;
+    private String correo;
 
     @Column(length=12)
-    public String telefono;
+    private String telefono;
 
     @Column(length=1)
-    public char estatus;
+    private char estatus;
 
     @OneToMany(mappedBy="fundacion",cascade = CascadeType.ALL)
     public List<Servicio> servicios;
 
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "fundacion") //el que da la clave foranea
     public Empleado empleado;
+
+
 
     public static Finder<Integer, Fundacion> find = new Finder<>(Fundacion.class);
 }

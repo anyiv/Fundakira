@@ -16,5 +16,13 @@ GET     /reportes/presupuesto       controllers.HomeController.rp_presupuesto
 GET     /empleados/                 controllers.HomeController.empleados
 GET     /reporte/solicitudes        controllers.HomeController.rp_solicitudes
 
+#Methods
+#GET    /fundacionesC/               controllers.CFundacion.listaFundaciones
+#GET    /fundacionesC/nueva          controllers.CFundacion.createFundacion
+#GET    /fundacionesC/:ean           controllers.CFundacion.modificarF(ean: String)
+#POST   /fundacionesC/               controllers.CFundacion.guardarF
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
