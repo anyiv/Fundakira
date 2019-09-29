@@ -1,0 +1,70 @@
+@main("Incluir empleado"){
+<!--Solo para el administrador-->
+<div class="row">
+    <div class="ui middle centered grid">
+        <div class="five wide tablet seven wide computer column">
+            <div class="ui segment" style="background-color: #e6d4b3;">
+                <h2 class="ui header" style="margin-top:10px; text-align: center;">Empleados</h2>
+                <div class="ui two column grid" style="margin-left: 30px;">
+                    <div class="column">
+                        <p><b>Cédula:</b></p>
+                        <div class="ui input">
+                            <input placeholder="Cédula" type="string">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <p><b>Nombre:</b></p>
+                        <div class="ui input">
+                            <input placeholder="Nombre" type="text">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <p><b>Teléfono:</b></p>
+                        <div class="ui input">
+                            <input placeholder="Teléfono" type="int">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <p><b>Correo:</b></p>
+                        <div class="ui input">
+                            <input placeholder="Correo" type="string">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <p><b>Dirección:</b></p>
+                        <div class="ui input">
+                            <input placeholder="Dirección" type="string">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <p><b>Fundación:</b></p>
+                        <select name="Fundación asociada" class="ui dropdown">
+                            <option value="">Fundación</option>
+                                <option value="Niños">Los niños</option>
+                                <option value="Discapacitados">Los discapacitados</option>
+                                <option value="Mujeres">Las mujeres</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="ui container" style="margin-top: 2em; margin-left:2em; padding-bottom:2em;">
+                    <button class="ui left floated blue button"
+                    style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                    Cancelar
+                </button>
+                <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                    Limpiar
+                </button>
+                <button class="ui teal floated red button"
+                    style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                    Eliminar
+                </button>
+                <button class="ui right floated green button"
+                    style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                    Incluir
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
