@@ -49,7 +49,7 @@
                     href="@routes.CFundacion.consultarF(fundacion.getCod_fundacion())"><i class="edit icon"
                         style="padding-left: 5px;"></i></a>
                 <a class="ui right floated red button"
-                    href="@routes.CFundacion.eliminarF(fundacion.getCod_fundacion())"><i class="trash alternate icon"
+                    onclick="javascript:confirmarEliminarFundacion('@fundacion.getCod_fundacion()');"><i class="trash alternate icon"
                         style="padding-left: 5px;"></i></a>
             </div>
         </div>

@@ -18,7 +18,7 @@ public class Fundacion extends Model {
     private UUID cod_fundacion;
 
     @Constraints.Required(message = "Por favor ingrese el nombre")
-    @Column(length = 30 )
+    @Column(length = 30, unique = true )
     private String nombre;
 
     @Constraints.Required

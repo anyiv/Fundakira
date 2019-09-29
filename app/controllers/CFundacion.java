@@ -64,7 +64,6 @@ public class CFundacion extends Controller {
     public Result eliminarF(UUID codigo) {
         Fundacion fundacion = Fundacion.buscador.porCodigo(codigo);
         fundacion.setEstatus('I');
-        System.out.print(fundacion.toString());
         Ebean.update(fundacion);
         flash("success",String.format("La fundación %s ha sido eliminada con éxito.", fundacion.getNombre()));
         return redirect(routes.CFundacion.fundaciones());

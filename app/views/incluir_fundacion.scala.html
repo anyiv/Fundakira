@@ -2,37 +2,53 @@
 @(fundacionForm: Form[Fundacion])
 @main("Incluir fundación"){
 <!--PARA USUARIO ADMINISTRADOR-->
-<div class="ui middle centered grid" style="margin-top: 2em;">
+<div class="ui middle centered grid" style="margin-top: 2em;margin-bottom: 10px;">
+
+        @if(flash.containsKey("error")){
+        <div class="row">
+            <div class="ui error message">
+                <i class="close icon"></i>
+                <div class="header">Hay algunos errores con tu formulario. </div>
+                    <ul class="list">
+                            @for(error <- fundacionForm.errors()) {
+                                @if(error.message != "error.invalid"){
+                                   <li>@error.message</li>
+                                }
+                            }
+                    </ul>
+            </div>
+        </div>
+        }
     <div class="six wide tablet eight wide computer column">
         <div class="ui segment" style="background-color: #e6d4b3;">
-            <h2 class="ui header" style="margin-top:10px;">@if(fundacionForm("nombre").value.toString()=="Optional.empty"){Incluir} else {Modificar} fundación</h2>
+            <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">@if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){Incluir} else {Modificar} fundación</h2>
             @helper.form(action = routes.CFundacion.guardarF(), 'id -> "formFundacion") {
             @CSRF.formField
-            @if(fundacionForm("nombre").value.toString()=="Optional.empty"){} else {<input id="cod_fundacion" name="cod_fundacion" value='@fundacionForm("cod_fundacion").value.get()' type="hidden">}
-            <div class="ui two column grid" style="margin-left: 30px;">
+            @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else {<input id="cod_fundacion" name="cod_fundacion" value='@fundacionForm("cod_fundacion").value.get()' type="hidden">}
+            <div class="ui two column grid" style="margin-left: 30px;">    
                 <input id="estatus" name="estatus" value="A" type="hidden">
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input id="nombre" name="nombre" @if(fundacionForm("nombre").value.toString()=="Optional.empty"){} else { value='@fundacionForm("nombre").value.get()' } placeholder="Nombre" type="text">
+                        <input id="nombre" name="nombre" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else { value='@fundacionForm("cod_fundacion").value.get()' } placeholder="Nombre" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Dirección:</b></p>
                     <div class="ui input">
-                        <input id="direccion" name="direccion" @if(fundacionForm("nombre").value.toString()=="Optional.empty"){} else { value='@fundacionForm("direccion").value.get()' } placeholder="Dirección" type="text">
+                        <input id="direccion" name="direccion" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else { value='@fundacionForm("direccion").value.get()' } placeholder="Dirección" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Teléfono:</b></p>
                     <div class="ui input">
-                        <input id="telefono" name="telefono" @if(fundacionForm("nombre").value.toString()=="Optional.empty"){} else { value='@fundacionForm("telefono").value.get()' } placeholder="Teléfono" type="text">
+                        <input id="telefono" name="telefono" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else { value='@fundacionForm("telefono").value.get()' } placeholder="Teléfono" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Correo:</b></p>
                     <div class="ui input">
-                        <input id="correo" name="correo" placeholder="Correo" @if(fundacionForm("nombre").value.toString()=="Optional.empty"){} else { value='@fundacionForm("correo").value.get()' } type="text">
+                        <input id="correo" name="correo" placeholder="Correo" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else { value='@fundacionForm("correo").value.get()' } type="text">
                     </div>
                 </div>
                 <div class="column">
@@ -55,7 +71,7 @@
                     </button>
                     <a value="guardarF" class="ui right floated green button"
                         style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 3em;" onclick="javascript:enviarFormularioFundacion();">
-                        @if(fundacionForm("nombre").value.toString()=="Optional.empty"){Incluir} else {Modificar}
+                        @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){Incluir} else {Modificar}
                     </a>
                 </div>
             </div>

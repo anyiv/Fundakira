@@ -40,6 +40,7 @@ create table fundacion (
   correo                        varchar(255),
   telefono                      varchar(12),
   estatus                       varchar(1),
+  constraint uq_fundacion_nombre unique (nombre),
   constraint pk_fundacion primary key (cod_fundacion)
 );
 

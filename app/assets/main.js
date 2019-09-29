@@ -45,6 +45,23 @@ function confirmarModifFundacion() {
   })
 };
 
+function confirmarEliminarFundacion(id) {
+  Swal.fire({
+      title: '¿Seguro que deseas eliminar la fundación?',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+  }).then((result) => {
+      if (result.value) {
+        location.href = "/eliminarF/?id=" + id;
+      }
+  })
+};
+
 function imprimirMensaje(mensaje) {
   Swal.fire({
       title: "Éxito",
@@ -53,3 +70,12 @@ function imprimirMensaje(mensaje) {
       showCancelButton: false
   })
 };
+
+$('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
