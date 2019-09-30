@@ -21,7 +21,10 @@ public class BuscadorUsuario extends Finder<String,Usuario> {
     public Usuario login(String cedula, String contrasenna) {
       return query()
               .where()
-              .and(Expr.eq("cedula_E", cedula),Expr.eq("contrasenna", contrasenna))
+              .and()
+                .eq("cedula_E", cedula)
+                .eq("contrasenna", contrasenna)
+                .eq("estatus","A")
               .findOne();
     }
 
