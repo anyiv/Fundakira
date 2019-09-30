@@ -10,7 +10,7 @@
                 <div class="ui container center aligned">
                         <h2>Reporte Solicitudes por responsable</h2>
                     </div>
-            <div class="ui segment" style="background-color: lightslategray;">
+            <div class="ui segment" style="background-color: #8fa4a2;">
                 <h4>Filtrar Solicitudes por responsable</h4>
                 <select class="ui dropdown">
                     <option value="">Empleados</option>
@@ -30,13 +30,14 @@
     </div>
 </div>
 <div class="row" style="margin-top: 2em;">
-    <div class="ui content center aligned" style="margin-right: 10em;margin-left: 10em;">
+    <div class="ui content center aligned" style="margin-right: 15em;margin-left: 15em;">
         <table class="ui single line inverted grey table">
             <thead>
                 <tr>
                     <th>Nombre del Responsable</th>
-                    <th>Código de solicitud</th>
+                    <th>Fecha de ingreso</th>
                     <th>Estatus</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -44,16 +45,25 @@
                     <td>SL-0001</td>
                     <td>September 14, 2013</td>
                     <td>No</td>
+                    <td><a href="@routes.CSolicitud.consulta_solicitud" class="circular ui icon button">
+                            <i class="icon eye"></i>
+                    </a></td>
                 </tr>
                 <tr>
                     <td>SL-0002</td>
                     <td>January 11, 2014</td>
                     <td>Si</td>
+                    <td><a href="@routes.CSolicitud.consulta_solicitud" class="circular ui icon button">
+                            <i class="icon eye"></i>
+                    </a></td>
                 </tr>
                 <tr>
                     <td>SL-0003</td>
                     <td>May 11, 2014</td>
                     <td>Si</td>
+                    <td><a href="@routes.CSolicitud.consulta_solicitud" class="circular ui icon button">
+                            <i class="icon eye"></i>
+                    </a></td>
                 </tr>
             </tbody>
         </table>

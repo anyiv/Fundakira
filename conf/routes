@@ -10,7 +10,8 @@ GET    /eliminarF/                   controllers.CFundacion.eliminarF(id : java.
 # An example controller showing a sample home page
 + nocsrf
 GET     /                           controllers.HomeController.index
-GET     /inicio/                    controllers.HomeController.inicio
+GET     /inicio/empleado            controllers.HomeController.inicio
+GET     /inicio/admin               controllers.HomeController.inicio_admin
 GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /servicios/                 controllers.HomeController.servicios
 GET     /solicitudes/               controllers.CSolicitud.solicitudes

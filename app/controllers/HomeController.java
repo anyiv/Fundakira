@@ -54,4 +54,9 @@ public class HomeController extends Controller {
         return ok(views.html.incluir_empleado.render());
     }
 
+    public Result inicio_admin() {
+        return ok(views.html.inicio_admin.render());
+    }
+
+
 }
