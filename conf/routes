@@ -21,6 +21,7 @@ GET     /reportes/solicitantes      controllers.HomeController.rp_solicitantes
 GET     /reportes/presupuesto       controllers.HomeController.rp_presupuesto
 GET     /empleados/                 controllers.HomeController.empleados
 GET     /empleados/incluir          controllers.HomeController.incl_empleado
+GET     /empleados/consultar        controllers.HomeController.consultar_empleado
 GET     /reporte/solicitudes        controllers.CSolicitud.rp_solicitudes
 GET     /solicitudes/consulta       controllers.CSolicitud.consulta_solicitud
 

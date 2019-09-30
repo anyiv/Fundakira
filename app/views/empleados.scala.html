@@ -4,7 +4,7 @@
     <div class="ui segment" style="background-color:seagreen;">
         <div class="ui two colum grid">
             <div class="colum">
-                <h2 class="ui header" style="margin-left: 3em; margin-top: 1em; text-align: center">
+                <h2 class="ui header" style="margin-left: 3em; margin-top: 0.7em; text-align: center;">
                     <i class="users icon"></i>
                     <div class="content">
                         Empleados
@@ -36,42 +36,55 @@
                     <td>0000001</td>
                     <td>Anyeli Villareal</td>
                     <td>Las mujeres</td>
-                    <td><button class="circular ui icon button">
+                    <td><a class="circular ui icon button" href="@routes.HomeController.consultar_empleado">
                             <i class="icon eye"></i>
-                        </button>
+                        </a>
+                        <a class="circular ui red icon button" href="@routes.HomeController.consultar_empleado">
+                            <i class="trash alternate icon"></i>
+                        </a>
                     </td>
                 </tr>
                 <tr>
                     <td>0000002</td>
                     <td>María Rico</td>
                     <td>Los niños</td>
-                    <td><button class="circular ui icon button">
+                    <td><a class="circular ui icon button" href="@routes.HomeController.consultar_empleado">
                             <i class="icon eye"></i>
-                        </button>
+                        </a>
+                        <a class="circular ui red icon button" href="@routes.HomeController.consultar_empleado">
+                            <i class="trash alternate icon"></i>
+                        </a>
                     </td>
                 </tr>
                 <tr>
                     <td>0000003</td>
                     <td>Omerly Mendoza</td>
                     <td>Discapacitados</td>
-                    <td><button class="circular ui icon button">
+                    <td><a class="circular ui icon button" href="@routes.HomeController.consultar_empleado">
                             <i class="icon eye"></i>
-                        </button>
+                        </a>
+                        <a class="circular ui red icon button" href="@routes.HomeController.consultar_empleado">
+                            <i class="trash alternate icon"></i>
+                        </a>
                     </td>
                 </tr>
                 <tr>
                     <td>0000004</td>
                     <td>María Paredes</td>
                     <td>Las mujeres</td>
-                    <td><button class="circular ui icon button">
+                    <td><a class="circular ui icon button" href="@routes.HomeController.consultar_empleado">
                             <i class="icon eye"></i>
-                        </button>
+                        </a>
+                        <a class="circular ui red icon button" href="@routes.HomeController.consultar_empleado">
+                            <i class="trash alternate icon"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <a href="@routes.HomeController.incl_empleado"><button class="ui centered floated blue button" style="margin-left: 35em;">
-            <i class="add icon"></i>
+        <a href="@routes.HomeController.incl_empleado"><button class="ui centered floated blue button"
+                style="margin-left: 35em;">
+                <i class="add icon"></i>
                 Añadir
             </button></a>
     </div>

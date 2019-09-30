@@ -1,0 +1,71 @@
+@main("Consultar empleado"){
+<!--PARA USUARIO ADMMINISTRADOR-->
+
+<div class="ui middle centered grid" style="margin-top: 50px">
+    <div class="three wide tablet seven wide computer column">
+        <div class="ui segment" style="background-color: #e6d4b3;">
+            <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Consultar Empleado</h2>
+            <div class="ui two column grid" style="margin-left: 30px;">
+                <div class="column">
+                    <p><b>Cédula:</b></p>
+                    <div class="ui input">
+                        <input placeholder="Cédula" type="text" value="0000001">
+                    </div>
+                </div>
+                <div class="column">
+                    <p><b>Fundación:</b></p>
+                    <select name="Fundación asociada" class="ui dropdown">
+                        <option value="">Fundación</option>
+                        <option value="Niños">Los niños</option>
+                        <option value="Discapacitados">Los discapacitados</option>
+                        <option value="Mujeres" selected>Las mujeres</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <p><b>Nombre:</b></p>
+                    <div class="ui input">
+                        <input placeholder="Nombre" type="text" value="Anyeli">
+                    </div>
+                </div>
+                <div class="column">
+                    <p><b>Apellido:</b></p>
+                    <div class="ui input">
+                        <input placeholder="Apellido" type="text" value="Villarreal">
+                    </div>
+                </div>
+                <div class="column">
+                    <p><b>Teléfono:</b></p>
+                    <div class="ui input">
+                        <input placeholder="Teléfono" type="text" value="0251-4242424">
+                    </div>
+                </div>
+                <div class="column">
+                    <p><b>Correo:</b></p>
+                    <div class="ui input">
+                        <input placeholder="Correo" type="text" value="anyi@@fundakira.com">
+                    </div>
+                </div>
+                <div class="column">
+                    <p><b>Dirección:</b></p>
+                    <div class="ui input">
+                        <input placeholder="Nombre" type="text" value="Barquisimeto, calle 14 con carrera 16.">
+                    </div>
+                </div>
+            </div>
+            <div class="ui container ">
+                <a class="ui left floated blue button" href="@routes.HomeController.empleados"
+                    style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                    Cancelar
+                </a>
+                <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
+                    Limpiar
+                </button>
+                <button class="ui right floated green button"
+                    style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                    Modificar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+}
