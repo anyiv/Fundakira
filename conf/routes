@@ -3,14 +3,16 @@
 # ~~~~
 
 #Methods with POST and csrf
+POST   /                            controllers.CLogin.login(request : play.mvc.Http.Request)
 POST   /fundacionesC/               controllers.CFundacion.guardarF()
 GET    /fundacion/:id               controllers.CFundacion.consultarF(id : java.util.UUID)
-GET    /eliminarF/                   controllers.CFundacion.eliminarF(id : java.util.UUID)
+GET    /eliminarF/                  controllers.CFundacion.eliminarF(id : java.util.UUID)
 
 # An example controller showing a sample home page
 + nocsrf
-GET     /                           controllers.HomeController.index
-GET     /inicio/empleado            controllers.HomeController.inicio
+GET     /                           controllers.CLogin.index
+GET     /logout/                    controllers.CLogin.logout
+GET     /inicio/                    controllers.HomeController.inicio
 GET     /inicio/admin               controllers.HomeController.inicio_admin
 GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /servicios/                 controllers.HomeController.servicios

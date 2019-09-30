@@ -1,4 +1,6 @@
-@main("Gestión de fundaciones") {
+@import helper._
+@(loginForm: Form[Usuario])
+@main("Fundakira - Iniciar sesión") {
     <meta charset="utf-8">
 <style type="text/css">
     .image {
@@ -14,22 +16,23 @@
     <div class="column">
         <div class="ui large segment" style="background-color:#aae1a9">
             <img src="@routes.Assets.versioned("images/logo.png")" style="height: 100px;width: auto;margin-bottom:1em;"></img>
-            <form class="ui large form">
+            @helper.form(action = routes.CLogin.login(), 'class -> "ui large form") {
+                @CSRF.formField
+
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="username" id="login_username" placeholder="Nombre de usuario:" required autofocus>
+                        <input id="cedula_E" type="text" name="cedula_E" placeholder="Cédula de identidad:" required autofocus>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Constraseña:" required>
+                        <input id="contrasenna" type="password" name="contrasenna" placeholder="Constraseña:" required>
                     </div>
                 </div>
-                <div class="ui error message"></div>
                 <button class="ui fluid large blue submit button" type="submit">Iniciar sesión</button>
-            </form>
+            }
         </div>
     </div>
 </div>

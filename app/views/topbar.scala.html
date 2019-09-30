@@ -21,9 +21,9 @@
     </a>
     <div class="right menu">
         <a class="item" href="#">
-            <i class="user icon"></i> @nombre @apellido
+            <i class="user icon"></i> @Empleado.buscador.porCedula(request.session().getOptional("user").get()).toString()
         </a>
-        <a class="item" onclick="javascript:void(0);">
+        <a class="item" onclick="javascript:cerrarSesion();">
             <i class="sign-out icon"></i> Cerrar Sesión
         </a>
     </div>

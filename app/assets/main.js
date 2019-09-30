@@ -13,8 +13,8 @@ function enviarFormularioFundacion() {
 
 function confirmarCreacionFundacion() {
   Swal.fire({
-      title: '¿Seguro que deseas incluir la fundación?',
-      text: "",
+      title: 'Confirmar inclusión',
+      text: "¿Seguro que deseas incluir la fundación?",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -30,8 +30,8 @@ function confirmarCreacionFundacion() {
 
 function confirmarModifFundacion() {
   Swal.fire({
-      title: '¿Seguro que deseas modificar la fundación?',
-      text: "",
+      title: 'Confirmar modificación',
+      text: "¿Seguro que deseas modificar la fundación?",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -47,8 +47,8 @@ function confirmarModifFundacion() {
 
 function confirmarEliminarFundacion(id) {
   Swal.fire({
-      title: '¿Seguro que deseas eliminar la fundación?',
-      text: "",
+      title: 'Confirmar eliminación',
+      text: "¿Seguro que deseas eliminar la fundación?",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -62,11 +62,37 @@ function confirmarEliminarFundacion(id) {
   })
 };
 
+function cerrarSesion() {
+  Swal.fire({
+      title: 'Confirmar cierre de sesión',
+      text: "¿Seguro que deseas cerrar sesión?",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+  }).then((result) => {
+      if (result.value) {
+        location.href = "/logout/";
+      }
+  })
+};
+
 function imprimirMensaje(mensaje) {
   Swal.fire({
       title: "Éxito",
       text: mensaje,
       type: 'success',
+      showCancelButton: false
+  })
+};
+
+function imprimirError(mensaje) {
+  Swal.fire({
+      title: "Error",
+      text: mensaje,
+      type: 'error',
       showCancelButton: false
   })
 };
