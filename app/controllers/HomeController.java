@@ -54,9 +54,16 @@ public class HomeController extends Controller {
         return ok(views.html.incluir_empleado.render());
     }
 
+<<<<<<< HEAD
     public Result inicio_admin() {
         return ok(views.html.inicio_admin.render());
     }
 
 
+=======
+    public Result consultar_empleado(){
+        return ok(views.html.consultar_empleado.render());
+    }
+
+>>>>>>> 6339ef8fd6fbc1c5277247babcdb71ed048fb70d
 }
