@@ -19,7 +19,9 @@
             }
           </style>
     </head>
-    @topbar("Zeus", "von Ratten") 
+    @if(request.path!="/") {
+      @topbar("Zeus", "von Ratten") 
+    }
     <body>
         @content
     </body>

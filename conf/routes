@@ -13,7 +13,7 @@ GET     /                           controllers.HomeController.index
 GET     /inicio/                    controllers.HomeController.inicio
 GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /servicios/                 controllers.HomeController.servicios
-GET     /solicitudes/               controllers.HomeController.solicitudes
+GET     /solicitudes/               controllers.CSolicitud.solicitudes
 GET     /reportes/                  controllers.HomeController.reportes
 GET     /fundaciones/incluir        controllers.CFundacion.incl_fundacion
 GET     /servicios/incluir          controllers.HomeController.incl_servicio
@@ -21,7 +21,8 @@ GET     /reportes/solicitantes      controllers.HomeController.rp_solicitantes
 GET     /reportes/presupuesto       controllers.HomeController.rp_presupuesto
 GET     /empleados/                 controllers.HomeController.empleados
 GET     /empleados/incluir          controllers.HomeController.incl_empleado
-GET     /reporte/solicitudes        controllers.HomeController.rp_solicitudes
+GET     /reporte/solicitudes        controllers.CSolicitud.rp_solicitudes
+GET     /solicitudes/consulta       controllers.CSolicitud.consulta_solicitud
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

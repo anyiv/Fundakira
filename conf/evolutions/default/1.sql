@@ -55,6 +55,13 @@ create table servicio (
   foreign key (cod_fundacion) references fundacion (cod_fundacion) on delete restrict on update restrict
 );
 
+create table solicitud (
+  cod_solicitud                 varchar(9) not null,
+  prioridad                     varchar(5),
+  costo_total                   double(15) not null,
+  constraint pk_solicitud primary key (cod_solicitud)
+);
+
 create table usuario (
   cedula_e                      varchar(9) not null,
   contrasenna                   varchar(30),
@@ -72,6 +79,8 @@ drop table if exists empleado;
 drop table if exists fundacion;
 
 drop table if exists servicio;
+
+drop table if exists solicitud;
 
 drop table if exists usuario;
 

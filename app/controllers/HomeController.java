@@ -30,10 +30,6 @@ public class HomeController extends Controller {
         return ok(views.html.servicios.render());
     }
 
-    public Result solicitudes() {
-        return ok(views.html.solicitudes.render());
-    }
-
     public Result reportes() {
         return ok(views.html.reportes.render());
     }
@@ -58,7 +54,4 @@ public class HomeController extends Controller {
         return ok(views.html.incluir_empleado.render());
     }
 
-    public Result rp_solicitudes() {
-        return ok(views.html.reporte_solicitudes.render());
-    }
 }
