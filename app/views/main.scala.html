@@ -34,4 +34,7 @@
     @if(flash().get("success")!=null) {
       <script>imprimirMensaje('@flash().get("success")');</script>
     }
+    @if(flash().get("error_login")!=null) {
+      <script>imprimirError('@flash().get("error_login")');</script>
+  }
 </html>

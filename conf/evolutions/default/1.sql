@@ -15,7 +15,7 @@ create table beneficiario (
 );
 
 create table empleado (
-  cedula_b                      varchar(9) not null,
+  cedula_emp                    varchar(9) not null,
   usuario_cedula_e              varchar(9),
   nombre                        varchar(30),
   apellido                      varchar(30),
@@ -26,8 +26,8 @@ create table empleado (
   fundacion_cod_fundacion       varchar(9),
   constraint uq_empleado_usuario_cedula_e unique (usuario_cedula_e),
   constraint uq_empleado_fundacion_cod_fundacion unique (fundacion_cod_fundacion),
-  constraint pk_empleado primary key (cedula_b),
-  foreign key (cedula_b) references usuario (cedula_e) on delete restrict on update restrict,
+  constraint pk_empleado primary key (cedula_emp),
+  foreign key (cedula_emp) references usuario (cedula_e) on delete restrict on update restrict,
   foreign key (usuario_cedula_e) references usuario (cedula_e) on delete restrict on update restrict,
   foreign key (fundacion_cod_fundacion) references fundacion (cod_fundacion) on delete restrict on update restrict
 );
