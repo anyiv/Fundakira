@@ -13,6 +13,7 @@ GET    /eliminarF/                  controllers.CFundacion.eliminarF(id : java.u
 GET     /                           controllers.CLogin.index
 GET     /logout/                    controllers.CLogin.logout
 GET     /inicio/                    controllers.HomeController.inicio
+GET     /inicio/admin               controllers.HomeController.inicio_admin
 GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /servicios/                 controllers.HomeController.servicios
 GET     /solicitudes/               controllers.CSolicitud.solicitudes

@@ -1,28 +1,32 @@
 @main("Empleados"){
 <!--Solo para el Administrador-->
 <div class="ui raised segments" style="margin:60px">
-    <div class="ui segment" style="background-color:seagreen;">
-        <div class="ui two colum grid">
-            <div class="colum">
-                <h2 class="ui header" style="margin-left: 3em; margin-top: 0.7em; text-align: center;">
+    <div class="ui segment" style="background-color:#97c5a9;">
+        <div class="ui three column grid">
+            <div class="column">
+                <h2 class="ui header" style="margin-left: 1.5em; margin-top: 0.1em">
                     <i class="users icon"></i>
-                    <div class="content">
-                        Empleados
-                    </div>
+                    Empleados
                 </h2>
             </div>
             <div class="column">
-                <div class="ui action input" style="margin-left: 40em">
-                    <input type="text" placeholder="Buscar...">
-                    <button class="ui icon button" style="background-color:darkgray">
+                <div class="ui search">
+                    <div class="ui icon input">
+                        <input class="prompt" placeholder="Buscar..." type="text">
                         <i class="search icon"></i>
-                    </button>
+                    </div>
+                    <div class="results"></div>
                 </div>
+            </div>
+            <div class="column">
+                <a href="@routes.HomeController.incl_empleado" class="ui right floated green button">
+                    Añadir
+                </a>
             </div>
         </div>
     </div>
-    <div class="ui segment">
-        <table class="ui striped inverted table">
+    <div class="ui content">
+        <table class="ui striped inverted grey table">
             <thead>
                 <tr>
                     <th>Cédula</th>
@@ -82,11 +86,6 @@
                 </tr>
             </tbody>
         </table>
-        <a href="@routes.HomeController.incl_empleado"><button class="ui centered floated blue button"
-                style="margin-left: 35em;">
-                <i class="add icon"></i>
-                Añadir
-            </button></a>
     </div>
 </div>
 }

@@ -105,3 +105,11 @@ $('.message .close')
     ;
   })
 ;
+
+$('.trigger.example .accordion')
+  .accordion({
+    selector: {
+      trigger: '.title .icon'
+    }
+  })
+;

@@ -1,6 +1,6 @@
 @main("Consultar Solicitud"){
-<div class="ui middle centered grid" style="margin-top:60px;margin-bottom:40px;">
-    <div class="ui centered card" style="width:30%;background-color:#e6d4b3;">
+<div class="ui middle centered grid" style="margin-top:60px;margin-bottom:30px;">
+    <div class="ui centered card" style="width:30%;background-color:#95bea5;margin-bottom: 70px;">
         <div class="one column row">
             <div class="column ">
                 <div class="ui content">
@@ -9,9 +9,51 @@
                         <div class="meta">Fundacion Niña, Niño y adolescente</div>
                         <p><b>Cédula:</b> 26.123.456</p>
                         <p><b>Prioridad:</b> Medio</p>
+                        <p><b>Fecha de registro:</b>15/09/2019</p>
                         <p><b>Motivo de rechazo:</b></p>
                         <p><b>Estatus:</b> Pendiente</p>
                     </div>
+                    <table class="ui basic table">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Tipo</th>
+                                <th>Costo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Consulta Oftalmológica</td>
+                                <td>Médico</td>
+                                <td>40.000bs</td>
+                            </tr>
+                            <tr>
+                                <td>Consulta Oftalmológica</td>
+                                <td>Médico</td>
+                                <td>40.000bs</td>
+                            </tr>
+                            <tr>
+                                <td>Consulta Oftalmológica</td>
+                                <td>Médico</td>
+                                <td>40.000bs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><b>Presupuesto total:</b> 120.000bs</p>
+                    <p><b>Presupuesto disponible:</b> 120.000bs</p>
+                </div>
+                <div class="ui container ">
+                    <a href="@routes.CSolicitud.solicitudes" class="ui left floated blue button"
+                        style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                        Cancelar
+                </a>
+                    <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em;">
+                        Rechazar
+                    </button>
+                    <button class="ui right floated green button"
+                        style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                        Aprobar
+                    </button>
                 </div>
             </div>
         </div>

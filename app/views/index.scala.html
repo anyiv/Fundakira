@@ -14,7 +14,7 @@
 
 <div class="ui center aligned grid" style="margin-top: 10em">    
     <div class="column">
-        <div class="ui large segment" style="background-color:#4f706d">
+        <div class="ui large segment" style="background-color:#aae1a9">
             <img src="@routes.Assets.versioned("images/logo.png")" style="height: 100px;width: auto;margin-bottom:1em;"></img>
             @helper.form(action = routes.CLogin.login(), 'class -> "ui large form") {
                 @CSRF.formField
@@ -31,7 +31,7 @@
                         <input id="contrasenna" type="password" name="contrasenna" placeholder="Constraseña:" required>
                     </div>
                 </div>
-                <button class="ui fluid large teal submit button" type="submit">Iniciar sesión</button>
+                <button class="ui fluid large blue submit button" type="submit">Iniciar sesión</button>
             }
         </div>
     </div>
