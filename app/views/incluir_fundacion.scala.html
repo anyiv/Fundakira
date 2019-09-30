@@ -20,7 +20,7 @@
         </div>
         }
     <div class="six wide tablet eight wide computer column">
-        <div class="ui segment" style="background-color: #e6d4b3;">
+        <div class="ui segment" style="background-color: #95bea5;">
             <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">@if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){Incluir} else {Modificar} fundación</h2>
             @helper.form(action = routes.CFundacion.guardarF(), 'id -> "formFundacion") {
             @CSRF.formField
