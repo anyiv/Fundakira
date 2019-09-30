@@ -19,6 +19,12 @@
                         </div>
                     </div>
                     <div class="column">
+                        <p><b>Apellido:</b></p>
+                        <div class="ui input">
+                            <input placeholder="Nombre" type="text">
+                        </div>
+                    </div>
+                    <div class="column">
                         <p><b>Teléfono:</b></p>
                         <div class="ui input">
                             <input placeholder="Teléfono" type="int">
@@ -39,29 +45,25 @@
                     <div class="column">
                         <p><b>Fundación:</b></p>
                         <select name="Fundación asociada" class="ui dropdown">
-                            <option value="">Fundación</option>
-                                <option value="Niños">Los niños</option>
-                                <option value="Discapacitados">Los discapacitados</option>
-                                <option value="Mujeres">Las mujeres</option>
-                            </select>
+                            <option value="0">Todos</option>
+                            <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
+                            <option value="2">Fundación de Atención al Discapacitado</option>
+                            <option value="3">Fundación Regional de la Mujer</option>
+                        </select>
                     </div>
                 </div>
                 <div class="ui container" style="margin-top: 2em; margin-left:2em; padding-bottom:2em;">
                     <button class="ui left floated blue button"
-                    style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
-                    Cancelar
-                </button>
-                <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
-                    Limpiar
-                </button>
-                <button class="ui teal floated red button"
-                    style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
-                    Eliminar
-                </button>
-                <button class="ui right floated green button"
-                    style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
-                    Incluir
-                </button>
+                        style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                        Cancelar
+                    </button>
+                    <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 7em;">
+                        Limpiar
+                    </button>
+                    <button class="ui right floated green button"
+                        style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                        Incluir
+                    </button>
                 </div>
             </div>
         </div>
