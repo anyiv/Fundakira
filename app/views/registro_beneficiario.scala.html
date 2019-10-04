@@ -4,61 +4,70 @@
     <div class="ui middle centered grid">
         <div class="seven wide tablet seven wide computer column">
             <div class="ui segment" style="background-color: #aae1a9;">
-            <h2 class="ui header" style="margin-top:10px; margin-left: 20px;">!Registrate!</h2>
-<form class="ui form">
-    <h4 class="ui dividing header">Información de usuario</h4>
-    <div class="field">
-        <label>Usuario</label>
-        <div class="three fields">
-            <div class="field">
-                <input type="text" usuario="shipping[Nombre de Usuario]" placeholder="Nombre de Usuario">
-            </div>
-            <div class="field">
-                <input type="text" contrasenna="shipping[Contraseña]" placeholder="Contraseña">
-            </div>
-            <div class="field">
-                <input type="text" contrasenna="shipping[Confirmar contraseña]" placeholder="Confirmar contraseña">
-            </div>  
-        </div>
-    </div>
-    <h4 class="ui dividing header">Datos del beneficiario</h4>
-    <div class="field">
-        <label>Nombre y apellido</label>
-        <div class="two fields">
-            <div class="field">
-                <input type="text" Nombre="shipping[Nombre]" placeholder="Nombre">
-            </div>
-            <div class="field">
-                <input type="text" Apellido="shipping[Apellido]" placeholder="Apellido">
-            </div>
-        </div>
-        <div class="two fields">
-            <div class="field">
-                <label>Identificación</label>
-                <input type="text" cedula="shipping[cedula]" placeholder="Cédula o RIF">
-            </div>
-            <div class="field">
-                <label>Correo</label>
-                <input type="text" correo="shipping[correo]" placeholder="Correo">
-            </div>
-        </div>
-        <div class="two fields">
-            <div class="field">
-                <label>Dirección</label>
-                <input type="text" direccion="shipping[Direccion]" placeholder="Dirección">
-            </div>
-            <div class="field">
-                <label>Teléfono</label>
-                <input type="text" Telefono="shipping[Telefono]" placeholder="Teléfono">
-            </div>
-        </div>
+                <h2 class="ui header" style="margin-top:10px; margin-left: 20px;">¡Registrate!</h2>
+                <form class="ui form">
+                    <h4 class="ui horizontal divider header" style="margin-top:1em;">Datos del Beneficiario</h4>
+                    <div class="column" style="margin-left: 25px;margin-right: 25px;">
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Nombre</label>
+                                    <input type="text" Nombre="shipping[Nombre]" placeholder="Nombre">
+                                </div>
+                                <div class="field">
+                                    <label>Apellido</label>
+                                    <input type="text" Apellido="shipping[Apellido]" placeholder="Apellido">
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Cédula</label>
+                                    <input type="text" cedula="shipping[cedula]" placeholder="Cédula">
+                                </div>
+                                <div class="field">
+                                    <label>Correo</label>
+                                    <input type="text" correo="shipping[correo]" placeholder="Correo">
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Dirección</label>
+                                    <input type="text" direccion="shipping[Direccion]" placeholder="Dirección">
+                                </div>
+                                <div class="field">
+                                    <label>Teléfono</label>
+                                    <input type="text" Telefono="shipping[Telefono]" placeholder="Teléfono">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="ui horizontal divider header" style="margin-top:1.5em; margin-bottom:1em;">Datos de
+                        ingreso</h4>
+                    <div class="column" style="margin-left: 25px;margin-right: 25px;">
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Contraseña</label>
+                                    <input type="text" contrasenna="shipping[Contraseña]" placeholder="Contraseña">
+                                </div>
+                                <div class="field">
+                                    <label>Confirmar Contraseña</label>
+                                    <input type="text" contrasenna="shipping[Confirmar contraseña]"
+                                        placeholder="Confirmar contraseña">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <button class="ui teal attached button" style="margin-top: 1em; margin-left: 14em">
                         Registrarse
                     </button>
-    </div>
-</div>
+                </form>
+            </div>
+            <div class="ui center aligned segment" style="background-color:#aae1a9;">
+                <a href="@routes.CLogin.index"><b>¡Inicia Sesión!</b></a>
             </div>
         </div>
     </div>
+</div>
 </div>
 }
