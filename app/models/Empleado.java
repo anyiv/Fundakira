@@ -14,10 +14,7 @@ public class Empleado extends Model {
 
     @Id
     @Column(length=9)
-    public String cedula_Emp;
-
-    @OneToOne
-    public Usuario usuario;
+    public String cedulaE;
 
     @Constraints.Required(message = "Por favor ingrese el nombre")
     @Column(length = 30 )
@@ -42,22 +39,23 @@ public class Empleado extends Model {
     public char estatus;
 
     @OneToOne
+    @JoinColumn(name="codFundacion")
     public Fundacion fundacion; //El que recibe la clave foranea
 
-    public String getCedula_Emp() {
-        return this.cedula_Emp;
+    //clave foranea para la solicitud
+    @OneToMany(mappedBy="empleado",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<Solicitud> solicitud;
+
+    @OneToOne (mappedBy = "empleado", fetch = FetchType.LAZY)
+    public Usuario_Empleado usuario_empleado;
+
+
+    public String getCedulaE() {
+        return this.cedulaE;
     }
 
-    public void setCedula_Emp(String cedula_Emp) {
-        this.cedula_Emp = cedula_Emp;
-    }
-
-    public Usuario getUsuario() {
-        return this.usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setCedulaE(String cedulaE) {
+        this.cedulaE = cedulaE;
     }
 
     public String getNombre() {
@@ -116,10 +114,22 @@ public class Empleado extends Model {
         this.fundacion = fundacion;
     }
 
-    @Override
-    public String toString() {
-        return this.nombre + " " + this.apellido;
+    public List<Solicitud> getSolicitud() {
+        return this.solicitud;
     }
+
+    public void setSolicitud(List<Solicitud> solicitud) {
+        this.solicitud = solicitud;
+    }
+
+    public Usuario_Empleado getUsuario_empleado() {
+        return this.usuario_empleado;
+    }
+
+    public void setUsuario_empleado(Usuario_Empleado usuario_empleado) {
+        this.usuario_empleado = usuario_empleado;
+    }
+
 
     public static BuscadorEmpleado buscador = new BuscadorEmpleado();
     

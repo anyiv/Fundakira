@@ -21,7 +21,7 @@ public class BuscadorEmpleado extends Finder<String,Empleado> {
     public Empleado porCedula(String cedula){
       return query()
               .where()
-              .eq("cedula_Emp",cedula)
+              .eq("cedula_e",cedula)
               .findOne();
     }
   

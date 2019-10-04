@@ -10,16 +10,17 @@ import play.data.Form;
 import play.data.FormFactory;
 import models.Usuario;
 import models.Empleado;
+import models.Login;
 import io.ebean.*;
 
 public class CLogin extends Controller {
 
     // CONSTRUCCION DE FORMULARIOS
-    private Form<Usuario> loginForm;
+    private Form<Login> loginForm;
 
     @Inject
     public CLogin(FormFactory formFactory) {
-        this.loginForm = formFactory.form(Usuario.class);
+        this.loginForm = formFactory.form(Login.class);
     }
 
     // RENDER DEL LOGIN
@@ -31,15 +32,21 @@ public class CLogin extends Controller {
     // INICIO DE SESIÓN
 
     public Result login(Http.Request request) {
-        Form<Usuario> boundForm = loginForm.bindFromRequest();
-
-        Usuario usuario = boundForm.get();
-        if (usuario.buscador.login(usuario.getCedula_E(),usuario.getContrasenna())!=null){
-            flash("success",String.format("Bienvenido, %s.",Empleado.buscador.porCedula(usuario.getCedula_E()).toString()));
-            return redirect(routes.HomeController.inicio()).addingToSession(request, "user", usuario.getCedula_E());
-        } else {
+        Form<Login> boundForm = loginForm.bindFromRequest();
+        Login login = boundForm.get();
+        try {
+            if (Usuario.buscador.login(login.getCedula(),login.getContrasenna())!=null){
+                flash("success",String.format("Bienvenido, %s.",Empleado.buscador.porCedula(login.getCedula()).toString()));
+                return redirect(routes.HomeController.inicio()).addingToSession(request, "user", login.getCedula());
+            } else {
+                flash("error_login",String.format("Error al iniciar sesión. Verifique sus datos y vuelva a intentar."));
+            }
+        } catch (Exception e) {
             flash("error_login",String.format("Error al iniciar sesión. Verifique sus datos y vuelva a intentar."));
+            return badRequest(views.html.index.render(boundForm));
         }
+
+
         return badRequest(views.html.index.render(boundForm));
     }
 
