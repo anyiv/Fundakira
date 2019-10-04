@@ -60,4 +60,7 @@ public class HomeController extends Controller {
         return ok(views.html.consultar_empleado.render());
     }
 
+    public Result reg_beneficiario(){
+        return ok(views.html.registro_beneficiario.render());
+    }
 }
