@@ -4,12 +4,18 @@
     <div class="six wide tablet eight wide computer column">
         <div class="ui segment" style="background-color: #95bea5;">
             <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Crear solicitudes</h2>
+            <h4 class="ui horizontal divider header" style="margin-top:1em;">Datos del Beneficiario</h4>
             <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Cédula:</b></p>
                     <div class="ui input">
                         <input placeholder="Cédula" type="text">
                     </div>
+                </div>
+                <div class="column">
+                    <button class="ui medium grey button" style="margin-top: 30px;">
+                        <i class="search icon"></i>Buscar
+                    </button>
                 </div>
                 <div class="column">
                     <p><b>Nombre:</b></p>
@@ -41,6 +47,9 @@
                         <input placeholder="Correo" type="text">
                     </div>
                 </div>
+            </div>
+            <h4 class="ui horizontal divider header" style="margin-top:1.5em;">Datos de la solicitud</h4>
+            <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Seleccione los servicios:</b></p>
                     <select name="Servicios" multiple="" class="ui fluid dropdown" id="servicios"
@@ -77,9 +86,17 @@
                     </div>
                 </div>
                 <div class="column">
-                    <p><b>Donaciones:</b></p>
+                    <p><b>Otra Donación:</b></p>
                     <div class="ui input">
                         <input placeholder="Donaciones" type="text">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui form">
+                        <div class="field" style="margin-right: 1em;">
+                            <p><b>Razón:</b></p>
+                            <textarea rows="2"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>

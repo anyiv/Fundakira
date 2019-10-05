@@ -31,6 +31,12 @@ public class Solicitud extends Model{
     @OneToMany(mappedBy="solicitud",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<DetalleSolicitud> detallesolicitud;
 
+    @Column(length=25)
+    private String otrasDonaciones;
+
+    @Column(length=200)
+    private String razon;
+
     @Column(length=5)
     private String prioridad;
 
@@ -111,15 +117,37 @@ public class Solicitud extends Model{
         this.estatus = estatus;
     }
 
-    public Solicitud(UUID cod_solicitud, Empleado empleado, Beneficiario beneficiario, String prioridad, double montoPresupuesto, Date fechaRegistro, String motivoRechazo, char estatus) {
+
+    public String getOtrasDonaciones() {
+        return this.otrasDonaciones;
+    }
+
+    public void setOtrasDonaciones(String otrasDonaciones) {
+        this.otrasDonaciones = otrasDonaciones;
+    }
+
+    public String getRazon() {
+        return this.razon;
+    }
+
+    public void setRazon(String razon) {
+        this.razon = razon;
+    }
+
+
+    public Solicitud(UUID cod_solicitud, Empleado empleado, Beneficiario beneficiario, List<DetalleSolicitud> detallesolicitud, String otrasDonaciones, String razon, String prioridad, double montoPresupuesto, Date fechaRegistro, String motivoRechazo, char estatus) {
         this.cod_solicitud = cod_solicitud;
         this.empleado = empleado;
         this.beneficiario = beneficiario;
+        this.detallesolicitud = detallesolicitud;
+        this.otrasDonaciones = otrasDonaciones;
+        this.razon = razon;
         this.prioridad = prioridad;
         this.montoPresupuesto = montoPresupuesto;
         this.fechaRegistro = fechaRegistro;
         this.motivoRechazo = motivoRechazo;
         this.estatus = estatus;
     }
+
 
 }

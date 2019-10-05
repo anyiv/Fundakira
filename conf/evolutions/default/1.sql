@@ -63,6 +63,8 @@ create table solicitud (
   cod_solicitud                 varchar(9) not null,
   cedulae                       varchar(9),
   cedulab                       varchar(9),
+  otras_donaciones              varchar(25),
+  razon                         varchar(200),
   prioridad                     varchar(5),
   monto_presupuesto             double(15) not null,
   fecha_registro                timestamp,
