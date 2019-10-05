@@ -34,7 +34,7 @@ public class CFundacion extends Controller {
         Form<Fundacion> boundForm = fundacionForm.bindFromRequest();
         String mensaje;
         if (boundForm.hasErrors()) { 
-            flash("error", "Por favor haga bien el formulario."); 
+            flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
             return badRequest(views.html.incluir_fundacion.render(boundForm));
         }
         Fundacion fundacion = boundForm.get();

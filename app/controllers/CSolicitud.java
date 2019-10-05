@@ -37,5 +37,7 @@ public class CSolicitud extends Controller{
     public Result guardarS(){
         Form<Solicitud> boundForm = solicitudForm.bindFromRequest();
         String mensaje;
+
+        return redirect(routes.HomeController.inicio());
     }
 }
