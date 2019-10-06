@@ -39,10 +39,10 @@ public class Fundacion extends Model {
     @Column(length=1)
     private char estatus;
 
-    @OneToMany(mappedBy="fundacion",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="fundacion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     public List<Servicio> servicios;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "fundacion") //el que da la clave foranea
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "fundacion",fetch = FetchType.LAZY) //el que da la clave foranea
     public Empleado empleado;
 
     public UUID getCod_fundacion() {

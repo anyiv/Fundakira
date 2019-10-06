@@ -100,3 +100,13 @@ public class Beneficiario extends Model {
 } 
 
 
+    //clave foranea para la solicitud
+    @OneToMany(mappedBy="beneficiario",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<Solicitud> solicitud;
+
+    @OneToOne (mappedBy = "beneficiario", fetch = FetchType.LAZY)
+    public Usuario_Beneficiario usuario_beneficiario;
+
+    
+} 
+

@@ -38,6 +38,10 @@ public class Servicio extends Model {
     @JoinColumn(name="cod_fundacion")
     public Fundacion fundacion;
 
+    //clave foranea del detalle de solicitud
+    @OneToMany(mappedBy="servicio",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DetalleSolicitud> detallesolicitud;
+
     //Pruebas desde aqui
     // public static Servicio EncontrarxID(String codServicio) {
     //     for (Servicio candidate : Servicio) {

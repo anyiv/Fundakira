@@ -1,4 +1,4 @@
-@(nombre: String, apellido: String)
+@(nombre : String)
 
 <div class="ui labeled inverted icon menu" style="background-color:#043b1b;">
     <a class="item" href="@routes.HomeController.inicio">
@@ -21,7 +21,7 @@
     </a>
     <div class="right menu">
         <a class="item" href="#">
-            <i class="user icon"></i> @Empleado.buscador.porCedula(request.session().getOptional("user").get()).toString()
+            <i class="user icon"></i>@nombre
         </a>
         <a class="item" onclick="javascript:cerrarSesion();">
             <i class="sign-out icon"></i> Cerrar Sesión

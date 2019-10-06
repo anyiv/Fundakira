@@ -24,4 +24,20 @@ public class CSolicitud extends Controller{
     public Result consulta_solicitud() {
         return ok(views.html.consultar_solicitud.render());
     }
+
+    // CONSTRUCCION DE FORMULARIOS
+    private Form<Solicitud> solicitudForm;
+
+    @Inject
+    public CSolicitud(FormFactory formFactory) {
+        this.solicitudForm = formFactory.form(Solicitud.class);
+    }
+
+    //CREAR SOLICITUD
+    public Result guardarS(){
+        Form<Solicitud> boundForm = solicitudForm.bindFromRequest();
+        String mensaje;
+
+        return redirect(routes.HomeController.inicio());
+    }
 }

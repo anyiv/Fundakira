@@ -33,8 +33,8 @@ public class CFundacion extends Controller {
     public Result guardarF() {
         Form<Fundacion> boundForm = fundacionForm.bindFromRequest();
         String mensaje;
-        if (boundForm.hasErrors()) { // aun no se sabe si
-            flash("error", "Por favor haga bien el formulario."); // funciona
+        if (boundForm.hasErrors()) { 
+            flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
             return badRequest(views.html.incluir_fundacion.render(boundForm));
         }
         Fundacion fundacion = boundForm.get();
