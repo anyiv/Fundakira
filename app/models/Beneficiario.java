@@ -17,82 +17,86 @@ public class Beneficiario extends Model {
 
     @Constraints.Required(message = "Por favor ingrese el nombre")
     @Column(length=30)
-    private String nombre;
+    private String nombreB;
 
     @Constraints.Required(message = "Por favor ingrese el apellido")
     @Column(length=30)
-    private String apellido;
+    private String apellidoB;
 
     @Constraints.Required(message = "Por favor ingrese la dirección")
     @Column(length=50)
-    private String direccion;
+    private String direccionB;
 
     @Constraints.Required(message = "Por favor ingrese el correo")
     @Constraints.Email(message = "Por favor verifique el correo")
-    private String correo;
+    private String correoB;
 
     @Column(length=12)
-    private String telefono;
+    private String telefonoB;
 
     @Column(length=1)
     private char estatus;
 
-    public String getCedulaB() {
-        return this.cedulaB;
-    }
+    @OneToOne (mappedBy = "beneficiario", fetch = FetchType.LAZY)
 
-    public void setCedulaB(String cedulaB) {
+    public Usuario_Beneficiario usuario_beneficiario;
+
+    public void setCedulaB(String cedulaB){
         this.cedulaB = cedulaB;
     }
 
-    public String getNombre() {
-        return this.nombre;
+    public String getCedulaB(){
+        return this.cedulaB;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreB(String nombreB){
+        this.nombreB = nombreB;
     }
 
-    public String getApellido() {
-        return this.apellido;
+    public String getNombreB(){
+        return this.nombreB;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidoB(String apellidoB) {
+        this.apellidoB = apellidoB;
     }
 
-    public String getDireccion() {
-        return this.direccion;
+    public String getApellidoB() {
+        return this.apellidoB;        
+    }
+    
+    public void setDireccionB(String direccionB) {
+        this.direccionB = direccionB;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public String getDireccionB(){
+        return this.direccionB;
     }
 
-    public String getCorreo() {
-        return this.correo;
+    public void setCorreo(String correoB) {
+        this.correoB = correoB;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public String getCorreoB(){
+        return this.correoB;
     }
 
-    public String getTelefono() {
-        return this.telefono;
+    public void setTelefono(String telefonoB) {
+        this.telefonoB = telefonoB;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public char getEstatus() {
-        return this.estatus;
+    public String getTelefonoB(){
+        return this.telefonoB;
     }
 
     public void setEstatus(char estatus) {
         this.estatus = estatus;
     }
 
-    public static Finder<Integer, Beneficiario> find = new Finder<>(Beneficiario.class);
-    
+    public char getEstatus(){
+        return this.estatus;
+    }
+
 } 
+
+

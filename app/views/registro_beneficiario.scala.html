@@ -1,0 +1,102 @@
+@import helper._
+@(beneficiarioForm: Form[Beneficiario])
+@main("¡Registrate!"){
+
+<div class="row" style="margin-top: 10px;">
+    <div class="ui middle centered grid">
+        <div class="seven wide tablet seven wide computer column">
+            <div class="ui segment" style="background-color: #aae1a9;">
+                <h2 class="ui header" style="margin-top:10px; margin-left: 20px;">¡Registrate!</h2>
+                <form class="ui form">
+                    <h4 class="ui horizontal divider header" style="margin-top:1em;">Datos del Beneficiario</h4>
+                    <div class="column" style="margin-left: 25px;margin-right: 25px;">
+                        <div class="field">
+                            <div class="two fields">
+                                
+                                <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">
+                                 
+                                
+                                <div class="ui two column grid" style="margin-left: 15px; margin-right: 15px; font-size: 20px;">
+                                    <input id="estatus" name="estatus" value="A" type="hidden">
+                                   
+                                    <div class="column">
+                                        <p><b>Cedula</b></p>
+                                        <div class="ui input">
+                                        <input id="cedulaB" name="cedulaB" placeholder="Cedula" type="text">
+                                    </div>
+                                    </div>
+                                    
+                                    
+                                <div class="column">
+                                    <p><b>Nombre</b></p>
+                                    <div class="ui input">
+                                    <input id="nombreB" name="nombreB"  placeholder="Nombre" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="column">
+                                    <p><b>Apellido</b></p>
+                                    <div class="ui input">
+                                    <input id="apellidoB" name="apellidoB" type="text" placeholder="Apellido">
+                                    </div>
+                                </div>
+                                
+                                <div class="column">
+                                    <p><b>Dirección</b></p>
+                                    <div class="ui input">
+                                    <input id="direccionB" name="direccionB" type="text" placeholder="Dirección">
+                                    </div>
+                                </div>
+
+                                <div class="column">
+                                    <p><b>Correo</b></p>
+                                    <div class="ui input">
+                                    <input id="correoB" name="correoB" type="text" placeholder="Correo">
+                                    </div>
+                                </div>
+
+                                <div class="column">
+                                    <p><b>Teléfono</b></p>
+                                    <div class="ui input">
+                                    <input id="telefonoB" name="telefonoB" type="text" placeholder="Telefono">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="ui horizontal divider header" style="margin-top:1.5em; margin-bottom:1em;">Datos de
+                        ingreso</h4>
+                    <div class="column" style="margin-left: 25px;margin-right: 25px;">
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Contraseña</label>
+                                    <input type="password" contrasenna="shipping[Contraseña]" placeholder="Contraseña">
+                                </div>
+                                <div class="field">
+                                    <label>Confirmar Contraseña</label>
+                                    <input type="password" contrasenna="shipping[Confirmar contraseña]"
+                                        placeholder="Confirmar contraseña">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <a value="guardarB" class="ui green button"
+                    style="margin-top: 1em; margin-left: 14em"                    
+                    onclick="javascript:enviarFormularioBeneficiario();">
+                    @if(beneficiarioForm("cedulaB").value.toString()=="Optional.empty"){Registrarse}
+                    </a>
+
+                </form>
+            </div>
+            <div class="ui center aligned segment" style="background-color:#aae1a9;">
+                <a href="@routes.CLogin.index"><b>¡Inicia Sesión!</b></a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+}
