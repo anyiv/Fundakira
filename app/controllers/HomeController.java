@@ -4,6 +4,7 @@ import play.mvc.*;
 import javax.inject.Inject;
 import play.data.Form;
 import play.data.FormFactory;
+import models.Beneficiario;
 import models.Servicio;
 
 /**
@@ -60,4 +61,5 @@ public class HomeController extends Controller {
         return ok(views.html.consultar_empleado.render());
     }
 
+  
 }
