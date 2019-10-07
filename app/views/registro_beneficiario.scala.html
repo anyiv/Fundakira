@@ -1,6 +1,8 @@
+@import helper._
+@(beneficiarioForm: Form[Beneficiario])
 @main("¡Registrate!"){
 
-<div class="row" style="margin-top: 50px;">
+<div class="row" style="margin-top: 10px;">
     <div class="ui middle centered grid">
         <div class="seven wide tablet seven wide computer column">
             <div class="ui segment" style="background-color: #aae1a9;">
@@ -48,19 +50,24 @@
                             <div class="two fields">
                                 <div class="field">
                                     <label>Contraseña</label>
-                                    <input type="text" contrasenna="shipping[Contraseña]" placeholder="Contraseña">
+                                    <input type="password" contrasenna="shipping[Contraseña]" placeholder="Contraseña">
                                 </div>
                                 <div class="field">
                                     <label>Confirmar Contraseña</label>
-                                    <input type="text" contrasenna="shipping[Confirmar contraseña]"
+                                    <input type="password" contrasenna="shipping[Confirmar contraseña]"
                                         placeholder="Confirmar contraseña">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button class="ui teal attached button" style="margin-top: 1em; margin-left: 14em">
-                        Registrarse
-                    </button>
+                    
+                    
+                    <a value="guardarB" class="ui green button"
+                    style="margin-top: 1em; margin-left: 14em"                    
+                    onclick="javascript:enviarFormularioBeneficiario();">
+                    @if(beneficiarioForm("cedulaB").value.toString()=="Optional.empty"){Registrarse}
+                    </a>
+
                 </form>
             </div>
             <div class="ui center aligned segment" style="background-color:#aae1a9;">
