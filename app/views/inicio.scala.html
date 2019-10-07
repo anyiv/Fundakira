@@ -1,3 +1,5 @@
+@import helper._
+@*@(servicios: List[Servicio])*@
 @main("Fundakira - Registro de Solicitudes"){
 <!--PARA USUARIO EMPLEADO-->
 <div class="ui middle centered grid" style="margin-top: 2em;">
@@ -49,15 +51,15 @@
                 </div>
             </div>
             <h4 class="ui horizontal divider header" style="margin-top:1.5em;">Datos de la solicitud</h4>
+            @helper.form(action = routes.CSolicitud.guardarS(), 'id -> "formSolicitud") {
+            @CSRF.formField
             <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Seleccione los servicios:</b></p>
                     <select name="Servicios" multiple="" class="ui fluid dropdown" id="servicios"
                         style="margin-right:20px;">
                         <option value="">Servicios</option>
-                        <option value="Odontología">Odontología</option>
-                        <option value="Psicología">Psicología</option>
-                        <option value="General">General</option>
+                        <option value="0">Consulta</option>
                     </select>
                 </div>
                 <div class="column">
@@ -66,19 +68,19 @@
                         <div class="inline fields">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input name="Prioridad" checked="checked" type="radio">
+                                    <input name="prioridad" id="prioridad" checked="checked" type="radio">
                                     <label>Alta</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input name="Prioridad" type="radio">
+                                    <input name="prioridad" id="prioridad" type="radio">
                                     <label>Media</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input name="Prioridad" type="radio">
+                                    <input name="prioridad" id="prioridad" type="radio">
                                     <label>Baja</label>
                                 </div>
                             </div>
@@ -88,14 +90,14 @@
                 <div class="column">
                     <p><b>Otra Donación:</b></p>
                     <div class="ui input">
-                        <input placeholder="Donaciones" type="text">
+                        <input name="otrasDonaciones" id="otrasDonaciones" placeholder="Donaciones" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <div class="ui form">
                         <div class="field" style="margin-right: 1em;">
                             <p><b>Razón:</b></p>
-                            <textarea rows="2"></textarea>
+                            <textarea name="razon" id="razon" rows="2"></textarea>
                         </div>
                     </div>
                 </div>
@@ -104,7 +106,7 @@
                 <button class="ui medium green button" style="margin-top: 2em;">
                     Crear
                 </button>
-            </div>
+            </div>}
         </div>
     </div>
 </div>

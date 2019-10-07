@@ -29,6 +29,10 @@ public class CLogin extends Controller {
         return ok(views.html.index.render(loginForm));
     }
 
+    public Result reg_beneficiario(){
+        return ok(views.html.registro_beneficiario.render());
+    }
+
     // INICIO DE SESIÓN
 
     public Result login(Http.Request request) {
@@ -37,7 +41,7 @@ public class CLogin extends Controller {
         try {
             if (Usuario.buscador.login(login.getCedula(),login.getContrasenna())!=null){
                 flash("success",String.format("Bienvenido, %s.",Empleado.buscador.porCedula(login.getCedula()).toString()));
-                return redirect(routes.HomeController.inicio()).addingToSession(request, "user", login.getCedula());
+                return redirect(routes.CSolicitud.inicio()).addingToSession(request, "user", login.getCedula());
             } else {
                 flash("error_login",String.format("Error al iniciar sesión. Verifique sus datos y vuelva a intentar."));
             }

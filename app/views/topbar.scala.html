@@ -1,22 +1,22 @@
 @(nombre : String)
 
 <div class="ui labeled inverted icon menu" style="background-color:#043b1b;">
-    <a class="item" href="@routes.HomeController.inicio">
+    <a class="item" href="@routes.CSolicitud.inicio">
         <i class="home icon"></i> Inicio
     </a>
     <a class="item" href="@routes.CFundacion.fundaciones">
         <i class="building outline icon"></i> Fundaciones
     </a>
-    <a class="item" href="@routes.HomeController.servicios">
+    <a class="item" href="@routes.CServicio.listado_servicios">
         <i class="stethoscope icon"></i> Servicios
     </a>
     <a class="item" href="@routes.CSolicitud.solicitudes">
         <i class="pen square icon"></i> Solicitudes
     </a>
-    <a class="item" href="@routes.HomeController.empleados">
+    <a class="item" href="@routes.CEmpleado.listado_empleados">
         <i class="users icon"></i> Empleados
     </a>
-    <a class="item" href="@routes.HomeController.reportes">
+    <a class="item" href="@routes.CReporte.lista_reportes">
         <i class="chart line icon"></i> Reportes
     </a>
     <div class="right menu">

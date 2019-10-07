@@ -131,6 +131,12 @@ public class Empleado extends Model {
     }
 
 
+    @Override
+    public String toString() {
+        return this.getNombre() + " " + this.getApellido();
+    }
+
+
     public static BuscadorEmpleado buscador = new BuscadorEmpleado();
     
 } 

@@ -68,6 +68,17 @@
                             value='@fundacionForm("porcPartida").value.get()' } type="text">
                     </div>
                 </div>
+                <div class="column">
+                    <p><b>Tipo:</b></p>
+                    <select name="tipo" id="tipo" class="ui dropdown" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty" ){} else {
+                        value='@fundacionForm("tipo").value.get()' } >
+                        <option value="">Tipo</option>
+                        <option value="ONG" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else if(fundacionForm("tipo").value.get()=="ONG") {selected}>ONG</option>
+                        <option value="Publica" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else if(fundacionForm("tipo").value.get()=="Publica") {selected}>Pública</option>
+                        <option value="Semi-privada" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else if(fundacionForm("tipo").value.get()=="Semi-privada"){selected}>Semi-privada</option>
+                        
+                    </select>
+                </div>
                 <div class="ui container ">
                     <a class="ui left floated blue button" href="@routes.CFundacion.fundaciones"
                         style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 0.5em;">

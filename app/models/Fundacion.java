@@ -18,7 +18,7 @@ public class Fundacion extends Model {
     private UUID cod_fundacion;
 
     @Constraints.Required(message = "Por favor ingrese el nombre")
-    @Column(length = 30, unique = true )
+    @Column(length = 30)
     private String nombre;
 
     @Constraints.Required
@@ -35,6 +35,10 @@ public class Fundacion extends Model {
 
     @Column(length=12)
     private String telefono;
+
+    @Constraints.Required(message = "Por favor ingrese el tipo")
+    @Column(length=20)
+    private String tipo;
 
     @Column(length=1)
     private char estatus;
@@ -117,11 +121,38 @@ public class Fundacion extends Model {
         this.empleado = empleado;
     }
 
-    @Override
-    public String toString() {
-        return "{" + this.nombre + " " + this.estatus +
-            "}";
+
+    public String getTipo() {
+        return this.tipo;
     }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+
+    public Fundacion(UUID cod_fundacion, String nombre, double porcPartida, String direccion, String correo, String telefono, String tipo, char estatus, List<Servicio> servicios, Empleado empleado) {
+        this.cod_fundacion = cod_fundacion;
+        this.nombre = nombre;
+        this.porcPartida = porcPartida;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.tipo = tipo;
+        this.estatus = estatus;
+        this.servicios = servicios;
+        this.empleado = empleado;
+    }
+
+
+     @Override
+     public String toString() {
+         return "{" + this.nombre + " " + this.estatus + " " +
+                    this.tipo + 
+             "}";
+     }
+
+
 
     public static final BuscadorFundacion buscador = new BuscadorFundacion();
 }

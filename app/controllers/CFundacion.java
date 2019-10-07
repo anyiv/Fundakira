@@ -13,16 +13,15 @@ import io.ebean.*;
 
 public class CFundacion extends Controller {
 
-    public Result fundaciones() {
-        return ok(views.html.fundaciones.render(Fundacion.buscador.listado()));
-    }
-
-    // CONSTRUCCION DE FORMULARIOS
     private Form<Fundacion> fundacionForm;
 
     @Inject
     public CFundacion(FormFactory formFactory) {
         this.fundacionForm = formFactory.form(Fundacion.class);
+    }
+
+    public Result fundaciones() {
+        return ok(views.html.fundaciones.render(Fundacion.buscador.listado()));
     }
 
     // CREAR FUNDACION

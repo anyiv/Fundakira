@@ -43,15 +43,15 @@ create table fundacion (
   direccion                     varchar(50),
   correo                        varchar(255),
   telefono                      varchar(12),
+  tipo                          varchar(20),
   estatus                       varchar(1),
-  constraint uq_fundacion_nombre unique (nombre),
   constraint pk_fundacion primary key (cod_fundacion)
 );
 
 create table servicio (
   cod_servicio                  varchar(9) not null,
   cod_fundacion                 varchar(9) not null,
-  descripcion                   TEXT,
+  nombre                        varchar(30),
   tipo                          varchar(10),
   costo                         double(15) not null,
   estatus                       varchar(1),

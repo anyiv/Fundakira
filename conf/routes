@@ -5,6 +5,7 @@
 #Methods with POST and csrf
 POST   /                            controllers.CLogin.login(request : play.mvc.Http.Request)
 POST   /fundacionesC/               controllers.CFundacion.guardarF()
+POST   /solicitudesC/               controllers.CSolicitud.guardarS()
 GET    /fundacion/:id               controllers.CFundacion.consultarF(id : java.util.UUID)
 GET    /eliminarF/                  controllers.CFundacion.eliminarF(id : java.util.UUID)
 
@@ -12,22 +13,22 @@ GET    /eliminarF/                  controllers.CFundacion.eliminarF(id : java.u
 + nocsrf
 GET     /                           controllers.CLogin.index
 GET     /logout/                    controllers.CLogin.logout
-GET     /inicio/                    controllers.HomeController.inicio
-GET     /inicio/admin               controllers.HomeController.inicio_admin
+GET     /registrarse/               controllers.CLogin.reg_beneficiario
+GET     /inicio/                    controllers.CSolicitud.inicio
+GET     /inicio/admin               controllers.CEmpleado.inicio_admin
 GET     /fundaciones/               controllers.CFundacion.fundaciones
-GET     /servicios/                 controllers.HomeController.servicios
-GET     /solicitudes/               controllers.CSolicitud.solicitudes
-GET     /reportes/                  controllers.HomeController.reportes
 GET     /fundaciones/incluir        controllers.CFundacion.incl_fundacion
-GET     /servicios/incluir          controllers.HomeController.incl_servicio
-GET     /reportes/solicitantes      controllers.HomeController.rp_solicitantes
-GET     /reportes/presupuesto       controllers.HomeController.rp_presupuesto
-GET     /empleados/                 controllers.HomeController.empleados
-GET     /empleados/incluir          controllers.HomeController.incl_empleado
-GET     /empleados/consultar        controllers.HomeController.consultar_empleado
-GET     /reporte/solicitudes        controllers.CSolicitud.rp_solicitudes
+GET     /servicios/                 controllers.CServicio.listado_servicios
+GET     /servicios/incluir          controllers.CServicio.incl_servicio
+GET     /solicitudes/               controllers.CSolicitud.solicitudes
 GET     /solicitudes/consulta       controllers.CSolicitud.consulta_solicitud
-GET     /Registrarse                controllers.HomeController.reg_beneficiario
+GET     /empleados/                 controllers.CEmpleado.listado_empleados
+GET     /empleados/incluir          controllers.CEmpleado.incl_empleado
+GET     /empleados/consultar        controllers.CEmpleado.consultar_empleado
+GET     /reportes/                  controllers.CReporte.lista_reportes
+GET     /reportes/solicitantes      controllers.CReporte.rp_solicitantes
+GET     /reportes/presupuesto       controllers.CReporte.rp_presupuesto
+GET     /reporte/solicitudes        controllers.CReporte.rp_solicitudes
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
