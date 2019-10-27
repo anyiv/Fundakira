@@ -11,6 +11,7 @@ import play.data.FormFactory;
 import models.Usuario;
 import models.Empleado;
 import models.Login;
+import models.Beneficiario;
 import io.ebean.*;
 
 public class CLogin extends Controller {
@@ -18,9 +19,12 @@ public class CLogin extends Controller {
     // CONSTRUCCION DE FORMULARIOS
     private Form<Login> loginForm;
 
+    private Form<Beneficiario> beneficiarioForm;
+
     @Inject
     public CLogin(FormFactory formFactory) {
         this.loginForm = formFactory.form(Login.class);
+        this.beneficiarioForm = formFactory.form(Beneficiario.class);
     }
 
     // RENDER DEL LOGIN
@@ -30,7 +34,7 @@ public class CLogin extends Controller {
     }
 
     public Result reg_beneficiario(){
-        return ok(views.html.registro_beneficiario.render());
+        return ok(views.html.registro_beneficiario.render(beneficiarioForm));
     }
 
     // INICIO DE SESIÓN

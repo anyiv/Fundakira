@@ -37,8 +37,11 @@ public class Beneficiario extends Model {
     @Column(length=1)
     private char estatus;
 
-    @OneToOne (mappedBy = "beneficiario", fetch = FetchType.LAZY)
+    //clave foranea para la solicitud
+    @OneToMany(mappedBy="beneficiario",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<Solicitud> solicitud;
 
+    @OneToOne (mappedBy = "beneficiario", fetch = FetchType.LAZY)
     public Usuario_Beneficiario usuario_beneficiario;
 
     public void setCedulaB(String cedulaB){
@@ -98,15 +101,3 @@ public class Beneficiario extends Model {
     }
 
 } 
-
-
-    //clave foranea para la solicitud
-    @OneToMany(mappedBy="beneficiario",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<Solicitud> solicitud;
-
-    @OneToOne (mappedBy = "beneficiario", fetch = FetchType.LAZY)
-    public Usuario_Beneficiario usuario_beneficiario;
-
-    
-} 
-

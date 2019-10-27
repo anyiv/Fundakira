@@ -20,8 +20,8 @@
             }
           </style>
     </head>
-    @if(user!=null || request.path=="/Registrarse") {
-      @if(request.path!="/" && request.path!="/Registrarse") {
+    @if(user!=null || request.path=="/registrarse/") {
+      @if(request.path!="/" && request.path!="/registrarse/") {
         @topbar(user.toString()) 
       }
       <body>
