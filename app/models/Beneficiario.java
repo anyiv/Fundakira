@@ -77,7 +77,7 @@ public class Beneficiario extends Model {
         return this.direccionB;
     }
 
-    public void setCorreo(String correoB) {
+    public void setCorreoB(String correoB) {
         this.correoB = correoB;
     }
 
@@ -85,7 +85,7 @@ public class Beneficiario extends Model {
         return this.correoB;
     }
 
-    public void setTelefono(String telefonoB) {
+    public void setTelefonoB(String telefonoB) {
         this.telefonoB = telefonoB;
     }
 

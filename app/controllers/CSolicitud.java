@@ -67,4 +67,20 @@ public class CSolicitud extends Controller{
         System.out.print(boundForm);
         return redirect(routes.CSolicitud.inicio_empleado());
     }
+
+    //CREAR BENEFICIARIO
+    public Result guardarB(){
+        Form<Beneficiario> boundForm = beneficiarioForm.bindFromRequest();
+        String mensaje;
+        System.out.println(boundForm.errors());
+        if (boundForm.hasErrors()) { 
+            flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
+            return badRequest(views.html.inicio_empleado.render(solicitudForm,beneficiarioForm));
+        }
+        Beneficiario beneficiario = boundForm.get();
+        Ebean.save(beneficiario);
+        flash("success",String.format("El beneficiario %s %s ha sido incluido con éxito.", beneficiario.getNombreB(), beneficiario.getApellidoB()));
+        System.out.print(boundForm);
+        return redirect(routes.CSolicitud.inicio_empleado());
+    }
 }

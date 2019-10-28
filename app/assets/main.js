@@ -155,3 +155,19 @@ function validarIdentidad() {
   }
 }
 
+function confirmarCreacionBeneficiario() {
+  Swal.fire({
+    title: 'Confirmar creación',
+    text: "¿Seguro que deseas crear el beneficiario?",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Incluir',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      $('#formBeneficiario').submit();
+    }
+  })
+};

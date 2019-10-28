@@ -4,9 +4,22 @@
 @main("Fundakira - Registro de Solicitudes"){
 <!--PARA USUARIO EMPLEADO-->
 <div class="ui middle centered grid" style="margin-top: 2em;">
+    @if(flash.containsKey("error")){
+    <div class="row">
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">Hay algunos errores con tu formulario. </div>
+            <ul class="list">
+                @for(error <- beneficiarioForm.errors()) {<li>@error.message
+                    </li>
+                    }
+            </ul>
+        </div>
+    </div>
+    }
     <div class="six wide tablet eight wide computer column">
         <div class="ui segment" style="background-color: #95bea5;">
-            @helper.form(action = routes.CSolicitud.guardarS, 'id -> "formBeneficiario") {
+            @helper.form(action = routes.CSolicitud.guardarB, 'id -> "formBeneficiario") {
             @CSRF.formField
             <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Crear solicitudes</h2>
             <h4 class="ui horizontal divider header" style="margin-top:1em;">Datos del Beneficiario</h4>
@@ -14,7 +27,7 @@
                 <div class="column">
                     <p><b>Cédula:</b></p>
                     <div class="ui input">
-                        <input placeholder="Cédula" id="cedulaB" type="text">
+                        <input placeholder="Cédula" id="cedulaB" name="cedulaB" type="text">
                     </div>
                 </div>
                 <div class="column">
@@ -26,39 +39,42 @@
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" id="nombreB" type="text">
+                        <input placeholder="Nombre" id="nombreB" name="nombreB" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Apellido:</b></p>
                     <div class="ui input">
-                        <input placeholder="Apellido" id="apellidoB" type="text">
+                        <input placeholder="Apellido" id="apellidoB" name="apellidoB" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Dirección:</b></p>
                     <div class="ui input">
-                        <input placeholder="Dirección" id="direccionB" type="text">
+                        <input placeholder="Dirección" id="direccionB" name="direccionB" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Teléfono:</b></p>
                     <div class="ui input">
-                        <input placeholder="Teléfono" id="telefonoB" type="text">
+                        <input placeholder="Teléfono" id="telefonoB" name="telefonoB" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Correo:</b></p>
                     <div class="ui input">
-                        <input placeholder="Correo" id="correoB" type="text">
+                        <input placeholder="Correo" id="correoB" name="correoB" type="text">
                     </div>
                 </div>
+                <input placeholder="Estatus" id="estatusB" name="estatusB" type="hidden" value="A">
                 <div class="ui container center aligned">
-                    <button id="crearbeneficiario" class="ui medium green button" style="margin-top: 1em; margin-bottom:1em;margin-right:45px; display:none">
+                    <a id="crearbeneficiario" onclick="javascript:confirmarCreacionBeneficiario();"
+                        class="ui medium green button"
+                        style="margin-top: 1em; margin-bottom:1em;margin-right:45px; display:none">
                         Crear
-                    </button>
+                    </a>
                 </div>
-            </div>
+            </div>}
             <h4 class="ui horizontal divider header" style="margin-top:1.5em;">Datos de la solicitud</h4>
             @helper.form(action = routes.CSolicitud.guardarS(), 'id -> "formSolicitud") {
             @CSRF.formField
@@ -116,7 +132,7 @@
                     Crear
                 </button>
             </div> }
-        </div> }
+        </div>
     </div>
 </div>
 }
