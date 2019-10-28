@@ -12,6 +12,7 @@ libraryDependencies += "org.xerial" % "sqlite-jdbc" % "3.8.6"
 libraryDependencies += "com.h2database" % "h2" % "1.4.192"
 libraryDependencies += evolutions
 libraryDependencies += javaForms
+libraryDependencies += "com.fasterxml.jackson.core" % "jackson-databind" % "2.0.0-RC3"
 
 dependencyOverrides ++= Seq(
   "com.typesafe" % "ssl-config-core_2.13" % "0.3.8",

@@ -1,53 +1,62 @@
 @import helper._
+@(solicitudForm : Form[Solicitud], beneficiarioForm : Form[Beneficiario])
 @*@(servicios: List[Servicio])*@
 @main("Fundakira - Registro de Solicitudes"){
 <!--PARA USUARIO EMPLEADO-->
 <div class="ui middle centered grid" style="margin-top: 2em;">
     <div class="six wide tablet eight wide computer column">
         <div class="ui segment" style="background-color: #95bea5;">
+            @helper.form(action = routes.CSolicitud.guardarS, 'id -> "formBeneficiario") {
+            @CSRF.formField
             <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Crear solicitudes</h2>
             <h4 class="ui horizontal divider header" style="margin-top:1em;">Datos del Beneficiario</h4>
             <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Cédula:</b></p>
                     <div class="ui input">
-                        <input placeholder="Cédula" type="text">
+                        <input placeholder="Cédula" id="cedulaB" type="text">
                     </div>
                 </div>
                 <div class="column">
-                    <button class="ui medium grey button" style="margin-top: 30px;">
+                    <a class="ui medium grey button" style="margin-top: 30px;" onclick="javascript:validarIdentidad();"
+                        id="buscarBeneficiario">
                         <i class="search icon"></i>Buscar
-                    </button>
+                    </a>
                 </div>
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text">
+                        <input placeholder="Nombre" id="nombreB" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Apellido:</b></p>
                     <div class="ui input">
-                        <input placeholder="Apellido" type="text">
+                        <input placeholder="Apellido" id="apellidoB" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Dirección:</b></p>
                     <div class="ui input">
-                        <input placeholder="Dirección" type="text">
+                        <input placeholder="Dirección" id="direccionB" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Teléfono:</b></p>
                     <div class="ui input">
-                        <input placeholder="Teléfono" type="text">
+                        <input placeholder="Teléfono" id="telefonoB" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Correo:</b></p>
                     <div class="ui input">
-                        <input placeholder="Correo" type="text">
+                        <input placeholder="Correo" id="correoB" type="text">
                     </div>
+                </div>
+                <div class="ui container center aligned">
+                    <button id="crearbeneficiario" class="ui medium green button" style="margin-top: 1em; margin-bottom:1em;margin-right:45px; display:none">
+                        Crear
+                    </button>
                 </div>
             </div>
             <h4 class="ui horizontal divider header" style="margin-top:1.5em;">Datos de la solicitud</h4>
@@ -68,19 +77,19 @@
                         <div class="inline fields">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input name="prioridad" id="prioridad" checked="checked" type="radio">
+                                    <input name="prioridad" id="prioridad" value="Alta" checked="checked" type="radio">
                                     <label>Alta</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input name="prioridad" id="prioridad" type="radio">
+                                    <input name="prioridad" id="prioridad" value="Media" type="radio">
                                     <label>Media</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input name="prioridad" id="prioridad" type="radio">
+                                    <input name="prioridad" id="prioridad" value="Baja" type="radio">
                                     <label>Baja</label>
                                 </div>
                             </div>
@@ -106,8 +115,8 @@
                 <button class="ui medium green button" style="margin-top: 2em;">
                     Crear
                 </button>
-            </div>}
-        </div>
+            </div> }
+        </div> }
     </div>
 </div>
 }

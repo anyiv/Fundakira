@@ -70,8 +70,7 @@
                 </div>
                 <div class="column">
                     <p><b>Tipo:</b></p>
-                    <select name="tipo" id="tipo" class="ui dropdown" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty" ){} else {
-                        value='@fundacionForm("tipo").value.get()' } >
+                    <select name="tipo" id="tipo" class="ui dropdown">
                         <option value="">Tipo</option>
                         <option value="ONG" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else if(fundacionForm("tipo").value.get()=="ONG") {selected}>ONG</option>
                         <option value="Publica" @if(fundacionForm("cod_fundacion").value.toString()=="Optional.empty"){} else if(fundacionForm("tipo").value.get()=="Publica") {selected}>Pública</option>

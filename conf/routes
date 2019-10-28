@@ -9,13 +9,14 @@ POST   /solicitudesC/               controllers.CSolicitud.guardarS()
 GET    /fundacion/:id               controllers.CFundacion.consultarF(id : java.util.UUID)
 GET    /eliminarF/                  controllers.CFundacion.eliminarF(id : java.util.UUID)
 POST   /beneficiarioC/              controllers.CBeneficiario.guardarB()
+POST   /ajax/validarIdentidad/      controllers.CSolicitud.validar_beneficiario(request : play.mvc.Http.Request)
 
 # An example controller showing a sample home page
 + nocsrf
 GET     /                           controllers.CLogin.index
 GET     /logout/                    controllers.CLogin.logout
-GET     /registrarse/               controllers.CLogin.reg_beneficiario
-GET     /inicio/                    controllers.CSolicitud.inicio
+GET     /registrarse/               controllers.CBeneficiario.reg_beneficiario
+GET     /inicio/                    controllers.CSolicitud.inicio_empleado
 GET     /inicio/admin               controllers.CEmpleado.inicio_admin
 GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /fundaciones/incluir        controllers.CFundacion.incl_fundacion

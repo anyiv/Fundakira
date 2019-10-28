@@ -6,6 +6,7 @@ import javax.persistence.*;
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import buscadores.BuscadorBeneficiario;
 
 @Entity
 @Table(name="Beneficiario")
@@ -100,4 +101,5 @@ public class Beneficiario extends Model {
         return this.estatus;
     }
 
-} 
+    public static final BuscadorBeneficiario buscador = new BuscadorBeneficiario();
+}
