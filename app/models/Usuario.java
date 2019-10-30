@@ -25,7 +25,7 @@ public class Usuario extends Model{
     public Usuario_Beneficiario usuario_Beneficiario;
 
     //la clave foranera del tipo de usuario
-    @OneToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="codTipoUser")
     public TipoUser tipouser;
 

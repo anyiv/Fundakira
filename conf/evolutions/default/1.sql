@@ -87,7 +87,6 @@ create table usuario (
   codtipouser                   varchar(8),
   contrasenna                   varchar(30),
   estatus                       varchar(1),
-  constraint uq_usuario_codtipouser unique (codtipouser),
   constraint pk_usuario primary key (cod_usuario),
   foreign key (codtipouser) references tipouser (cod_tipo_user) on delete restrict on update restrict
 );

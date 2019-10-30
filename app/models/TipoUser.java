@@ -6,6 +6,7 @@ import javax.persistence.*;
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import buscadores.BuscadorTipoUser;
 
 @Entity
 @Table(name="TipoUser")
@@ -65,5 +66,5 @@ public class TipoUser extends Model {
         this.usuario = usuario;
     }
 
-    
+    public static final BuscadorTipoUser buscador = new BuscadorTipoUser();
 }

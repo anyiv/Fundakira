@@ -14,7 +14,7 @@ public class Servicio extends Model {
     @Id 
     @Column(length=9)
     @GeneratedValue
-    public String codServicio;
+    public UUID codServicio;
 
     @Column(length=9,name="cod_fundacion")
     public String cod_fundacion;
@@ -43,11 +43,11 @@ public class Servicio extends Model {
     private List<DetalleSolicitud> detallesolicitud;
 
 
-    public String getCodServicio() {
+    public UUID getCodServicio() {
         return this.codServicio;
     }
 
-    public void setCodServicio(String codServicio) {
+    public void setCodServicio(UUID codServicio) {
         this.codServicio = codServicio;
     }
 
@@ -108,7 +108,7 @@ public class Servicio extends Model {
     }
     
 
-    public Servicio(String codServicio, String cod_fundacion, String nombre, String tipo, double costo, char estatus, Fundacion fundacion, List<DetalleSolicitud> detallesolicitud) {
+    public Servicio(UUID codServicio, String cod_fundacion, String nombre, String tipo, double costo, char estatus, Fundacion fundacion, List<DetalleSolicitud> detallesolicitud) {
         this.codServicio = codServicio;
         this.cod_fundacion = cod_fundacion;
         this.nombre = nombre;
@@ -119,6 +119,6 @@ public class Servicio extends Model {
         this.detallesolicitud = detallesolicitud;
     }
 
+
     public static final BuscadorServicio buscador = new BuscadorServicio();
-    //public static Finder<Integer, Servicio> find = new Finder<>(Servicio.class);
 }

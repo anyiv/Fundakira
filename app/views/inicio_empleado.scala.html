@@ -1,6 +1,5 @@
 @import helper._
-@(solicitudForm : Form[Solicitud], beneficiarioForm : Form[Beneficiario], usuarioForm : Form[Usuario])
-@*@(servicios: List[Servicio])*@
+@(solicitudForm : Form[Solicitud], beneficiarioForm : Form[Beneficiario], usuarioForm : Form[Usuario],servicios: List[Servicio])
 @main("Fundakira - Registro de Solicitudes"){
 <!--PARA USUARIO EMPLEADO-->
 <div class="ui middle centered grid" style="margin-top: 2em;">
@@ -10,9 +9,11 @@
             <i class="close icon"></i>
             <div class="header">Hay algunos errores con tu formulario. </div>
             <ul class="list">
-                @for(error <- beneficiarioForm.errors()) { @if(error.message !="error.invalid" ){ <li>@error.message</li>
+                @for(error <- beneficiarioForm.errors() || usuarioForm.errors() || solicitudForm.errors()){
+                    @if(error.message !="error.invalid" ){ 
+                        <li>@error.message</li>
                     }
-                    }
+                }
             </ul>
         </div>
     </div>
@@ -80,7 +81,6 @@
                 </div>
                 <input  id="estatusB" name="estatusB" type="hidden" value="A">
                 <input  id="estatus" name="estatus" type="hidden" value="A">
-                <input  id="tipouser" name="tipouser" type="hidden" value="3">
                 <div class="ui container center aligned">
                     <a id="crearbeneficiario" onclick="javascript:confirmarCreacionBeneficiario();"
                         class="ui medium green button"
@@ -95,7 +95,7 @@
             <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Seleccione los servicios:</b></p>
-                    <select name="Servicios" multiple="" class="ui fluid dropdown" id="servicios"
+                    <select name="Servicios" multiple="" class="ui dropdown" id="servicios"
                         style="margin-right:20px;">
                         <option value="">Servicios</option>
                         <option value="0">Consulta General</option>

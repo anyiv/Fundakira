@@ -12,6 +12,8 @@ import models.Solicitud;
 import models.Beneficiario;
 import models.Usuario_Beneficiario;
 import models.Usuario;
+import models.TipoUser;
+import models.Servicio;
 import io.ebean.*;
 import play.libs.Json;
 import static play.libs.Json.toJson;
@@ -23,19 +25,17 @@ public class CSolicitud extends Controller{
     // CONSTRUCCION DE FORMULARIOS
     private Form<Solicitud> solicitudForm;
     private Form<Beneficiario> beneficiarioForm;
-    private Form<Usuario_Beneficiario> userbenForm;
     private Form<Usuario> usuarioForm;
 
     @Inject
     public CSolicitud(FormFactory formFactory) {
         this.solicitudForm = formFactory.form(Solicitud.class);
         this.beneficiarioForm = formFactory.form(Beneficiario.class);
-        this.userbenForm = formFactory.form(Usuario_Beneficiario.class);
         this.usuarioForm = formFactory.form(Usuario.class);
     }
 
     public Result inicio_empleado() {
-        return ok(views.html.inicio_empleado.render(solicitudForm,beneficiarioForm,usuarioForm));
+        return ok(views.html.inicio_empleado.render(solicitudForm,beneficiarioForm,usuarioForm,Servicio.buscador.listado()));
     }
 
     public Result solicitudes() {
@@ -68,7 +68,12 @@ public class CSolicitud extends Controller{
     //CREAR SOLICITUD
     public Result guardarS(){
         Form<Solicitud> boundFormS = solicitudForm.bindFromRequest();
-        System.out.print(boundFormS);
+        if (boundFormS.hasErrors() ) { 
+            flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
+            return badRequest(views.html.inicio_empleado.render(boundFormS,beneficiarioForm,usuarioForm,Servicio.buscador.listado()));
+        }
+        Solicitud solicitud = boundFormS.get();
+
         return redirect(routes.CSolicitud.inicio_empleado());
     }
 
@@ -78,12 +83,18 @@ public class CSolicitud extends Controller{
         Form<Usuario> boundFormUser = usuarioForm.bindFromRequest();
         if (boundFormB.hasErrors() || boundFormUser.hasErrors() ) { 
             flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
-            return badRequest(views.html.inicio_empleado.render(solicitudForm,boundFormB,boundFormUser));
+            return badRequest(views.html.inicio_empleado.render(solicitudForm,boundFormB,boundFormUser,Servicio.buscador.listado()));
         }
         Beneficiario beneficiario = boundFormB.get();
         Usuario usuario = boundFormUser.get();
+        Usuario_Beneficiario ub = new Usuario_Beneficiario();
+        TipoUser tp = TipoUser.buscador.porCodigo("3");
+        ub.setUsuario(usuario);
+        ub.setBeneficiario(beneficiario);
+        usuario.setTipouser(tp);
         Ebean.save(beneficiario);
         Ebean.save(usuario);
+        Ebean.save(ub);
         flash("success",String.format("El beneficiario %s %s ha sido incluido con éxito.", beneficiario.getNombreB(), beneficiario.getApellidoB()));        
         return redirect(routes.CSolicitud.inicio_empleado());
     }

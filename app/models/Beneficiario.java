@@ -92,14 +92,15 @@ public class Beneficiario extends Model {
     public String getTelefonoB(){
         return this.telefonoB;
     }
+    
+    public char getEstatusB() {
+        return this.estatusB;
+    }
 
-    public void setEstatusB(char estatus) {
+    public void setEstatusB(char estatusB) {
         this.estatusB = estatusB;
     }
 
-    public char getEstatus(){
-        return this.estatusB;
-    }
 
     public static final BuscadorBeneficiario buscador = new BuscadorBeneficiario();
 }
