@@ -14,31 +14,31 @@
                             <div class="two fields">
                                 <div class="field">
                                     <label>Nombre</label>
-                                    <input type="text" Nombre="shipping[Nombre]" placeholder="Nombre">
+                                    <input type="text" name="nombreB" id="nombreB" placeholder="Nombre">
                                 </div>
                                 <div class="field">
                                     <label>Apellido</label>
-                                    <input type="text" Apellido="shipping[Apellido]" placeholder="Apellido">
+                                    <input type="text" name="apellidoB" id="apellidoB" placeholder="Apellido">
                                 </div>
                             </div>
                             <div class="two fields">
                                 <div class="field">
                                     <label>Cédula</label>
-                                    <input type="text" cedula="shipping[cedula]" placeholder="Cédula">
+                                    <input type="text" name="cedulaB" id="cedulaB" placeholder="Cédula">
                                 </div>
                                 <div class="field">
                                     <label>Correo</label>
-                                    <input type="text" correo="shipping[correo]" placeholder="Correo">
+                                    <input type="text" name="correoB" id="correoB" placeholder="Correo">
                                 </div>
                             </div>
                             <div class="two fields">
                                 <div class="field">
                                     <label>Dirección</label>
-                                    <input type="text" direccion="shipping[Direccion]" placeholder="Dirección">
+                                    <input type="text" name="direccionB" id="direccionB" placeholder="Dirección">
                                 </div>
                                 <div class="field">
                                     <label>Teléfono</label>
-                                    <input type="text" Telefono="shipping[Telefono]" placeholder="Teléfono">
+                                    <input type="text" name="telefonoB" id="telefonoB" placeholder="Teléfono">
                                 </div>
                             </div>
                         </div>
@@ -50,24 +50,21 @@
                             <div class="two fields">
                                 <div class="field">
                                     <label>Contraseña</label>
-                                    <input type="password" contrasenna="shipping[Contraseña]" placeholder="Contraseña">
+                                    <input type="password" name="contrasenna" id="contrasenna" placeholder="Contraseña">
                                 </div>
                                 <div class="field">
                                     <label>Confirmar Contraseña</label>
-                                    <input type="password" contrasenna="shipping[Confirmar contraseña]"
+                                    <input type="password" name="confirmarcontrasenna"
                                         placeholder="Confirmar contraseña">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    <a value="guardarB" class="ui green button"
+                    <a class="ui green button"
                     style="margin-top: 1em; margin-left: 14em"                    
                     onclick="javascript:enviarFormularioBeneficiario();">
-                    @if(beneficiarioForm("cedulaB").value.toString()=="Optional.empty"){Registrarse}
+                    Registrarse
                     </a>
-
                 </form>
             </div>
             <div class="ui center aligned segment" style="background-color:#aae1a9;">

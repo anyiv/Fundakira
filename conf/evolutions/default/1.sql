@@ -10,7 +10,7 @@ create table beneficiario (
   direccion_b                   varchar(50),
   correo_b                      varchar(255),
   telefono_b                    varchar(12),
-  estatus                       varchar(1),
+  estatus_b                     varchar(1),
   constraint pk_beneficiario primary key (cedula_b)
 );
 

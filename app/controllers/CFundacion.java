@@ -31,7 +31,6 @@ public class CFundacion extends Controller {
 
     public Result guardarF() {
         Form<Fundacion> boundForm = fundacionForm.bindFromRequest();
-        String mensaje;
         if (boundForm.hasErrors()) { 
             flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
             return badRequest(views.html.incluir_fundacion.render(boundForm));
@@ -52,7 +51,7 @@ public class CFundacion extends Controller {
     public Result consultarF(UUID cod_fundacion) {
         final Fundacion fundacion = Fundacion.buscador.porCodigo(cod_fundacion);
         if (fundacion == null) {
-            return notFound(String.format("Fundacion %s does not exist.", cod_fundacion));
+            return notFound(String.format("La fundacion %s no existe.", cod_fundacion));
         }
 
         Form<Fundacion> filledForm = fundacionForm.fill(fundacion);

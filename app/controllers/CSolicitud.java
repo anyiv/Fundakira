@@ -10,6 +10,8 @@ import play.data.Form;
 import play.data.FormFactory;
 import models.Solicitud;
 import models.Beneficiario;
+import models.Usuario_Beneficiario;
+import models.Usuario;
 import io.ebean.*;
 import play.libs.Json;
 import static play.libs.Json.toJson;
@@ -21,15 +23,19 @@ public class CSolicitud extends Controller{
     // CONSTRUCCION DE FORMULARIOS
     private Form<Solicitud> solicitudForm;
     private Form<Beneficiario> beneficiarioForm;
+    private Form<Usuario_Beneficiario> userbenForm;
+    private Form<Usuario> usuarioForm;
 
     @Inject
     public CSolicitud(FormFactory formFactory) {
         this.solicitudForm = formFactory.form(Solicitud.class);
         this.beneficiarioForm = formFactory.form(Beneficiario.class);
+        this.userbenForm = formFactory.form(Usuario_Beneficiario.class);
+        this.usuarioForm = formFactory.form(Usuario.class);
     }
 
     public Result inicio_empleado() {
-        return ok(views.html.inicio_empleado.render(solicitudForm,beneficiarioForm));
+        return ok(views.html.inicio_empleado.render(solicitudForm,beneficiarioForm,usuarioForm));
     }
 
     public Result solicitudes() {
@@ -43,7 +49,6 @@ public class CSolicitud extends Controller{
     @BodyParser.Of(BodyParser.Json.class)
     public Result validar_beneficiario(Http.Request request) {
         JsonNode json = request.body().asJson();
-        System.out.println("x");
         ObjectNode respuesta = Json.newObject();
         String cedulab = json.findPath("cedulab").textValue();
         Beneficiario ben = Beneficiario.buscador.porCedula(cedulab);
@@ -62,25 +67,25 @@ public class CSolicitud extends Controller{
 
     //CREAR SOLICITUD
     public Result guardarS(){
-        Form<Solicitud> boundForm = solicitudForm.bindFromRequest();
-        String mensaje;
-        System.out.print(boundForm);
+        Form<Solicitud> boundFormS = solicitudForm.bindFromRequest();
+        System.out.print(boundFormS);
         return redirect(routes.CSolicitud.inicio_empleado());
     }
 
     //CREAR BENEFICIARIO
     public Result guardarB(){
-        Form<Beneficiario> boundForm = beneficiarioForm.bindFromRequest();
-        String mensaje;
-        System.out.println(boundForm.errors());
-        if (boundForm.hasErrors()) { 
+        Form<Beneficiario> boundFormB = beneficiarioForm.bindFromRequest();
+        Form<Usuario> boundFormUser = usuarioForm.bindFromRequest();
+        if (boundFormB.hasErrors() || boundFormUser.hasErrors() ) { 
             flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
-            return badRequest(views.html.inicio_empleado.render(solicitudForm,beneficiarioForm));
+            return badRequest(views.html.inicio_empleado.render(solicitudForm,boundFormB,boundFormUser));
         }
-        Beneficiario beneficiario = boundForm.get();
+        Beneficiario beneficiario = boundFormB.get();
+        Usuario usuario = boundFormUser.get();
         Ebean.save(beneficiario);
-        flash("success",String.format("El beneficiario %s %s ha sido incluido con éxito.", beneficiario.getNombreB(), beneficiario.getApellidoB()));
-        System.out.print(boundForm);
+        Ebean.save(usuario);
+        flash("success",String.format("El beneficiario %s %s ha sido incluido con éxito.", beneficiario.getNombreB(), beneficiario.getApellidoB()));        
         return redirect(routes.CSolicitud.inicio_empleado());
     }
+
 }

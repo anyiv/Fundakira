@@ -1,5 +1,5 @@
 @import helper._
-@(solicitudForm : Form[Solicitud], beneficiarioForm : Form[Beneficiario])
+@(solicitudForm : Form[Solicitud], beneficiarioForm : Form[Beneficiario], usuarioForm : Form[Usuario])
 @*@(servicios: List[Servicio])*@
 @main("Fundakira - Registro de Solicitudes"){
 <!--PARA USUARIO EMPLEADO-->
@@ -10,8 +10,8 @@
             <i class="close icon"></i>
             <div class="header">Hay algunos errores con tu formulario. </div>
             <ul class="list">
-                @for(error <- beneficiarioForm.errors()) {<li>@error.message
-                    </li>
+                @for(error <- beneficiarioForm.errors()) { @if(error.message !="error.invalid" ){ <li>@error.message</li>
+                    }
                     }
             </ul>
         </div>
@@ -65,8 +65,22 @@
                     <div class="ui input">
                         <input placeholder="Correo" id="correoB" name="correoB" type="text">
                     </div>
+                </div> 
+                <div class="column">
+                    <p id="lblcon" style="display:none"><b>Contraseña:</b></p>
+                    <div class="ui input">
+                        <input placeholder="Contraseña" id="contrasenna" name="contrasenna" style="display:none" type="password">
+                    </div>
                 </div>
-                <input placeholder="Estatus" id="estatusB" name="estatusB" type="hidden" value="A">
+                <div class="column">
+                    <p id="lblcc" style="display:none"><b>Confirmar Contraseña:</b></p>
+                    <div class="ui input">
+                        <input placeholder="Confirmar Contraseña" id="conf_contrasenna" name="conf_contrasenna" style="display:none" type="password">
+                    </div>
+                </div>
+                <input  id="estatusB" name="estatusB" type="hidden" value="A">
+                <input  id="estatus" name="estatus" type="hidden" value="A">
+                <input  id="tipouser" name="tipouser" type="hidden" value="3">
                 <div class="ui container center aligned">
                     <a id="crearbeneficiario" onclick="javascript:confirmarCreacionBeneficiario();"
                         class="ui medium green button"
@@ -84,7 +98,8 @@
                     <select name="Servicios" multiple="" class="ui fluid dropdown" id="servicios"
                         style="margin-right:20px;">
                         <option value="">Servicios</option>
-                        <option value="0">Consulta</option>
+                        <option value="0">Consulta General</option>
+                        <option value="1">Consulta Oftalmologica</option>
                     </select>
                 </div>
                 <div class="column">

@@ -93,8 +93,6 @@ public class Usuario extends Model{
         this.estatus = estatus;
     }
 
-    public Usuario() {
-    }
 
     public static final BuscadorUsuario buscador = new BuscadorUsuario();
 }

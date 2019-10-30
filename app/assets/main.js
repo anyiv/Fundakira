@@ -1,6 +1,52 @@
-$('#select')
+$('.ui .dropdown')
   .dropdown()
-  ;
+;
+
+$('.ui.accordion')
+  .accordion()
+;
+
+$(document).ready(function () {
+  var tabla = $('#tabla').DataTable({
+    "language": {
+      "sProcessing": "Procesando...",
+      "sLengthMenu": "Mostrar _MENU_ registros",
+      "sZeroRecords": "No se encontraron resultados",
+      "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+      "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+      "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+      "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+      "sInfoPostFix": "",
+      "sSearch": "Buscar:",
+      "sUrl": "",
+      "sInfoThousands": ",",
+      "sLoadingRecords": "Cargando...",
+      "oPaginate": {
+        "sFirst": "Primero",
+        "sLast": "Último",
+        "sNext": "Siguiente",
+        "sPrevious": "Anterior"
+      },
+      "oAria": {
+        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+      },
+      "buttons": {
+        "copy": "Copiar",
+        "colvis": "Visibilidad"
+      }
+    }
+  });
+  
+  $('#filtroSolicitudes').on('change', function () {
+    if (this.value == 'Todos') {
+        tabla.search('').draw();
+    } else {
+        tabla.search(this.value).draw();
+    }
+});
+
+});
 
 function enviarFormularioFundacion() {
   if (document.getElementById('cod_fundacion') != null) {
@@ -134,22 +180,31 @@ function validarIdentidad() {
       dataType: 'JSON',
       success: function (data) {
         if (data.error == true) {
-          $("#crearbeneficiario").css("display","");
+          $("#crearbeneficiario").css("display", "");
           Swal.fire("Erorr", "El beneficiario no existe. Introduzca sus datos para registrarlo.", "error");
+          $("#nombreB").val("");
+          $("#apellidoB").val("");
+          $("#direccionB").val("");
+          $("#telefonoB").val("");
+          $("#correoB").val("");
+          $("#lblcon").css("display", "")
+          $("#contrasenna").css("display", "");
+          $("#lblcc").css("display", "")
+          $("#conf_contrasenna").css("display", "");
         } else {
           $("#nombreB").val(data.nombre);
           $("#apellidoB").val(data.apellido);
           $("#direccionB").val(data.direccion);
           $("#telefonoB").val(data.telefono);
           $("#correoB").val(data.correo);
-          Swal.fire("Éxito","El beneficiario " + data.nombre + " " + data.apellido + " ha sido encontrado.","success");
+          Swal.fire("Éxito", "El beneficiario " + data.nombre + " " + data.apellido + " ha sido encontrado.", "success");
         }
       },
       error: function (xhr, ajaxOptions, thrownError) {
         console.log(xhr.status);
         console.log(xhr.responseText);
         console.log(thrownError);
-        Swal.fire("Error", "Error desconocido en el servidor.","error");
+        Swal.fire("Error", "Error desconocido en el servidor.", "error");
       }
     });
   }
@@ -167,7 +222,11 @@ function confirmarCreacionBeneficiario() {
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.value) {
+      if( $('#contrasenna').val() == $('#conf_contrasenna').val() ){
       $('#formBeneficiario').submit();
+    }else{
+      Swal.fire("Error", "Las contraseñas no coinciden.", "error");
+    }
     }
   })
 };

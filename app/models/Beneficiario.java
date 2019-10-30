@@ -36,7 +36,7 @@ public class Beneficiario extends Model {
     private String telefonoB;
 
     @Column(length=1)
-    private char estatus;
+    private char estatusB;
 
     //clave foranea para la solicitud
     @OneToMany(mappedBy="beneficiario",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -93,12 +93,12 @@ public class Beneficiario extends Model {
         return this.telefonoB;
     }
 
-    public void setEstatus(char estatus) {
-        this.estatus = estatus;
+    public void setEstatusB(char estatus) {
+        this.estatusB = estatusB;
     }
 
     public char getEstatus(){
-        return this.estatus;
+        return this.estatusB;
     }
 
     public static final BuscadorBeneficiario buscador = new BuscadorBeneficiario();

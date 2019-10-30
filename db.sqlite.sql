@@ -2,14 +2,14 @@ BEGIN TRANSACTION;
 INSERT INTO `usuario_empleado` (codusuario,cedulae) VALUES ('049e2c9e-e643-11e9-81b4-2a2ae2dbcce4','1');
 INSERT INTO `usuario` (cod_usuario,codtipouser,contrasenna,estatus) VALUES ('049e2c9e-e643-11e9-81b4-2a2ae2dbcce4',NULL,'123','A');
 INSERT INTO `tipouser` (cod_tipo_user,tipo_user,estatus) VALUES ('1','Gavilan','A');
-INSERT INTO `play_evolutions` (id,hash,applied_at,apply_script,revert_script,state,last_problem) VALUES (1,'a0d75c7711213fc0349119b3bb453842d4931e26',1570147739287,'create table beneficiario (
+INSERT INTO `play_evolutions` (id,hash,applied_at,apply_script,revert_script,state,last_problem) VALUES (1,'7b71a977e79bc0a8b821fb8d8ad9b58faf738d1c',1572140870625,'create table beneficiario (
 cedula_b                      varchar(9) not null,
-nombre                        varchar(30),
-apellido                      varchar(30),
-direccion                     varchar(50),
-correo                        varchar(255),
-telefono                      varchar(12),
-estatus                       varchar(1),
+nombre_b                      varchar(30),
+apellido_b                    varchar(30),
+direccion_b                   varchar(50),
+correo_b                      varchar(255),
+telefono_b                    varchar(12),
+estatus_b                     varchar(1),
 constraint pk_beneficiario primary key (cedula_b)
 );
 
@@ -42,15 +42,15 @@ porc_partida                  double(30) not null,
 direccion                     varchar(50),
 correo                        varchar(255),
 telefono                      varchar(12),
+tipo                          varchar(20),
 estatus                       varchar(1),
-constraint uq_fundacion_nombre unique (nombre),
 constraint pk_fundacion primary key (cod_fundacion)
 );
 
 create table servicio (
 cod_servicio                  varchar(9) not null,
 cod_fundacion                 varchar(9) not null,
-descripcion                   TEXT,
+nombre                        varchar(30),
 tipo                          varchar(10),
 costo                         double(15) not null,
 estatus                       varchar(1),
@@ -62,6 +62,8 @@ create table solicitud (
 cod_solicitud                 varchar(9) not null,
 cedulae                       varchar(9),
 cedulab                       varchar(9),
+otras_donaciones              varchar(25),
+razon                         varchar(200),
 prioridad                     varchar(5),
 monto_presupuesto             double(15) not null,
 fecha_registro                timestamp,
@@ -124,7 +126,10 @@ drop table if exists usuario;
 drop table if exists usuario_beneficiario;
 
 drop table if exists usuario_empleado;','applied','');
-INSERT INTO `fundacion` (cod_fundacion,nombre,porc_partida,direccion,correo,telefono,estatus) VALUES ('2b59afca-e643-11e9-81b4-2a2ae2dbcce4','AS',10.0,'Hola','asd','asd','I'),
- ('475483a3-9597-48cc-9578-51d111c6be6d','Fundacion de niños, niñas y adolescentes',30.0,'Carrera 20 con calle 23','ima@ima.com','0251-6789262','A');
+INSERT INTO `fundacion` (cod_fundacion,nombre,porc_partida,direccion,correo,telefono,tipo,estatus) VALUES ('2b59afca-e643-11e9-81b4-2a2ae2dbcce4','AS',10.0,'Hola','asd','asd',NULL,'I'),
+ ('2ef99adf-50f8-4ffb-8937-6cacd828766a','Fundación Regional de la Mujer',30.0,'Calle 43','hola@gmail.com','0251-6789262','Publica','A');
 INSERT INTO `empleado` (cedula_e,nombre,apellido,direccion,correo,telefono,estatus,codfundacion) VALUES ('1','Elizabeth','Warren','Barquisimeto','barqrw@gas.com','0241','A','2b59afca-e643-11e9-81b4-2a2ae2dbcce4');
+INSERT INTO `beneficiario` (cedula_b,nombre_b,apellido_b,direccion_b,correo_b,telefono_b,estatus_b) VALUES ('1','Alan
+','Güevara','Maracay','guevara@alan.net','0222','A'),
+ ('2','Carlos','Villagran','Villanueva','jose@gmail.com','0424678923','��');
 COMMIT;

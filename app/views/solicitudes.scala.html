@@ -4,12 +4,11 @@
         <div class="four wide column">
             <div class="ui segment" style="background-color: #98db97;">
                 <h4>Filtrar por estatus</h4>
-                <select class="ui dropdown">
-                    <option value="">Estatus</option>
-                    <option value="0">Todos</option>
-                    <option value="1">Pendiente</option>
-                    <option value="2">Aprobada</option>
-                    <option value="3">Negada</option>
+                <select class="ui dropdown" id="filtroSolicitudes">
+                    <option>Todos</option>
+                    <option>Pendiente</option>
+                    <option>Aprobada</option>
+                    <option>Negada</option>
                 </select>
                 <div class="ui container center aligned">
                     <button class="ui green button" style="margin-top:1em;">Filtrar</button>
@@ -20,7 +19,7 @@
 </div>
 <div class="row" style="margin-top: 2em;">
     <div class="ui content center aligned" style="margin-right: 10em;margin-left: 10em;">
-        <table class="ui single line inverted grey table">
+        <table id="tabla" class="ui single line inverted grey table">
             <thead>
                 <tr>
                     <th>Nombre del Beneficiario</th>
