@@ -13,6 +13,7 @@ import io.ebean.*;
 
 public class CFundacion extends Controller {
 
+    //Creación de forms
     private Form<Fundacion> fundacionForm;
 
     @Inject
@@ -24,7 +25,7 @@ public class CFundacion extends Controller {
         return ok(views.html.fundaciones.render(Fundacion.buscador.listado()));
     }
 
-    // CREAR FUNDACION
+    // CREAR Y MODIFICAR FUNDACION
     public Result incl_fundacion() {
         return ok(views.html.incluir_fundacion.render(fundacionForm));
     }
@@ -43,12 +44,11 @@ public class CFundacion extends Controller {
             Ebean.update(fundacion);
             flash("success",String.format("La fundación %s ha sido modificada con éxito.", fundacion.getNombre()));
         }
-        
         return redirect(routes.CFundacion.fundaciones());
     }
 
-    // CONSULTAR Y MODIFICAR
-    public Result consultarF(UUID cod_fundacion) {
+    // CARGA LOS DATOS PARA MODIFICARLOS
+    public Result modificarF(UUID cod_fundacion) {
         final Fundacion fundacion = Fundacion.buscador.porCodigo(cod_fundacion);
         if (fundacion == null) {
             return notFound(String.format("La fundacion %s no existe.", cod_fundacion));

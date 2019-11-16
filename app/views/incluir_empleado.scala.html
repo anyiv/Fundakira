@@ -1,50 +1,55 @@
+@import helper._
+@(empleadoForm: Form[Empleado])
 @main("Incluir empleado"){
 <!--Solo para el administrador-->
 <div class="row">
     <div class="ui middle centered grid">
         <div class="five wide tablet seven wide computer column">
             <div class="ui segment" style="background-color: #95bea5;">
+                @helper.form(action = routes.CEmpleado.guardarE, 'id -> "fromEmpleado") {
+                @CSRF.formField
                 <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Empleados</h2>
                 <div class="ui two column grid" style="margin-left: 30px;">
+                <input id="estatus" name="estatus" value="A" type="hidden">
                     <div class="column">
                         <p><b>Cédula:</b></p>
                         <div class="ui input">
-                            <input placeholder="Cédula" type="string">
+                            <input placeholder="Cédula" id="cedulaE" name="cedulaE"  type="text">
                         </div>
                     </div>
                     <div class="column">
                         <p><b>Nombre:</b></p>
                         <div class="ui input">
-                            <input placeholder="Nombre" type="text">
+                            <input placeholder="Nombre" id="nombre" name="nombre" type="text">
                         </div>
                     </div>
                     <div class="column">
                         <p><b>Apellido:</b></p>
                         <div class="ui input">
-                            <input placeholder="Nombre" type="text">
+                            <input placeholder="Nombre" id="apellido" name="apellido" type="text">
                         </div>
                     </div>
                     <div class="column">
                         <p><b>Teléfono:</b></p>
                         <div class="ui input">
-                            <input placeholder="Teléfono" type="int">
+                            <input placeholder="Teléfono" id="telefono" name="telefono" type="text">
                         </div>
                     </div>
                     <div class="column">
                         <p><b>Correo:</b></p>
                         <div class="ui input">
-                            <input placeholder="Correo" type="string">
+                            <input placeholder="Correo" id="correo" name="correo" type="text">
                         </div>
                     </div>
                     <div class="column">
                         <p><b>Dirección:</b></p>
                         <div class="ui input">
-                            <input placeholder="Dirección" type="string">
+                            <input placeholder="Dirección" id="direccion" name="direccion" type="text">
                         </div>
                     </div>
                     <div class="column">
                         <p><b>Fundación:</b></p>
-                        <select name="Fundación asociada" class="ui dropdown">
+                        <select name="fundacion" class="ui dropdown">
                             <option value="0">Todos</option>
                             <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
                             <option value="2">Fundación de Atención al Discapacitado</option>
@@ -56,15 +61,15 @@
                     <a class="ui left floated blue button" href="@routes.CEmpleado.listado_empleados"
                         style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
                         Cancelar
-                </a>
+                    </a>
                     <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 7em;">
                         Limpiar
                     </button>
                     <button class="ui right floated green button"
-                        style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
-                        Incluir
+                     style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                        Incluir   
                     </button>
-                </div>
+                </div>}
             </div>
         </div>
     </div>

@@ -131,6 +131,20 @@ public class Empleado extends Model {
     }
 
 
+    public Empleado(String cedulaE, String nombre, String apellido, String direccion, String correo, String telefono, char estatus, Fundacion fundacion, List<Solicitud> solicitud, Usuario_Empleado usuario_empleado) {
+        this.cedulaE = cedulaE;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.estatus = estatus;
+        this.fundacion = fundacion;
+        this.solicitud = solicitud;
+        this.usuario_empleado = usuario_empleado;
+    }
+
+
     @Override
     public String toString() {
         return this.getNombre() + " " + this.getApellido();

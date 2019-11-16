@@ -4,15 +4,16 @@
 
 #Methods with POST and csrf
 POST   /                            controllers.CLogin.login(request : play.mvc.Http.Request)
-POST   /fundacionesC/               controllers.CFundacion.guardarF()
-POST   /solicitudesC/               controllers.CSolicitud.guardarS()
-GET    /fundacion/:id               controllers.CFundacion.consultarF(id : java.util.UUID)
+POST   /fundacion/incluir           controllers.CFundacion.guardarF()
+POST   /solicitud/guargar           controllers.CSolicitud.guardarS()
+GET    /fundacion/:id               controllers.CFundacion.modificarF(id : java.util.UUID)
 GET    /eliminarF/                  controllers.CFundacion.eliminarF(id : java.util.UUID)
-POST   /beneficiarioC/              controllers.CBeneficiario.guardarB()
+POST   /beneficiario/guardar        controllers.CBeneficiario.guardarB()
 POST   /ajax/validarIdentidad/      controllers.CSolicitud.validar_beneficiario(request : play.mvc.Http.Request)
 POST   /beneficiario/crear/         controllers.CSolicitud.guardarB()
+POST   /empleado/incluir/           controllers.CEmpleado.guardarE()
 
-# An example controller showing a sample home page
+#Methods without csrf
 + nocsrf
 GET     /                           controllers.CLogin.index
 GET     /logout/                    controllers.CLogin.logout

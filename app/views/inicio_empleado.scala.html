@@ -9,7 +9,17 @@
             <i class="close icon"></i>
             <div class="header">Hay algunos errores con tu formulario. </div>
             <ul class="list">
-                @for(error <- beneficiarioForm.errors() || usuarioForm.errors() || solicitudForm.errors()){
+                @for(error <- beneficiarioForm.errors()){
+                    @if(error.message !="error.invalid" ){ 
+                        <li>@error.message</li>
+                    }
+                }
+                @for(error <- usuarioForm.errors()){
+                    @if(error.message !="error.invalid" ){ 
+                        <li>@error.message</li>
+                    }
+                }
+                @for(error <- solicitudForm.errors()){
                     @if(error.message !="error.invalid" ){ 
                         <li>@error.message</li>
                     }
