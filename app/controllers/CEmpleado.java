@@ -13,6 +13,7 @@ import models.Empleado;
 import models.Fundacion;
 import models.Usuario;
 import models.Usuario_Empleado;
+import models.TipoUser;
 import io.ebean.*;
 
 public class CEmpleado extends Controller{
@@ -61,6 +62,8 @@ public class CEmpleado extends Controller{
             flash("error",String.format("El empleado ya existe."));
             return badRequest(views.html.incluir_empleado.render(boundFormE,boundFormU, Fundacion.buscador.listado()));
         } catch (Exception e){
+            TipoUser tipUserEmp = TipoUser.buscador.porCodigo("2");
+            usuario.setTipouser(tipUserEmp);
             Ebean.save(usuario);
             Usuario_Empleado ue = new Usuario_Empleado(usuario, empleado);
             Ebean.save(ue);
