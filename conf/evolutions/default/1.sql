@@ -31,7 +31,6 @@ create table empleado (
   telefono                      varchar(12),
   estatus                       varchar(1),
   codfundacion                  varchar(9),
-  constraint uq_empleado_codfundacion unique (codfundacion),
   constraint pk_empleado primary key (cedula_e),
   foreign key (codfundacion) references fundacion (cod_fundacion) on delete restrict on update restrict
 );

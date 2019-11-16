@@ -1,8 +1,17 @@
 BEGIN TRANSACTION;
-INSERT INTO `usuario_empleado` (codusuario,cedulae) VALUES ('049e2c9e-e643-11e9-81b4-2a2ae2dbcce4','1');
-INSERT INTO `usuario` (cod_usuario,codtipouser,contrasenna,estatus) VALUES ('049e2c9e-e643-11e9-81b4-2a2ae2dbcce4',NULL,'123','A');
-INSERT INTO `tipouser` (cod_tipo_user,tipo_user,estatus) VALUES ('1','Gavilan','A');
-INSERT INTO `play_evolutions` (id,hash,applied_at,apply_script,revert_script,state,last_problem) VALUES (1,'7b71a977e79bc0a8b821fb8d8ad9b58faf738d1c',1572140870625,'create table beneficiario (
+INSERT INTO `usuario_empleado` (codusuario,cedulae) VALUES ('049e2c9e-e643-11e9-81b4-2a2ae2dbcce4','1'),
+ ('520a04ec-f39b-4f31-8f07-2ffcd95e899b','2');
+INSERT INTO `usuario_beneficiario` (codusuario,cedulab) VALUES ('ce523d78-5139-4a79-84dd-509d3aa0ff9a','3'),
+ ('9ba68702-8dc5-4f59-9dc6-05a3843c7aba','4');
+INSERT INTO `usuario` (cod_usuario,codtipouser,contrasenna,estatus) VALUES ('049e2c9e-e643-11e9-81b4-2a2ae2dbcce4','2','123','A'),
+ ('ce523d78-5139-4a79-84dd-509d3aa0ff9a','3','123','A'),
+ ('9ba68702-8dc5-4f59-9dc6-05a3843c7aba','3','123','A'),
+ ('520a04ec-f39b-4f31-8f07-2ffcd95e899b',NULL,'1234','A'),
+ ('3b855334-20b6-43f6-bae1-6771ac148fd3','2','1234','A');
+INSERT INTO `tipouser` (cod_tipo_user,tipo_user,estatus) VALUES ('1','admin','A'),
+ ('2','emp','A'),
+ ('3','ben','A');
+INSERT INTO `play_evolutions` (id,hash,applied_at,apply_script,revert_script,state,last_problem) VALUES (1,'a2443a292551b4234fe9a905ca2927d6f4c4a18d',1572467059925,'create table beneficiario (
 cedula_b                      varchar(9) not null,
 nombre_b                      varchar(30),
 apellido_b                    varchar(30),
@@ -86,7 +95,6 @@ cod_usuario                   varchar(9) not null,
 codtipouser                   varchar(8),
 contrasenna                   varchar(30),
 estatus                       varchar(1),
-constraint uq_usuario_codtipouser unique (codtipouser),
 constraint pk_usuario primary key (cod_usuario),
 foreign key (codtipouser) references tipouser (cod_tipo_user) on delete restrict on update restrict
 );
@@ -128,8 +136,11 @@ drop table if exists usuario_beneficiario;
 drop table if exists usuario_empleado;','applied','');
 INSERT INTO `fundacion` (cod_fundacion,nombre,porc_partida,direccion,correo,telefono,tipo,estatus) VALUES ('2b59afca-e643-11e9-81b4-2a2ae2dbcce4','AS',10.0,'Hola','asd','asd',NULL,'I'),
  ('2ef99adf-50f8-4ffb-8937-6cacd828766a','Fundación Regional de la Mujer',30.0,'Calle 43','hola@gmail.com','0251-6789262','Publica','A');
-INSERT INTO `empleado` (cedula_e,nombre,apellido,direccion,correo,telefono,estatus,codfundacion) VALUES ('1','Elizabeth','Warren','Barquisimeto','barqrw@gas.com','0241','A','2b59afca-e643-11e9-81b4-2a2ae2dbcce4');
+INSERT INTO `empleado` (cedula_e,nombre,apellido,direccion,correo,telefono,estatus,codfundacion) VALUES ('1','Elizabeth','Warren','Barquisimeto','barqrw@gas.com','0241','A','2b59afca-e643-11e9-81b4-2a2ae2dbcce4'),
+ ('2','Lisbeth','omy','Poniente','eldany@gmail.com','0251-6789262','A','2ef99adf-50f8-4ffb-8937-6cacd828766a');
 INSERT INTO `beneficiario` (cedula_b,nombre_b,apellido_b,direccion_b,correo_b,telefono_b,estatus_b) VALUES ('1','Alan
 ','Güevara','Maracay','guevara@alan.net','0222','A'),
- ('2','Carlos','Villagran','Villanueva','jose@gmail.com','0424678923','��');
+ ('2','Carlos','Villagran','Villanueva','jose@gmail.com','0424678923','A'),
+ ('3','Carlos','Villagran','Venezuela','das@dag.com','0424678923','A'),
+ ('4','Juan','Torres','Maracaibo','juan@gmail.com','0414-167882','A');
 COMMIT;

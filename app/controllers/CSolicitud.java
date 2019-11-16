@@ -14,6 +14,7 @@ import models.Usuario_Beneficiario;
 import models.Usuario;
 import models.TipoUser;
 import models.Servicio;
+import models.Empleado;
 import io.ebean.*;
 import play.libs.Json;
 import static play.libs.Json.toJson;

@@ -46,7 +46,7 @@ public class Fundacion extends Model {
     @OneToMany(mappedBy="fundacion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     public List<Servicio> servicios;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "fundacion",fetch = FetchType.LAZY) //el que da la clave foranea
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "fundacion",fetch = FetchType.LAZY) //el que da la clave foranea
     public Empleado empleado;
 
     public UUID getCod_fundacion() {

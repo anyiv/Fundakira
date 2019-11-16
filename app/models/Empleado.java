@@ -38,7 +38,7 @@ public class Empleado extends Model {
     @Column(length=1)
     public char estatus;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="codFundacion")
     public Fundacion fundacion; //El que recibe la clave foranea
 
