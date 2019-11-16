@@ -144,6 +144,16 @@ public class Empleado extends Model {
         this.usuario_empleado = usuario_empleado;
     }
 
+    public Empleado(String cedulaE, String nombre, String apellido, String direccion, String correo, String telefono, char estatus, Fundacion fundacion) {
+        this.cedulaE = cedulaE;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.estatus = estatus;
+        this.fundacion = fundacion;
+    }
 
     @Override
     public String toString() {

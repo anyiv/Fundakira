@@ -45,7 +45,7 @@ public class CSolicitud extends Controller{
     public Result consulta_solicitud() {
         return ok(views.html.consultar_solicitud.render());
     }
-    //VALIDAR BENEFICIARIO
+    //VALIDAR BENEFICIARIO AJAX
     @BodyParser.Of(BodyParser.Json.class)
     public Result validar_beneficiario(Http.Request request) {
         JsonNode json = request.body().asJson();
@@ -67,13 +67,13 @@ public class CSolicitud extends Controller{
 
     //CREAR SOLICITUD
     public Result guardarS(){
-        Form<Solicitud> boundFormS = solicitudForm.bindFromRequest();
-        if (boundFormS.hasErrors() ) { 
+        Form<Solicitud> solicitudF = solicitudForm.bindFromRequest();
+        if (solicitudF.hasErrors() ) { 
             flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
-            return badRequest(views.html.inicio_empleado.render(boundFormS,beneficiarioForm,usuarioForm,Servicio.buscador.listado()));
+            return badRequest(views.html.inicio_empleado.render(solicitudF,beneficiarioForm,usuarioForm,Servicio.buscador.listado()));
         }
-        Solicitud solicitud = boundFormS.get();
-
+        Solicitud solicitud = solicitudF.get();
+        
         return redirect(routes.CSolicitud.inicio_empleado());
     }
 

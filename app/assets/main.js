@@ -230,3 +230,24 @@ function confirmarCreacionBeneficiario() {
     }
   })
 };
+
+function confirmarCreacionEmpleado() {
+  Swal.fire({
+    title: 'Confirmar creación',
+    text: "¿Seguro que deseas incluir al empleado?",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Incluir',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      if( $('#contrasenna').val() == $('#conf_contrasenna').val() ){
+      $('#fromEmpleado').submit();
+    }else{
+      Swal.fire("Error", "Las contraseñas no coinciden.", "error");
+    }
+  }
+  })
+};

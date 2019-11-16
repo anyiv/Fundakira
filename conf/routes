@@ -26,9 +26,9 @@ GET     /servicios/                 controllers.CServicio.listado_servicios
 GET     /servicios/incluir          controllers.CServicio.incl_servicio
 GET     /solicitudes/               controllers.CSolicitud.solicitudes
 GET     /solicitudes/consulta       controllers.CSolicitud.consulta_solicitud
-GET     /empleados/                 controllers.CEmpleado.listado_empleados
-GET     /empleados/incluir          controllers.CEmpleado.incl_empleado
-GET     /empleados/consultar        controllers.CEmpleado.consultar_empleado
+GET     /empleado/                  controllers.CEmpleado.listado_empleados
+GET     /empleado/incluir/          controllers.CEmpleado.incl_empleado
+GET     /empleado/consultar/        controllers.CEmpleado.consultar_empleado
 GET     /reportes/                  controllers.CReporte.lista_reportes
 GET     /reportes/solicitantes      controllers.CReporte.rp_solicitantes
 GET     /reportes/presupuesto       controllers.CReporte.rp_presupuesto

@@ -84,15 +84,5 @@ public class Usuario extends Model{
         this.estatus = estatus;
     }
 
-    public Usuario(UUID codUsuario, Usuario_Empleado usuario_empleado, Usuario_Beneficiario usuario_Beneficiario, TipoUser tipouser, String contrasenna, char estatus) {
-        this.codUsuario = codUsuario;
-        this.usuario_empleado = usuario_empleado;
-        this.usuario_Beneficiario = usuario_Beneficiario;
-        this.tipouser = tipouser;
-        this.contrasenna = contrasenna;
-        this.estatus = estatus;
-    }
-
-
     public static final BuscadorUsuario buscador = new BuscadorUsuario();
 }

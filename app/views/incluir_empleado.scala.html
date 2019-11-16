@@ -1,20 +1,39 @@
 @import helper._
-@(empleadoForm: Form[Empleado])
+@(empleadoForm: Form[Empleado],usuarioForm: Form[Usuario], fundaciones:List[Fundacion])
 @main("Incluir empleado"){
 <!--Solo para el administrador-->
 <div class="row">
     <div class="ui middle centered grid">
+        @if(usuarioForm.hasGlobalErrors || empleadoForm.hasGlobalErrors){
+        <div class="row">
+            <div class="ui error message">
+                <i class="close icon"></i>
+                <div class="header">Hay algunos errores con tu formulario. </div>
+                <ul class="list">
+                    @for(error <- empleadoForm.errors()){ @if(error.message !="error.invalid" ){ <li>@error.message
+                        </li>
+                        }
+                        }
+                        @for(error <- usuarioForm.errors()){ @if(error.message !="error.invalid" ){ <li>@error.message
+                            </li>
+                            }
+                            }
+                </ul>
+            </div>
+        </div>
+        }
         <div class="five wide tablet seven wide computer column">
             <div class="ui segment" style="background-color: #95bea5;">
+
                 @helper.form(action = routes.CEmpleado.guardarE, 'id -> "fromEmpleado") {
                 @CSRF.formField
                 <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Empleados</h2>
                 <div class="ui two column grid" style="margin-left: 30px;">
-                <input id="estatus" name="estatus" value="A" type="hidden">
+                    <input id="estatus" name="estatus" value="A" type="hidden">
                     <div class="column">
                         <p><b>Cédula:</b></p>
                         <div class="ui input">
-                            <input placeholder="Cédula" id="cedulaE" name="cedulaE"  type="text">
+                            <input placeholder="Cédula" id="cedulaE" name="cedulaE" type="text">
                         </div>
                     </div>
                     <div class="column">
@@ -47,14 +66,28 @@
                             <input placeholder="Dirección" id="direccion" name="direccion" type="text">
                         </div>
                     </div>
+                    <input id="estatus" name="estatus" value="A" type="hidden">
                     <div class="column">
                         <p><b>Fundación:</b></p>
-                        <select name="fundacion" class="ui dropdown">
+                        <select name="fundacion" id="fundacion" class="ui dropdown">
                             <option value="0">Todos</option>
-                            <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
-                            <option value="2">Fundación de Atención al Discapacitado</option>
-                            <option value="3">Fundación Regional de la Mujer</option>
+                            @for(fundacion<-fundaciones){ <option value="@fundacion.getCod_fundacion()">
+                                @fundacion.getNombre()</option>
+                                }
                         </select>
+                    </div>
+                    <div class="column">
+                        <p><b>Contraseña:</b></p>
+                        <div class="ui input">
+                            <input placeholder="Contraseña" id="contrasenna" name="contrasenna" type="password">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <p><b>Confirmar Contraseña:</b></p>
+                        <div class="ui input">
+                            <input placeholder="Confirmar Contraseña" id="conf_contrasenna" name="conf_contrasenna"
+                                type="password">
+                        </div>
                     </div>
                 </div>
                 <div class="ui container" style="margin-top: 2em; margin-left:2em; padding-bottom:2em;">
@@ -62,13 +95,14 @@
                         style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
                         Cancelar
                     </a>
-                    <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 7em;">
+                    <button type="reset" class="ui teal button"
+                        style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 7em;">
                         Limpiar
                     </button>
-                    <button class="ui right floated green button"
-                     style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
-                        Incluir   
-                    </button>
+                    <a class="ui right floated green button" onclick="javascrip:confirmarCreacionEmpleado();"
+                        style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                        Incluir
+                    </a>
                 </div>}
             </div>
         </div>
