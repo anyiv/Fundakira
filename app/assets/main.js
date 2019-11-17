@@ -286,6 +286,7 @@ function confirmarCreacionBeneficiario() {
     })
 };
 
+//FUNCIONES PARA LOS EMPLEADOS
 function confirmarCreacionEmpleado() {
     Swal.fire({
         title: 'Confirmar creación',

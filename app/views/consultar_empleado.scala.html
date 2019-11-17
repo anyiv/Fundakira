@@ -8,49 +8,25 @@
             <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Consultar Empleado</h2>
             <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
-                    <p><b>Cédula:</b></p>
-                    <div class="ui input">
-                        <input placeholder="Cédula" type="text" value= "0101001">
-                    </div>
+                    <p><b>Cédula:</b> @empleado.getCedulaE()</p>
                 </div>
                 <div class="column">
-                    <p><b>Fundación:</b></p>
-                    <select name="Fundación asociada" class="ui dropdown">
-                        <option value="">Fundación</option>
-                        <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
-                    <option value="2">Fundación de Atención al Discapacitado</option>
-                    <option value="3">Fundación Regional de la Mujer</option>
-                    </select>
+                    <p><b>Fundación Asociada:</b> @empleado.getFundacion().getNombre </p>
                 </div>
                 <div class="column">
-                    <p><b>Nombre:</b></p>
-                    <div class="ui input">
-                        <input placeholder="Nombre" type="text" value= "01010101110001">
-                    </div>
+                    <p><b>Nombre:</b> @empleado.getNombre() </p>
                 </div>
                 <div class="column">
-                    <p><b>Apellido:</b></p>
-                    <div class="ui input">
-                        <input placeholder="Apellido" type="text" value="Villarreal">
-                    </div>
+                    <p><b>Apellido:</b> @empleado.getApellido() </p>
                 </div>
                 <div class="column">
-                    <p><b>Teléfono:</b></p>
-                    <div class="ui input">
-                        <input placeholder="Teléfono" type="text" value="0251-4242424">
-                    </div>
+                    <p><b>Teléfono:</b> @empleado.getTelefono() </p>
                 </div>
                 <div class="column">
-                    <p><b>Correo:</b></p>
-                    <div class="ui input">
-                        <input placeholder="Correo" type="text" value="anyi@@fundakira.com">
-                    </div>
+                    <p><b>Correo:</b> @empleado.getCorreo() </p>            
                 </div>
                 <div class="column">
-                    <p><b>Dirección:</b></p>
-                    <div class="ui input">
-                        <input placeholder="Nombre" type="text" value="Barquisimeto, calle 14 con carrera 16.">
-                    </div>
+                    <p><b>Dirección:</b> @empleado.getDireccion() </p>                    
                 </div>
             </div>
             <div class="ui container ">
