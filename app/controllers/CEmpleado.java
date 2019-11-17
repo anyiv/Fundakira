@@ -40,7 +40,7 @@ public class CEmpleado extends Controller{
         String cf = boundFormE.rawData().get("fundacion");
         Fundacion fundacion = Fundacion.buscador.porCodigo(UUID.fromString(cf));
         Form<Usuario> boundFormU = usuarioForm.bindFromRequest();
-        if (boundFormU.hasErrors()) { 
+        if (boundFormU.hasErrors() || boundFormE.hasErrors()) { 
             flash("Error", "Por favor ingrese de nuevo los datos"); 
             return badRequest(views.html.incluir_empleado.render(boundFormE,boundFormU, Fundacion.buscador.listado()));
         }

@@ -119,6 +119,9 @@ public class Servicio extends Model {
         this.detallesolicitud = detallesolicitud;
     }
 
+    public Servicio(){
+        
+    }
 
     public static final BuscadorServicio buscador = new BuscadorServicio();
 }

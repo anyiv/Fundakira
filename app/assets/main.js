@@ -1,10 +1,10 @@
 $('.ui .dropdown')
   .dropdown()
-;
+  ;
 
 $('.ui.accordion')
   .accordion()
-;
+  ;
 
 $(document).ready(function () {
   var tabla = $('#tabla').DataTable({
@@ -37,14 +37,14 @@ $(document).ready(function () {
       }
     }
   });
-  
+
   $('#filtroSolicitudes').on('change', function () {
     if (this.value == 'Todos') {
-        tabla.search('').draw();
+      tabla.search('').draw();
     } else {
-        tabla.search(this.value).draw();
+      tabla.search(this.value).draw();
     }
-});
+  });
 
 });
 
@@ -222,11 +222,12 @@ function confirmarCreacionBeneficiario() {
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.value) {
-      if( $('#contrasenna').val() == $('#conf_contrasenna').val() ){
-      $('#formBeneficiario').submit();
-    }else{
-      Swal.fire("Error", "Las contraseñas no coinciden.", "error");
-    }
+      if ($('#contrasenna').val() ==
+        $('#conf_contrasenna').val()) {
+        $('#formBeneficiario').submit();
+      } else {
+        Swal.fire("Error", "Las contraseñas no coinciden.", "error");
+      }
     }
   })
 };
@@ -243,11 +244,77 @@ function confirmarCreacionEmpleado() {
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.value) {
-      if( $('#contrasenna').val() == $('#conf_contrasenna').val() ){
-      $('#fromEmpleado').submit();
-    }else{
-      Swal.fire("Error", "Las contraseñas no coinciden.", "error");
+      if ($('#fundacion').val() != '0') {
+        if ($('#contrasenna').val() == $('#conf_contrasenna').val()) {
+          $('#fromEmpleado').submit();
+        } else {
+          Swal.fire("Error", "Las contraseñas no coinciden.", "error");
+        }
+      } else {
+        Swal.fire("Error", "Las debe seleccionar una fundación.", "error");
+      }
     }
+  })
+};
+
+function guardarSolicitud() {
+  var cedulab = $("#cedulaB").val();
+  var servicios = [];
+  $("#servicios").val().forEach(function (servicio, indice, array) {
+    servicios.push(servicio);
+  });
+  var pri = document.querySelector('input[name="prioridad"]:checked').value;
+  var otradona = $("#otrasDonaciones").val();
+  var razon = $("#razon").val();
+  if (cedulab == '' || $('select[id=servicios] option:selected').length == 0) {
+    Swal.fire("Error", "Debe llenar el formulario completo.", "warning")
+  } else {
+    var token = $('input[name="csrfToken"]').attr('value')
+    $.ajaxSetup({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('Csrf-Token', token);
+      }
+    });
+    var data = {
+      'cedulab': cedulab,
+      'servicios':servicios,
+      'prioridad':pri,
+      'otradonac':otradona,
+      'razon':razon
+     };
+     console.log(data);
+    $.ajax({
+      url: '/ajax/crearSolicitud/',
+      contentType: 'application/json',
+      type: 'POST',
+      data: JSON.stringify(data),
+      dataType: 'JSON',
+      success: function (data) {
+        Swal.fire("Respuesta", data.resultado, "success");
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        console.log(xhr.status);
+        console.log(xhr.responseText);
+        console.log(thrownError);
+        Swal.fire("Error", "Error desconocido en el servidor.", "error");
+      }
+    });
   }
+}
+
+function confirmarCreacionSolicitud() {
+  Swal.fire({
+    title: 'Confirmar modificación',
+    text: "¿Seguro que deseas modificar la fundación?",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Modificar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      guardarSolicitud();
+    }
   })
 };

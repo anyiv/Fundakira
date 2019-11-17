@@ -10,14 +10,16 @@
                 <i class="close icon"></i>
                 <div class="header">Hay algunos errores con tu formulario. </div>
                 <ul class="list">
-                    @for(error <- empleadoForm.errors()){ @if(error.message !="error.invalid" ){ <li>@error.message
-                        </li>
+                    @for(error <- empleadoForm.errors()){ 
+                        @if(error.message !="error.invalid" ){ 
+                            <li>@error.message</li>
                         }
+                    }
+                    @for(error <- usuarioForm.errors()){ 
+                        @if(error.message !="error.invalid" ){ 
+                            <li>@error.message</li>
                         }
-                        @for(error <- usuarioForm.errors()){ @if(error.message !="error.invalid" ){ <li>@error.message
-                            </li>
-                            }
-                            }
+                    }
                 </ul>
             </div>
         </div>

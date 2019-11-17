@@ -149,5 +149,16 @@ public class Solicitud extends Model{
         this.estatus = estatus;
     }
 
+    public Solicitud(UUID cod_solicitud, Empleado empleado, Beneficiario beneficiario, String otrasDonaciones, String razon, String prioridad, Date fechaRegistro, char estatus) {
+        this.cod_solicitud = cod_solicitud;
+        this.empleado = empleado;
+        this.beneficiario = beneficiario;
+        this.otrasDonaciones = otrasDonaciones;
+        this.razon = razon;
+        this.prioridad = prioridad;
+        this.fechaRegistro = fechaRegistro;
+        this.estatus = estatus;
+    }
+
 
 }

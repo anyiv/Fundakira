@@ -10,6 +10,7 @@ import play.data.Form;
 import play.data.FormFactory;
 import models.Solicitud;
 import models.Beneficiario;
+import models.DetalleSolicitud;
 import models.Usuario_Beneficiario;
 import models.Usuario;
 import models.TipoUser;
@@ -66,16 +67,45 @@ public class CSolicitud extends Controller{
         }
     }
 
-    //CREAR SOLICITUD
-    public Result guardarS(){
-        Form<Solicitud> solicitudF = solicitudForm.bindFromRequest();
-        if (solicitudF.hasErrors() ) { 
-            flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
-            return badRequest(views.html.inicio_empleado.render(solicitudF,beneficiarioForm,usuarioForm,Servicio.buscador.listado()));
+    //CREAR SOLICITUD AJAX
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result crear_solicitud(Http.Request request) {
+        JsonNode json = request.body().asJson();
+        ObjectNode respuesta = Json.newObject();
+        String cedulab = json.findPath("cedulab").textValue();
+        List<Servicio> servicios = new ArrayList<Servicio>();
+        for (JsonNode codservicio : json.withArray("servicios")) {
+            servicios.add(Servicio.buscador.porCodigo(UUID.fromString(codservicio.textValue())));
         }
-        Solicitud solicitud = solicitudF.get();
-        
-        return redirect(routes.CSolicitud.inicio_empleado());
+        String cedulae = request.session().getOptional("user").get();
+        String pri = json.findPath("prioridad").textValue();
+        String otradonac = json.findPath("otdonac").textValue();
+        String razon = json.findPath("razon").textValue();
+        Beneficiario ben = Beneficiario.buscador.porCedula(cedulab);
+        Empleado emp = Empleado.buscador.porCedula(cedulae);
+        Date fechaRegistro = new Date();
+        Solicitud soli = new Solicitud(
+            UUID.randomUUID(),
+            emp,
+            ben,
+            otradonac,
+            razon,
+            pri,
+            fechaRegistro,
+            'P'
+        );
+        try {
+            Ebean.save(soli);
+            respuesta.put("resultado","La solicitud se ha creado con éxito.");
+            for (Servicio servicio : servicios) {
+                DetalleSolicitud ds = new DetalleSolicitud(soli, servicio, servicio.getCosto());
+                Ebean.save(ds);
+            }
+            return ok(respuesta);
+        } catch (Exception e) {
+            respuesta.put("resultado","Hubo un error creando la solicitud.");
+            return ok(respuesta);
+        }
     }
 
     //CREAR BENEFICIARIO
@@ -100,4 +130,15 @@ public class CSolicitud extends Controller{
         return redirect(routes.CSolicitud.inicio_empleado());
     }
 
+    //CREAR SOLICITUD
+    public Result guardarS(){
+        Form<Solicitud> solicitudF = solicitudForm.bindFromRequest();
+        if (solicitudF.hasErrors() ) { 
+            flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
+            return badRequest(views.html.inicio_empleado.render(solicitudF,beneficiarioForm,usuarioForm,Servicio.buscador.listado()));
+        }
+        Solicitud solicitud = solicitudF.get();
+        
+        return redirect(routes.CSolicitud.inicio_empleado());
+    }
 }
