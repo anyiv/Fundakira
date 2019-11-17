@@ -144,6 +144,9 @@ public class Fundacion extends Model {
         this.empleado = empleado;
     }
 
+    public Fundacion(UUID cod_fundacion){
+        
+    }
 
      @Override
      public String toString() {

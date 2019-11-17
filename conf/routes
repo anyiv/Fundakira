@@ -5,9 +5,11 @@
 #Methods with POST and csrf
 POST   /                            controllers.CLogin.login(request : play.mvc.Http.Request)
 POST   /fundacion/incluir           controllers.CFundacion.guardarF()
-POST   /solicitud/guargar           controllers.CSolicitud.guardarS()
+POST   /serviciosC/                 controllers.CServicio.guardarS(id : String)
 GET    /fundacion/:id               controllers.CFundacion.modificarF(id : java.util.UUID)
 GET    /eliminarF/                  controllers.CFundacion.eliminarF(id : java.util.UUID)
+GET    /servicio/:id                controllers.CServicio.modificarS(id : java.util.UUID, cod : String)
+GET    /esliminarS/                 controllers.CServicio.eliminarS(id : java.util.UUID)
 POST   /beneficiario/guardar        controllers.CBeneficiario.guardarB()
 POST   /ajax/validarIdentidad/      controllers.CSolicitud.validar_beneficiario(request : play.mvc.Http.Request)
 POST   /ajax/crearSolicitud/        controllers.CSolicitud.crear_solicitud(request : play.mvc.Http.Request)
@@ -26,9 +28,9 @@ GET     /inicio/admin               controllers.CEmpleado.inicio_admin
 GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /fundaciones/incluir        controllers.CFundacion.incl_fundacion
 GET     /servicios/                 controllers.CServicio.listado_servicios
-GET     /servicios/incluir          controllers.CServicio.incl_servicio
+GET     /servicios/incluir          controllers.CServicio.incl_servicio(id: String)
 GET     /solicitudes/               controllers.CSolicitud.solicitudes
-GET     /solicitudes/consulta       controllers.CSolicitud.consulta_solicitud
+GET     /solicitudes/consulta       controllers.CSolicitud.consulta_solicitud(id : String)
 GET     /empleado/                  controllers.CEmpleado.listado_empleados
 GET     /empleado/incluir/          controllers.CEmpleado.incl_empleado
 GET     /empleado/consultar/        controllers.CEmpleado.consultar_empleado

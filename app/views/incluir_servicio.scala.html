@@ -1,30 +1,56 @@
-
+@import helper._
+@(servicioForm: Form[Servicio], fundacion: Fundacion)
 @main("Incluir servicio"){
 <!--PARA USUARIO ADMMINISTRADOR-->
 
 <div class="ui middle centered grid" style="margin-top: 50px">
+
+    @if(flash.containsKey("error")){
+    <div class="row">
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">Hay algunos errores con tu formulario. </div>
+            <ul class="list">
+                @for(error <- servicioForm.errors()) { @if(error.message !="error.invalid" ){ <li>@error.message</li>
+                    }
+                    }
+            </ul>
+        </div>
+    </div>
+    }
     <div class="three wide tablet seven wide computer column">
         <div class="ui segment" style="background-color: #95bea5;">
-            <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Incluir servicios</h2>
+                      <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">
+            @if(servicioForm("codServicio").value.toString()=="Optional.empty"){Incluir} else {Modificar}
+                servicio</h2>
+            @helper.form(action = routes.CServicio.guardarS(fundacion.getCod_fundacion().toString()), 'id -> "formServicio") {
+            @CSRF.formField
+            @if(servicioForm("codServicio").value.toString()=="Optional.empty"){} else {<input id="codServicio"
+                name="codServicio" value='@servicioForm("codServicio").value.get()' type="hidden">}
             <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text">
+                       <input id="nombre" name="nombre"
+                            @if(servicioForm("codServicio").value.toString()=="Optional.empty" ){} else {
+                            value='@servicioForm("nombre").value.get()' } placeholder="Nombre" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Costo:</b></p>
                     <div class="ui input">
-                        <input placeholder="Costo" type="text">
+                        <input id="costo" name="costo"
+                            @if(servicioForm("codServicio").value.toString()=="Optional.empty" ){} else {
+                            value='@servicioForm("costo").value.get()' } placeholder="Costo" type="text">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Tipo:</b></p>
-                    <select name="Tipos" class="ui dropdown" id="Tipos">
+                    <select name="tipo" id="tipo" class="ui dropdown" @if(servicioForm("codServicio").value.toString()=="Optional.empty" ){} else {
+                        value='@servicioForm("tipo").value.get()' } >
                         <option value="">Tipo</option>
-                        <option value="Médico">Médico</option>
-                        <option value="Donación">Donación</option>
+                        <option value="Medico" @if(servicioForm("codServicio").value.toString()=="Optional.empty"){} else if(servicioForm("tipo").value.get()=="Medico") {selected}>Médico</option>
+                        <option value="Donacion" @if(servicioForm("codServicio").value.toString()=="Optional.empty"){} else if(servicioForm("tipo").value.get()=="Donacion") {selected}>Donación</option>
                     </select>
                 </div>
             </div>
@@ -33,15 +59,16 @@
                     style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
                     Cancelar
             </a>
-                <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
+                <button type="reset" class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
                     Limpiar
                 </button>
-                <button class="ui right floated green button"
-                    style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
-                    Incluir
-                </button>
+                <a value="guardarS" class="ui right floated green button"
+                        style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 3em;"
+                        onclick="javascript:enviarFormularioServicio();">
+                        @if(servicioForm("codServicio").value.toString()=="Optional.empty"){Incluir} else {Modificar}
+                    </a>
             </div>
         </div>
     </div>
-</div>
+</div>}
 }

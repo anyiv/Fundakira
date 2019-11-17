@@ -41,12 +41,14 @@ public class CSolicitud extends Controller{
     }
 
     public Result solicitudes() {
-        return ok(views.html.solicitudes.render());
+        return ok(views.html.solicitudes.render(Solicitud.buscador.listadoTodos()));
     }
 
-    public Result consulta_solicitud() {
-        return ok(views.html.consultar_solicitud.render());
+    public Result consulta_solicitud(String cod) {
+        UUID codigo = UUID.fromString(cod);
+        return ok(views.html.consultar_solicitud.render(Solicitud.buscador.porCodigo(codigo),DetalleSolicitud.buscador.listadoDet(codigo)));
     }
+
     //VALIDAR BENEFICIARIO AJAX
     @BodyParser.Of(BodyParser.Json.class)
     public Result validar_beneficiario(Http.Request request) {
@@ -96,7 +98,7 @@ public class CSolicitud extends Controller{
         );
         try {
             Ebean.save(soli);
-            respuesta.put("resultado","La solicitud se ha creado con éxito.");
+            respuesta.put("resultado","La solicitud se ha creada con éxito.");
             for (Servicio servicio : servicios) {
                 DetalleSolicitud ds = new DetalleSolicitud(soli, servicio, servicio.getCosto());
                 Ebean.save(ds);
@@ -130,15 +132,18 @@ public class CSolicitud extends Controller{
         return redirect(routes.CSolicitud.inicio_empleado());
     }
 
-    //CREAR SOLICITUD
-    public Result guardarS(){
-        Form<Solicitud> solicitudF = solicitudForm.bindFromRequest();
-        if (solicitudF.hasErrors() ) { 
-            flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
-            return badRequest(views.html.inicio_empleado.render(solicitudF,beneficiarioForm,usuarioForm,Servicio.buscador.listado()));
+    //GESTIONAR SOLICITUD(APROBAR O NEGAR)
+    public Result gestionarSolicitud(UUID codigo, char e){
+        final Solicitud solicitud = Solicitud.buscador.porCodigo(codigo);
+        if(e == 'A'){
+            solicitud.setEstatus(e);
+            Ebean.update(solicitud);
+            flash("success",String.format("La solicitud ha sido aprobada con éxito."));
+        }else{
+            solicitud.setEstatus(e);
+            Ebean.update(solicitud);
+            flash("success",String.format("La solicitud ha sido negada con éxito."));
         }
-        Solicitud solicitud = solicitudF.get();
-        
-        return redirect(routes.CSolicitud.inicio_empleado());
+        return redirect(routes.CSolicitud.solicitudes());
     }
 }

@@ -1,202 +1,75 @@
+@(fundaciones:List[Fundacion],servicios:List[Servicio])
 @main("Servicios"){
+
+@if(fundaciones.length!=0) {
 <div class="ui three column grid" style="margin-left: 95px; margin-top: 80px;">
-    <div class="column">
-        <div class="ui card" style="background-color: #b0e5c9">
-            <div class="content">
-                <i class="right floated big building outline icon"></i>
-                <div class="header">Fundación de Ayuda a Niños, Niñas y Adolescentes</div>
-            </div>
-            <div class="content">
-                <div class="ui accordion">
-                    <div class="title"><i class="dropdown icon"></i>
-                     Consulta médica general
-                    </div>
-                    <div class="content">
-                        <div class="ui two column grid">
-                            <div class="row">
-                                <div class="column">
-                                    <div class="ui list">
-                                        <div class="item">
-                                             <div class="header">Tipo:</div>
-                                            Médico
-                                        </div>
-                                        <div class="item">
-                                            <div class="header">Costo:</div>
-                                            200.000
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                        <button class="ui icon blue button" style="margin-top: 1em; margin-left: 2em;"><i class="edit icon"></i></button>
-                                        <button class="ui icon red button" style="margin-top: 3em; marigin-left: 2em;"><i class="trash alternate icon"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="title"><i class="dropdown icon"></i>
-                     Consulta médica general
-                    </div>
-                    <div class="content">
-                        <div class="ui two column grid">
-                            <div class="row">
-                                <div class="column">
-                                    <div class="ui list">
-                                        <div class="item">
-                                             <div class="header">Tipo:</div>
-                                            Médico
-                                        </div>
-                                        <div class="item">
-                                            <div class="header">Costo:</div>
-                                            200.000
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                        <button class="ui icon blue button" style="margin-top: 1em; margin-left: 2em;"><i class="edit icon"></i></button>
-                                        <button class="ui icon red button" style="margin-top: 3em; marigin-left: 2em;"><i class="trash alternate icon"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
+    @for(fundacion <- fundaciones) { 
+        <div class="column">
+            <div class="ui card" style="background-color: #b0e5c9">
+                <div class="content">
+                    <i class="right floated big building outline icon"></i>
+                    <div class="header">@fundacion.getNombre()</div>
                 </div>
-            </div>
-            <a href="@routes.CServicio.incl_servicio"><div class="ui bottom attached green button">
-            <i class="add icon"></i>
-             Incluir servicio
-             </div></a>
+            @if(fundacion.getServicios().length!=0){
+                <div class="content">
+                    <div class="ui accordion">
+                @for(servicio <- fundacion.getServicios()){
+                        <div class="title">
+                            <i class="dropdown icon"></i>
+                            @servicio.getNombre()
+                        </div>
+                        <div class="content">
+                            <div class="ui two column grid">
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="ui list">
+                                            <div class="item">
+                                                <div class="header">Tipo:</div>
+                                                @servicio.getTipo()
+                                            </div>
+                                            <div class="item">
+                                                <div class="header">Costo:</div>
+                                                @servicio.getCosto() Bs.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <a class="ui icon blue button"
+                                            href="@routes.CServicio.modificarS(servicio.getCodServicio(),fundacion.getCod_fundacion().toString())">
+                                            <i class="edit icon" style="margin-top: 1em; margin-left: 2em;"></i>
+                                        </a>
+                                        <a class="ui icon red button"
+                                            onclick="javascript:confirmarEliminarServicio('@servicio.getCodServicio()','fundacion.getCod_fundacion().toString()');">
+                                            <i class="trash alternate icon" style="margin-top: 3em; margin-left: 2em;"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            } else {
+                <div class="content">
+                    <h4>La fundación aún no tiene servicios asociados.</h4>
+                </div>
+            }
+                <a href="@routes.CServicio.incl_servicio(fundacion.getCod_fundacion().toString())">
+                    <div class="ui bottom attached green button">
+                        <i class="add icon"></i>
+                        Incluir servicio
+                    </div>
+                </a>
         </div>
     </div>
-    <div class="column">
-       <div class="ui card" style="background-color: #b0e5c9">
-            <div class="content">
-                <i class="right floated big building outline icon"></i>
-                <div class="header">Fundación de Atención al Discapacitado</div>
-            </div>
-            <div class="content">
-                <div class="ui accordion">
-                    <div class="title"><i class="dropdown icon"></i>
-                     Consulta médica general
-                    </div>
-                    <div class="content">
-                        <div class="ui two column grid">
-                            <div class="row">
-                                <div class="column">
-                                    <div class="ui list">
-                                        <div class="item">
-                                             <div class="header">Tipo:</div>
-                                            Médico
-                                        </div>
-                                        <div class="item">
-                                            <div class="header">Costo:</div>
-                                            200.000
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                        <button class="ui icon blue button" style="margin-top: 1em; margin-left: 2em;"><i class="edit icon"></i></button>
-                                        <button class="ui icon red button" style="margin-top: 3em; marigin-left: 2em;"><i class="trash alternate icon"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="title"><i class="dropdown icon"></i>
-                     Consulta médica general
-                    </div>
-                    <div class="content">
-                        <div class="ui two column grid">
-                            <div class="row">
-                                <div class="column">
-                                    <div class="ui list">
-                                        <div class="item">
-                                             <div class="header">Tipo:</div>
-                                            Médico
-                                        </div>
-                                        <div class="item">
-                                            <div class="header">Costo:</div>
-                                            200.000
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                        <button class="ui icon blue button" style="margin-top: 1em; margin-left: 2em;"><i class="edit icon"></i></button>
-                                        <button class="ui icon red button" style="margin-top: 3em; marigin-left: 2em;"><i class="trash alternate icon"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-            <a href="@routes.CServicio.incl_servicio"><div class="ui bottom attached green button">
-            <i class="add icon"></i>
-             Incluir servicio
-             </div></a>
-        </div>
-    </div>
-     <div class="column">
-       <div class="ui card" style="background-color: #b0e5c9">
-            <div class="content">
-                <i class="right floated big building outline icon"></i>
-                <div class="header">Fundación Regional de la Mujer</div>
-            </div>
-            <div class="content">
-                <div class="ui accordion">
-                    <div class="title"><i class="dropdown icon"></i>
-                     Consulta médica general
-                    </div>
-                    <div class="content">
-                        <div class="ui two column grid">
-                            <div class="row">
-                                <div class="column">
-                                    <div class="ui list">
-                                        <div class="item">
-                                             <div class="header">Tipo:</div>
-                                            Médico
-                                        </div>
-                                        <div class="item">
-                                            <div class="header">Costo:</div>
-                                            200.000
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                        <button class="ui icon blue button" style="margin-top: 1em; margin-left: 2em;"><i class="edit icon"></i></button>
-                                        <button class="ui icon red button" style="margin-top: 3em; marigin-left: 2em;"><i class="trash alternate icon"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="title"><i class="dropdown icon"></i>
-                     Consulta médica general
-                    </div>
-                    <div class="content">
-                        <div class="ui two column grid">
-                            <div class="row">
-                                <div class="column">
-                                    <div class="ui list">
-                                        <div class="item">
-                                             <div class="header">Tipo:</div>
-                                            Médico
-                                        </div>
-                                        <div class="item">
-                                            <div class="header">Costo:</div>
-                                            200.000
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                        <button class="ui icon blue button" style="margin-top: 1em; margin-left: 2em;"><i class="edit icon"></i></button>
-                                        <button class="ui icon red button" style="margin-top: 3em; marigin-left: 2em;"><i class="trash alternate icon"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-            <a href="@routes.CServicio.incl_servicio"><div class="ui bottom attached green button">
-            <i class="add icon"></i>
-             Incluir servicio
-             </div></a>
+    }
+} else {
+<div class="ui center aligned grid">
+    <div class="ui content center aligned">
+        <div class="ui segment" style="background-color: #dfd2ad;margin-top: 3em;">
+            <h2>Debe añadir una fundación para incluir servicios.</h2>
         </div>
     </div>
 </div>
+}
 }
