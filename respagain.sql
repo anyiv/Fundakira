@@ -13,8 +13,9 @@ INSERT INTO `usuario` (cod_usuario,codtipouser,contrasenna,estatus) VALUES ('049
 INSERT INTO `tipouser` (cod_tipo_user,tipo_user,estatus) VALUES ('1','admin','A'),
  ('2','emp','A'),
  ('3','ben','A');
-INSERT INTO `servicio` (cod_servicio,cod_fundacion,nombre,tipo,costo,estatus) VALUES ('30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5','2ef99adf-50f8-4ffb-8937-6cacd828766a','Consulta General','Medico',10000.0,'A');
-INSERT INTO `play_evolutions` (id,hash,applied_at,apply_script,revert_script,state,last_problem) VALUES (1,'3244be7375e2f371db812d5a6ac9a662974001cb',1573947889553,'create table beneficiario (
+INSERT INTO `solicitud` (cod_solicitud,cedulae,cedulab,otras_donaciones,razon,prioridad,fecha_registro,motivo_rechazo,estatus) VALUES ('96900bfd-d9ee-4ec4-ada8-acb96d5268f0','2','1',NULL,'','Media',1573999749560,NULL,'P');
+INSERT INTO `servicio` (cod_servicio,cod_fundacion,nombre,tipo,costo,estatus) VALUES ('30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5','2ef99adf-50f8-4ffb-8937-6cacd828766a','Consulta Oftalmológica','Medico',10000.0,'A');
+INSERT INTO `play_evolutions` (id,hash,applied_at,apply_script,revert_script,state,last_problem) VALUES (1,'2f4c8728accf07123e42c996e4a5e6c5009a7a83',1573999623546,'create table beneficiario (
 cedula_b                      varchar(9) not null,
 nombre_b                      varchar(30),
 apellido_b                    varchar(30),
@@ -140,6 +141,7 @@ INSERT INTO `fundacion` (cod_fundacion,nombre,porc_partida,direccion,correo,tele
 INSERT INTO `empleado` (cedula_e,nombre,apellido,direccion,correo,telefono,estatus,codfundacion) VALUES ('1','Elizabeth','Warren','Barquisimeto','barqrw@gas.com','0241','A','2b59afca-e643-11e9-81b4-2a2ae2dbcce4'),
  ('2','Lisbeth','omy','Poniente','eldany@gmail.com','0251-6789262','A','2ef99adf-50f8-4ffb-8937-6cacd828766a'),
  ('3','Andrea','Mantilla','Carrera 20 con calle 23','fnda@gmail.com','0251-6789262','A','2ef99adf-50f8-4ffb-8937-6cacd828766a');
+INSERT INTO `detallesolicitud` (cod_solicitud,cod_servicio,costo) VALUES ('96900bfd-d9ee-4ec4-ada8-acb96d5268f0','30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5',10000.0);
 INSERT INTO `beneficiario` (cedula_b,nombre_b,apellido_b,direccion_b,correo_b,telefono_b,estatus_b) VALUES ('1','Alan
 ','Güevara','Maracay','guevara@alan.net','0222','A'),
  ('2','Carlos','Villagran','Villanueva','jose@gmail.com','0424678923','A'),

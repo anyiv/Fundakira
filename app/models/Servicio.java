@@ -16,9 +16,6 @@ public class Servicio extends Model {
     @GeneratedValue
     public UUID codServicio;
 
-    @Column(length=9,name="cod_fundacion")
-    public String cod_fundacion;
-
     @Constraints.Required(message = "Por favor ingrese el nombre")
     @Column(length = 30)
     public String nombre;
@@ -49,14 +46,6 @@ public class Servicio extends Model {
 
     public void setCodServicio(UUID codServicio) {
         this.codServicio = codServicio;
-    }
-
-    public String getCod_fundacion() {
-        return this.cod_fundacion;
-    }
-
-    public void setCod_fundacion(String cod_fundacion) {
-        this.cod_fundacion = cod_fundacion;
     }
 
     public String getNombre() {
@@ -108,15 +97,23 @@ public class Servicio extends Model {
     }
     
 
-    public Servicio(UUID codServicio, String cod_fundacion, String nombre, String tipo, double costo, char estatus, Fundacion fundacion, List<DetalleSolicitud> detallesolicitud) {
+    public Servicio(UUID codServicio, String nombre, String tipo, double costo, char estatus, Fundacion fundacion, List<DetalleSolicitud> detallesolicitud) {
         this.codServicio = codServicio;
-        this.cod_fundacion = cod_fundacion;
         this.nombre = nombre;
         this.tipo = tipo;
         this.costo = costo;
         this.estatus = estatus;
         this.fundacion = fundacion;
         this.detallesolicitud = detallesolicitud;
+    }
+
+    public Servicio(UUID codServicio, String nombre, String tipo, double costo, char estatus, Fundacion fundacion) {
+        this.codServicio = codServicio;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.costo = costo;
+        this.estatus = estatus;
+        this.fundacion = fundacion;
     }
 
     public Servicio(){

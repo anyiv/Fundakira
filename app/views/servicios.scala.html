@@ -3,67 +3,73 @@
 
 @if(fundaciones.length!=0) {
 <div class="ui three column grid" style="margin-left: 95px; margin-top: 80px;">
-    @for(fundacion <- fundaciones) {
-    <div class="column">
-        <div class="ui card" style="background-color: #b0e5c9">
-            <div class="content">
-                <i class="right floated big building outline icon"></i>
-                <div class="header">@fundacion.getNombre()</div>
-            </div>
-            <div class="content">
-        @if(servicios.length!=0){
-                <div class="ui accordion">
-                @for(servicio <- servicios){
-                    <div class="title"><i class="dropdown icon"></i>
-                     @servicio.getNombre()
-                    </div>
-                    <div class="content">
-                        <div class="ui two column grid">
-                            <div class="row">
-                                <div class="column">
-                                    <div class="ui list">
-                                        <div class="item">
-                                             <div class="header">Tipo:</div>
-                                            @servicio.getTipo()
-                                        </div>
-                                        <div class="item">
-                                            <div class="header">Costo:</div>
-                                            @servicio.getCosto()
+    @for(fundacion <- fundaciones) { 
+        <div class="column">
+            <div class="ui card" style="background-color: #b0e5c9">
+                <div class="content">
+                    <i class="right floated big building outline icon"></i>
+                    <div class="header">@fundacion.getNombre()</div>
+                </div>
+            @if(fundacion.getServicios().length!=0){
+                <div class="content">
+                    <div class="ui accordion">
+                @for(servicio <- fundacion.getServicios()){
+                        <div class="title">
+                            <i class="dropdown icon"></i>
+                            @servicio.getNombre()
+                        </div>
+                        <div class="content">
+                            <div class="ui two column grid">
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="ui list">
+                                            <div class="item">
+                                                <div class="header">Tipo:</div>
+                                                @servicio.getTipo()
+                                            </div>
+                                            <div class="item">
+                                                <div class="header">Costo:</div>
+                                                @servicio.getCosto() Bs.
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="column">
-                                        <a class="ui icon blue button" 
-                                            href="@routes.CServicio.modificarS(servicio.getCodServicio())"><i class="edit icon" 
-                                                style="margin-top: 1em; margin-left: 2em;"></i></a>
-                                        <a class="ui icon red button" 
-                                         onclick="javascript:confirmarEliminarServicio('@servicio.getCodServicio()');"><i class="trash alternate icon"
-                                                style="margin-top: 3em; marigin-left: 2em;"></i></a>
+                                    <div class="column">
+                                        <a class="ui icon blue button"
+                                            href="@routes.CServicio.modificarS(servicio.getCodServicio(),fundacion.getCod_fundacion().toString())">
+                                            <i class="edit icon" style="margin-top: 1em; margin-left: 2em;"></i>
+                                        </a>
+                                        <a class="ui icon red button"
+                                            onclick="javascript:confirmarEliminarServicio('@servicio.getCodServicio()','fundacion.getCod_fundacion().toString()');">
+                                            <i class="trash alternate icon" style="margin-top: 3em; margin-left: 2em;"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        }
                     </div>
                 </div>
-                }
+            } else {
+                <div class="content">
+                    <h4>La fundación aún no tiene servicios asociados.</h4>
+                </div>
             }
-                    
-            </div>
-            <a href="@routes.CServicio.incl_servicio"><div class="ui bottom attached green button">
-            <i class="add icon"></i>
-             Incluir servicio
-             </div></a>
-        </div>
-    </div>
-    }        
-</div>
-} else {
-    <div class="ui center aligned grid">
-        <div class="ui content center aligned">
-            <div class="ui segment" style="background-color: #dfd2ad;margin-top: 3em;">
-                <h3>No se encuentran servicios registrados.</h3>
-                <h2>Debe añadir una fundación para incluir servicios.</h2>
-            </div>
+                <a href="@routes.CServicio.incl_servicio(fundacion.getCod_fundacion().toString())">
+                    <div class="ui bottom attached green button">
+                        <i class="add icon"></i>
+                        Incluir servicio
+                    </div>
+                </a>
         </div>
     </div>
     }
+} else {
+<div class="ui center aligned grid">
+    <div class="ui content center aligned">
+        <div class="ui segment" style="background-color: #dfd2ad;margin-top: 3em;">
+            <h2>Debe añadir una fundación para incluir servicios.</h2>
+        </div>
+    </div>
+</div>
+}
 }

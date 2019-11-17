@@ -98,7 +98,7 @@ public class CSolicitud extends Controller{
         );
         try {
             Ebean.save(soli);
-            respuesta.put("resultado","La solicitud se ha creado con éxito.");
+            respuesta.put("resultado","La solicitud se ha creada con éxito.");
             for (Servicio servicio : servicios) {
                 DetalleSolicitud ds = new DetalleSolicitud(soli, servicio, servicio.getCosto());
                 Ebean.save(ds);

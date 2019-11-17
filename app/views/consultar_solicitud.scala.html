@@ -7,7 +7,7 @@
                 <div class="ui content">
                     <div class="ui center aligned header" style="margin-top: 1em;">@solicitud.getBeneficiario.getNombreB() @solicitud.getBeneficiario.getApellidoB()</div>
                     <div class="center aligned description">
-                        <div class="meta" style="margin-bottom:10px;">Aqui va la fundacion</div>
+                        <div class="meta" style="margin-bottom:10px;">@solicitud.getEmpleado().getFundacion().getNombre()</div>
                         <p><b>Cédula:</b> @solicitud.getBeneficiario.getCedulaB()</p>
                         <p><b>Prioridad:</b> @solicitud.getPrioridad()</p>
                         <p><b>Fecha de registro:</b> @solicitud.getFechaRegistro()</p>
@@ -27,12 +27,12 @@
                             <tr>
                             <td>@det.getServicio().getNombre()</td>
                             <td>@det.getServicio().getTipo()</td>
-                            <td>@det.getCosto()</td>
+                            <td>@det.getCosto() bs.</td>
                             </tr>
                             }
                         </tbody>
                     </table>
-                    <p><b>Presupuesto total:</b> 120.000bs</p>
+                    <p><b>Presupuesto de la solicitud:</b> @solicitud.CalcularPresupuesto(solicitud.getCod_solicitud()) bs</p>
                     <p><b>Presupuesto disponible:</b> 120.000bs</p>
                 </div>
                 <div class="ui container ">

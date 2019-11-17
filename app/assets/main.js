@@ -148,7 +148,7 @@ function confirmarModifServicio() {
     })
 };
 
-function confirmarEliminarServicio(id) {
+function confirmarEliminarServicio(id,codF) {
     Swal.fire({
         title: 'Confirmar eliminación',
         text: "¿Seguro que deseas eliminar el servicio?",
@@ -160,7 +160,7 @@ function confirmarEliminarServicio(id) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.value) {
-            location.href = "/eliminarS/?id=" + id;
+            location.href = "/eliminarS/?id=" + id + codF;
         }
     })
 };
@@ -345,6 +345,13 @@ function guardarSolicitud() {
             dataType: 'JSON',
             success: function(data) {
                 Swal.fire("Respuesta", data.resultado, "success");
+                $("#cedulaB").val("");
+                $("#nombreB").val("");
+                $("#apellidoB").val("");
+                $("#direccionB").val("");
+                $("#telefonoB").val("");
+                $("#correoB").val("");
+                $("#servicios").val("");
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 console.log(xhr.status);
@@ -357,7 +364,6 @@ function guardarSolicitud() {
 }
 
 function confirmarCreacionSolicitud() {
-<<<<<<< HEAD
   Swal.fire({
     title: 'Confirmar modificación',
     text: "¿Seguro que deseas crear la solicitud?",
@@ -372,20 +378,4 @@ function confirmarCreacionSolicitud() {
       guardarSolicitud();
     }
   })
-=======
-    Swal.fire({
-        title: 'Confirmar modificación',
-        text: "¿Seguro que deseas modificar la fundación?",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Modificar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.value) {
-            guardarSolicitud();
-        }
-    })
->>>>>>> 4ad5209d3da217edda0c438b848b12df108038d7
 };

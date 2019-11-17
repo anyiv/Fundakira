@@ -49,11 +49,11 @@ create table fundacion (
 
 create table servicio (
   cod_servicio                  varchar(9) not null,
-  cod_fundacion                 varchar(9) not null,
   nombre                        varchar(30),
   tipo                          varchar(10),
   costo                         double(15) not null,
   estatus                       varchar(1),
+  cod_fundacion                 varchar(9) not null,
   constraint pk_servicio primary key (cod_servicio),
   foreign key (cod_fundacion) references fundacion (cod_fundacion) on delete restrict on update restrict
 );
