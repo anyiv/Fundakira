@@ -305,12 +305,12 @@ function guardarSolicitud() {
 function confirmarCreacionSolicitud() {
   Swal.fire({
     title: 'Confirmar modificación',
-    text: "¿Seguro que deseas modificar la fundación?",
+    text: "¿Seguro que deseas crear la solicitud?",
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Modificar',
+    confirmButtonText: 'Crear',
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.value) {

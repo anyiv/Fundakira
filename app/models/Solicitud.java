@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlID;
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import buscadores.BuscadorSolicitud;
+import models.DetalleSolicitud;
 
 @Entity
 @Table(name="Solicitud")
@@ -39,10 +41,6 @@ public class Solicitud extends Model{
 
     @Column(length=5)
     private String prioridad;
-
-    @Constraints.Required(message = "Por favor ingrese el nombre")
-    @Column(length=15)
-    private double  montoPresupuesto;
 
     @Column()
     private Date fechaRegistro;
@@ -85,14 +83,6 @@ public class Solicitud extends Model{
         this.prioridad = prioridad;
     }
 
-    public double getMontoPresupuesto() {
-        return this.montoPresupuesto;
-    }
-
-    public void setMontoPresupuesto(double montoPresupuesto) {
-        this.montoPresupuesto = montoPresupuesto;
-    }
-
     public Date getFechaRegistro() {
         return this.fechaRegistro;
     }
@@ -117,7 +107,6 @@ public class Solicitud extends Model{
         this.estatus = estatus;
     }
 
-
     public String getOtrasDonaciones() {
         return this.otrasDonaciones;
     }
@@ -135,7 +124,7 @@ public class Solicitud extends Model{
     }
 
 
-    public Solicitud(UUID cod_solicitud, Empleado empleado, Beneficiario beneficiario, List<DetalleSolicitud> detallesolicitud, String otrasDonaciones, String razon, String prioridad, double montoPresupuesto, Date fechaRegistro, String motivoRechazo, char estatus) {
+    public Solicitud(UUID cod_solicitud, Empleado empleado, Beneficiario beneficiario, List<DetalleSolicitud> detallesolicitud, String otrasDonaciones, String razon, String prioridad, Date fechaRegistro, String motivoRechazo, char estatus) {
         this.cod_solicitud = cod_solicitud;
         this.empleado = empleado;
         this.beneficiario = beneficiario;
@@ -143,7 +132,6 @@ public class Solicitud extends Model{
         this.otrasDonaciones = otrasDonaciones;
         this.razon = razon;
         this.prioridad = prioridad;
-        this.montoPresupuesto = montoPresupuesto;
         this.fechaRegistro = fechaRegistro;
         this.motivoRechazo = motivoRechazo;
         this.estatus = estatus;
@@ -160,5 +148,30 @@ public class Solicitud extends Model{
         this.estatus = estatus;
     }
 
+    public String obtenerEstatus(){
+        String p = "Pendiente";
+        String a = "Atendida";
+        String n = "Negada";
+        if(this.estatus == 'P'){
+            return p;
+        }else if(this.estatus == 'A'){
+            return a;
+        }else{
+            return n;
+        }
+    }
 
+    public double CalcularPresupuesto(UUID codigo){
+        int cant = DetalleSolicitud.buscador.contarDetalles(codigo);
+        List<DetalleSolicitud> listdet = DetalleSolicitud.buscador.listadoDet(codigo);
+        double montototal=0;
+        for(int c=0; c<cant; c++){
+            DetalleSolicitud ds = listdet.get(c);
+            double costo = ds.getCosto();
+            montototal += costo;
+        }
+        return montototal;
+    }
+
+    public static final BuscadorSolicitud buscador = new BuscadorSolicitud();
 }

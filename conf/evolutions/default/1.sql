@@ -65,7 +65,6 @@ create table solicitud (
   otras_donaciones              varchar(25),
   razon                         varchar(200),
   prioridad                     varchar(5),
-  monto_presupuesto             double(15) not null,
   fecha_registro                timestamp,
   motivo_rechazo                varchar(500),
   estatus                       varchar(1),

@@ -1,3 +1,4 @@
+@(solicitudes:List[Solicitud])
 @main("Solicitudes"){
 <div class="row">
     <div class="ui center aligned grid">
@@ -30,33 +31,17 @@
                 </tr>
             </thead>
             <tbody>
+            @for(solicitud<-solicitudes){
                 <tr>
-                    <td>Maria Paredes</td>
-                    <td>Alto</td>
-                    <td>40.000 Bs</td>
-                    <td>Pendiente</td>
-                    <td><a href="@routes.CSolicitud.consulta_solicitud" class="circular ui icon button">
+                    <td>@solicitud.getBeneficiario.getNombreB() @solicitud.getBeneficiario.getApellidoB()</td>
+                    <td>@solicitud.getPrioridad()</td>
+                    <td>@solicitud.CalcularPresupuesto(solicitud.getCod_solicitud())</td>
+                    <td>@solicitud.obtenerEstatus() </td>
+                    <td><a href="@routes.CSolicitud.consulta_solicitud(solicitud.getCod_solicitud().toString())" class="circular ui icon button">
                             <i class="icon eye"></i>
                     </a></td>
                 </tr>
-                <tr>
-                    <td>Maria Paredes</td>
-                    <td>Alto</td>
-                    <td>40.000 Bs</td>
-                    <td>Pendiente</td>
-                    <td><a href="@routes.CSolicitud.consulta_solicitud" class="circular ui icon button">
-                            <i class="icon eye"></i>
-                    </a></td>
-                </tr>
-                <tr>
-                    <td>Maria Paredes</td>
-                    <td>Alto</td>
-                    <td>40.000 Bs</td>
-                    <td>Pendiente</td>
-                    <td><a href="@routes.CSolicitud.consulta_solicitud" class="circular ui icon button">
-                            <i class="icon eye"></i>
-                    </a></td>
-                </tr>
+            }
             </tbody>
         </table>
     </div>
