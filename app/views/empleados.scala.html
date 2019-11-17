@@ -1,3 +1,4 @@
+@(empleados:List[Empleados])
 @main("Empleados"){
 <!--Solo para el Administrador-->
 <div class="ui raised segments" style="margin:60px">
@@ -25,67 +26,57 @@
             </div>
         </div>
     </div>
-    <div class="ui content">
-        <table class="ui striped inverted grey table">
-            <thead>
-                <tr>
-                    <th>Cédula</th>
-                    <th>Nombre</th>
-                    <th>Fundación Asociada</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0000001</td>
-                    <td>Anyeli Villareal</td>
-                    <td>Fundación de Ayuda a Niños, Niñas y Adolescentes</td>
-                    <td><a class="circular ui icon button" href="@routes.CEmpleado.consultar_empleado">
-                            <i class="icon eye"></i>
-                        </a>
-                        <a class="circular ui red icon button" href="@routes.CEmpleado.consultar_empleado">
-                            <i class="trash alternate icon"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>0000002</td>
-                    <td>María Rico</td>
-                    <td>Fundación de Ayuda a Niños, Niñas y Adolescentes</td>
-                    <td><a class="circular ui icon button" href="@routes.CEmpleado.consultar_empleado">
-                            <i class="icon eye"></i>
-                        </a>
-                        <a class="circular ui red icon button" href="@routes.CEmpleado.consultar_empleado">
-                            <i class="trash alternate icon"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>0000003</td>
-                    <td>Omerly Mendoza</td>
-                    <td>Fundación de Ayuda a Niños, Niñas y Adolescentes</td>
-                    <td><a class="circular ui icon button" href="@routes.CEmpleado.consultar_empleado">
-                            <i class="icon eye"></i>
-                        </a>
-                        <a class="circular ui red icon button" href="@routes.CEmpleado.consultar_empleado">
-                            <i class="trash alternate icon"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>0000004</td>
-                    <td>María Paredes</td>
-                    <td>Fundación de Ayuda a Niños, Niñas y Adolescentes</td>
-                    <td><a class="circular ui icon button" href="@routes.CEmpleado.consultar_empleado">
-                            <i class="icon eye"></i>
-                        </a>
-                        <a class="circular ui red icon button" href="@routes.CEmpleado.consultar_empleado">
-                            <i class="trash alternate icon"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+@if(empleados.length!=0) {
+<div class="ui three column grid" style="margin-left: 95px; margin-top: 20px;">
+@for(empleado <- empleados) {
+    <div class="column">
+        <div class="ui card" style="background-color: #a0d1b7">
+            <div class="content">
+                <div class="header">@empleado.getNombre()</div>
+            </div>
+            <div class="content">
+                <h4 class="ui sub header">Información</h4>
+                <div class="ui small feed">
+                    <div class="event">
+                        <div class="content">
+                            <label><b>Cédula:</b></label>
+                            <label>@empleado.getCedulaE()</label>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="content">
+                             <label><b>Teléfono: </b></label>
+                            <label>@empleado.getNombre()</label>
+                        </div>
+                    </div><div class="event">
+                        <div class="content">
+                             <label><b>Fundación Asociada: </b></label>
+                            <label>@empleado.getFundacion()</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="extra content">
+                <a class="ui left floated blue button"
+                    href="@routes.CEmpleado.consultar_empleado(empleado.getCedulaE_empleado())"><i class="edit icon"
+                        style="padding-left: 5px;"></i></a>
+                <a class="ui right floated red button"
+                    onclick="javascript:confirmarEliminarEmpleado('@empleado.getCedulaE()');"><i class="trash alternate icon"
+                        style="padding-left: 5px;"></i></a>
+            </div>                   
+        </div>
     </div>
+}
+</div>
+} else {
+    <div class="ui center aligned grid">
+        <div class="ui content center aligned">
+            <div class="ui segment" style="background-color: #dfd2ad;margin-top: 3em;">
+                <h3>No hay empleados registrados aún.</h3>
+            </div>
+        </div>
+    </div>
+    }
 </div>
 }

@@ -1,3 +1,4 @@
+@(empleadoForm: Form[Empleado], empleados:List[Empleado])
 @main("Consultar empleado"){
 <!--PARA USUARIO ADMMINISTRADOR-->
 
@@ -9,7 +10,7 @@
                 <div class="column">
                     <p><b>Cédula:</b></p>
                     <div class="ui input">
-                        <input placeholder="Cédula" type="text" value="0000001">
+                        <input placeholder="Cédula" type="text" value= "0101001">
                     </div>
                 </div>
                 <div class="column">
@@ -24,7 +25,7 @@
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text" value="Anyeli">
+                        <input placeholder="Nombre" type="text" value= "01010101110001">
                     </div>
                 </div>
                 <div class="column">
@@ -60,10 +61,10 @@
                 <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
                     Limpiar
                 </button>
-                <button class="ui right floated green button"
+                <a class="ui right floated green button" onclick="javascrip:confirmarModificarEmpleado();"
                     style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
                     Modificar
-                </button>
+                </a>
             </div>
         </div>
     </div>
