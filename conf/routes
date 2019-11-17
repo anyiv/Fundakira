@@ -15,6 +15,7 @@ POST   /ajax/validarIdentidad/      controllers.CSolicitud.validar_beneficiario(
 POST   /ajax/crearSolicitud/        controllers.CSolicitud.crear_solicitud(request : play.mvc.Http.Request)
 POST   /beneficiario/crear/         controllers.CSolicitud.guardarB()
 POST   /empleado/incluir/           controllers.CEmpleado.guardarE()
+GET    /solicitud/gestionar/        controllers.CSolicitud.gestionarSolicitud(id : String, e : String)
 
 #Methods without csrf
 + nocsrf
@@ -28,7 +29,7 @@ GET     /fundaciones/incluir        controllers.CFundacion.incl_fundacion
 GET     /servicios/                 controllers.CServicio.listado_servicios
 GET     /servicios/incluir          controllers.CServicio.incl_servicio(id: String)
 GET     /solicitudes/               controllers.CSolicitud.solicitudes
-GET     /solicitudes/consulta       controllers.CSolicitud.consulta_solicitud(id : String)
+GET     /solicitud/consulta         controllers.CSolicitud.consulta_solicitud(id : String)
 GET     /empleado/                  controllers.CEmpleado.listado_empleados
 GET     /empleado/incluir/          controllers.CEmpleado.incl_empleado
 GET     /empleado/consultar/        controllers.CEmpleado.consultar_empleado

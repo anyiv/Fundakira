@@ -133,7 +133,10 @@ public class CSolicitud extends Controller{
     }
 
     //GESTIONAR SOLICITUD(APROBAR O NEGAR)
-    public Result gestionarSolicitud(UUID codigo, char e){
+    public Result gestionarSolicitud(String cod, String estatus){
+        UUID codigo = UUID.fromString(cod);
+        char e = estatus.charAt(0);
+        System.out.print(e);
         final Solicitud solicitud = Solicitud.buscador.porCodigo(codigo);
         if(e == 'A'){
             solicitud.setEstatus(e);

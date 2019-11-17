@@ -1,4 +1,4 @@
-@(nombre : String)
+@(nombre : String, nombref : String)
 
 <div class="ui labeled inverted icon menu" style="background-color:#043b1b;">
     <a class="item" href="@routes.CSolicitud.inicio_empleado">
@@ -14,15 +14,19 @@
         <i class="pen square icon"></i> Solicitudes
     </a>
     <a class="item" href="@routes.CEmpleado.listado_empleados">
-        <i class="users icon"></i> Empleados 
+        <i class="users icon"></i> Empleados
     </a>
     <a class="item" href="@routes.CReporte.lista_reportes">
         <i class="chart line icon"></i> Reportes
     </a>
     <div class="right menu">
-        <a class="item" href="#">
+        <a class="item">
             <i class="user icon"></i>@nombre
         </a>
+        <div class="ui flowing popup bottom left transition hidden">
+            <div class="header">Fundación: @nombref</div>
+            <div class="ui grey button" style="margin-top: 20px;">Cambiar Contraseña.</div>
+        </div>
         <a class="item" onclick="javascript:cerrarSesion();">
             <i class="sign-out icon"></i> Cerrar Sesión
         </a>

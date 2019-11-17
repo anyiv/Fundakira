@@ -13,9 +13,15 @@ INSERT INTO `usuario` (cod_usuario,codtipouser,contrasenna,estatus) VALUES ('049
 INSERT INTO `tipouser` (cod_tipo_user,tipo_user,estatus) VALUES ('1','admin','A'),
  ('2','emp','A'),
  ('3','ben','A');
-INSERT INTO `solicitud` (cod_solicitud,cedulae,cedulab,otras_donaciones,razon,prioridad,fecha_registro,motivo_rechazo,estatus) VALUES ('96900bfd-d9ee-4ec4-ada8-acb96d5268f0','2','1',NULL,'','Media',1573999749560,NULL,'P');
-INSERT INTO `servicio` (cod_servicio,cod_fundacion,nombre,tipo,costo,estatus) VALUES ('30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5','2ef99adf-50f8-4ffb-8937-6cacd828766a','Consulta Oftalmológica','Medico',10000.0,'A');
-INSERT INTO `play_evolutions` (id,hash,applied_at,apply_script,revert_script,state,last_problem) VALUES (1,'2f4c8728accf07123e42c996e4a5e6c5009a7a83',1573999623546,'create table beneficiario (
+INSERT INTO `solicitud` (cod_solicitud,cedulae,cedulab,otras_donaciones,razon,prioridad,fecha_registro,motivo_rechazo,estatus) VALUES ('96900bfd-d9ee-4ec4-ada8-acb96d5268f0','2','1',NULL,'','Media',1573999749560,NULL,'P'),
+ ('175584c6-26b4-4205-8642-dc341102a0fc','1','3',NULL,'','Media',1574019188075,NULL,'P'),
+ ('db5732c3-1652-4fe9-8eb3-37037764f01c','1','4',NULL,'','Media',1574019371916,NULL,'P'),
+ ('b0aa0500-2eb8-4c40-82fd-9f2e75733abb','1','4',NULL,'','Alta',1574019447304,NULL,'P');
+INSERT INTO `servicio` (cod_servicio,nombre,tipo,costo,estatus,cod_fundacion) VALUES ('30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5','Consulta Oftalmológica','Medico',10000.0,'A','2ef99adf-50f8-4ffb-8937-6cacd828766a'),
+ ('459d7125-3375-4031-9c77-ba7fd338a41a','Consulta Generalizada','Donacion',100000.0,'A','2ef99adf-50f8-4ffb-8937-6cacd828766a'),
+ ('fbac4109-649e-4aa0-8274-e167fbd3c608','Consulta General','Donacion',25000.0,'A','2ef99adf-50f8-4ffb-8937-6cacd828766a'),
+ ('88cd122b-fc6d-456c-aabc-783fabb9e0e9','Donacion de Tanque','Donacion',125000.0,'A','8c3f1059-2c35-40ab-aede-c924052db9c1');
+INSERT INTO `play_evolutions` (id,hash,applied_at,apply_script,revert_script,state,last_problem) VALUES (1,'d4aca4a6bc85f8184110d5f93a6ed578bd9812f1',1574013296297,'create table beneficiario (
 cedula_b                      varchar(9) not null,
 nombre_b                      varchar(30),
 apellido_b                    varchar(30),
@@ -61,11 +67,11 @@ constraint pk_fundacion primary key (cod_fundacion)
 
 create table servicio (
 cod_servicio                  varchar(9) not null,
-cod_fundacion                 varchar(9) not null,
 nombre                        varchar(30),
 tipo                          varchar(10),
 costo                         double(15) not null,
 estatus                       varchar(1),
+cod_fundacion                 varchar(9) not null,
 constraint pk_servicio primary key (cod_servicio),
 foreign key (cod_fundacion) references fundacion (cod_fundacion) on delete restrict on update restrict
 );
@@ -137,11 +143,19 @@ drop table if exists usuario_beneficiario;
 
 drop table if exists usuario_empleado;','applied','');
 INSERT INTO `fundacion` (cod_fundacion,nombre,porc_partida,direccion,correo,telefono,tipo,estatus) VALUES ('2b59afca-e643-11e9-81b4-2a2ae2dbcce4','AS',10.0,'Hola','asd','asd',NULL,'I'),
- ('2ef99adf-50f8-4ffb-8937-6cacd828766a','Fundación Regional de la Mujer',30.0,'Calle 43','hola@gmail.com','0251-6789262','Publica','A');
+ ('2ef99adf-50f8-4ffb-8937-6cacd828766a','Fundación Regional de la Mujer',30.0,'Calle 43','hola@gmail.com','0251-6789262','Publica','A'),
+ ('8c3f1059-2c35-40ab-aede-c924052db9c1','Fundacion de niños, niñas y adolescentes',30.0,'Cabudare','fundakira@miau.com','04141222222','Publica','A');
 INSERT INTO `empleado` (cedula_e,nombre,apellido,direccion,correo,telefono,estatus,codfundacion) VALUES ('1','Elizabeth','Warren','Barquisimeto','barqrw@gas.com','0241','A','2b59afca-e643-11e9-81b4-2a2ae2dbcce4'),
  ('2','Lisbeth','omy','Poniente','eldany@gmail.com','0251-6789262','A','2ef99adf-50f8-4ffb-8937-6cacd828766a'),
  ('3','Andrea','Mantilla','Carrera 20 con calle 23','fnda@gmail.com','0251-6789262','A','2ef99adf-50f8-4ffb-8937-6cacd828766a');
-INSERT INTO `detallesolicitud` (cod_solicitud,cod_servicio,costo) VALUES ('96900bfd-d9ee-4ec4-ada8-acb96d5268f0','30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5',10000.0);
+INSERT INTO `detallesolicitud` (cod_solicitud,cod_servicio,costo) VALUES ('96900bfd-d9ee-4ec4-ada8-acb96d5268f0','30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5',10000.0),
+ ('175584c6-26b4-4205-8642-dc341102a0fc','30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5',10000.0),
+ ('175584c6-26b4-4205-8642-dc341102a0fc','88cd122b-fc6d-456c-aabc-783fabb9e0e9',125000.0),
+ ('db5732c3-1652-4fe9-8eb3-37037764f01c','30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5',10000.0),
+ ('db5732c3-1652-4fe9-8eb3-37037764f01c','fbac4109-649e-4aa0-8274-e167fbd3c608',25000.0),
+ ('b0aa0500-2eb8-4c40-82fd-9f2e75733abb','30cb8ea3-4acb-4e4b-b7a3-fa11e7aa04a5',10000.0),
+ ('b0aa0500-2eb8-4c40-82fd-9f2e75733abb','459d7125-3375-4031-9c77-ba7fd338a41a',100000.0),
+ ('b0aa0500-2eb8-4c40-82fd-9f2e75733abb','88cd122b-fc6d-456c-aabc-783fabb9e0e9',125000.0);
 INSERT INTO `beneficiario` (cedula_b,nombre_b,apellido_b,direccion_b,correo_b,telefono_b,estatus_b) VALUES ('1','Alan
 ','Güevara','Maracay','guevara@alan.net','0222','A'),
  ('2','Carlos','Villagran','Villanueva','jose@gmail.com','0424678923','A'),

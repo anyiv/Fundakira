@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 @user = @{Empleado.buscador.porCedula(request.session().getOptional("user").orElse(""))}
+@fundacion = @{user.getFundacion().getNombre()}
 <html lang="es">
     <head>
         <title>@title</title>
@@ -22,7 +23,7 @@
     </head>
     @if(user!=null || request.path=="/registrarse/") {
       @if(request.path!="/" && request.path!="/registrarse/") {
-        @topbar(user.toString()) 
+        @topbar(user.toString(),fundacion.toString()) 
       }
       <body>
           @content

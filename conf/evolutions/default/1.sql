@@ -47,6 +47,13 @@ create table fundacion (
   constraint pk_fundacion primary key (cod_fundacion)
 );
 
+create table gobernacion (
+  cod_gobernacion               varchar(8) not null,
+  partida_anual                 double(5),
+  estatus                       varchar(1),
+  constraint pk_gobernacion primary key (cod_gobernacion)
+);
+
 create table servicio (
   cod_servicio                  varchar(9) not null,
   nombre                        varchar(30),
@@ -117,6 +124,8 @@ drop table if exists detallesolicitud;
 drop table if exists empleado;
 
 drop table if exists fundacion;
+
+drop table if exists gobernacion;
 
 drop table if exists servicio;
 

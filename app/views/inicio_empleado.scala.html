@@ -107,7 +107,7 @@
                     <select name="Servicios" multiple="" class="ui dropdown" id="servicios"
                         style="margin-right:20px;">
                         <option value="">Servicios</option>
-                        @for(servicio<-servicios){
+                        @for(servicio<- Empleado.buscador.porCedula(request.session().getOptional("user").get()).getFundacion().getServicios() ){
                         <option value="@servicio.getCodServicio()">@servicio.getNombre()</option>
                         }
                     </select>

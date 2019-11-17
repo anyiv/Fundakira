@@ -40,13 +40,13 @@
                         style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
                         Cancelar
                     </a>
-                    <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em;">
+                    <a onclick="javascript:confirmarNegarSolicitud('@solicitud.getCod_solicitud().toString()','N');" class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em;">
                         Rechazar
-                    </button>
-                    <button class="ui right floated green button"
+                    </a>
+                    <a onclick="javascript:confirmarAprobarSolicitud('@solicitud.getCod_solicitud().toString()','A');" class="ui right floated green button"
                         style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
                         Aprobar
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

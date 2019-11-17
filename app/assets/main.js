@@ -4,7 +4,14 @@ $('.ui .dropdown')
 $('.ui.accordion')
     .accordion();
 
-$(document).ready(function() {
+$('.item')
+    .popup({
+        inline: true,
+        hoverable: true
+    })
+    ;
+
+$(document).ready(function () {
     var tabla = $('#tabla').DataTable({
         "language": {
             "sProcessing": "Procesando...",
@@ -36,7 +43,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#filtroSolicitudes').on('change', function() {
+    $('#filtroSolicitudes').on('change', function () {
         if (this.value == 'Todos') {
             tabla.search('').draw();
         } else {
@@ -148,7 +155,7 @@ function confirmarModifServicio() {
     })
 };
 
-function confirmarEliminarServicio(id,codF) {
+function confirmarEliminarServicio(id, codF) {
     Swal.fire({
         title: 'Confirmar eliminación',
         text: "¿Seguro que deseas eliminar el servicio?",
@@ -201,7 +208,7 @@ function imprimirError(mensaje) {
 };
 
 $('.message .close')
-    .on('click', function() {
+    .on('click', function () {
         $(this)
             .closest('.message')
             .transition('fade');
@@ -221,7 +228,7 @@ function validarIdentidad() {
     } else {
         var token = $('input[name="csrfToken"]').attr('value')
         $.ajaxSetup({
-            beforeSend: function(xhr) {
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader('Csrf-Token', token);
             }
         });
@@ -232,7 +239,7 @@ function validarIdentidad() {
             type: 'POST',
             data: JSON.stringify(data),
             dataType: 'JSON',
-            success: function(data) {
+            success: function (data) {
                 if (data.error == true) {
                     $("#crearbeneficiario").css("display", "");
                     Swal.fire("Erorr", "El beneficiario no existe. Introduzca sus datos para registrarlo.", "error");
@@ -254,7 +261,7 @@ function validarIdentidad() {
                     Swal.fire("Éxito", "El beneficiario " + data.nombre + " " + data.apellido + " ha sido encontrado.", "success");
                 }
             },
-            error: function(xhr, ajaxOptions, thrownError) {
+            error: function (xhr, ajaxOptions, thrownError) {
                 console.log(xhr.status);
                 console.log(xhr.responseText);
                 console.log(thrownError);
@@ -314,7 +321,7 @@ function confirmarCreacionEmpleado() {
 function guardarSolicitud() {
     var cedulab = $("#cedulaB").val();
     var servicios = [];
-    $("#servicios").val().forEach(function(servicio, indice, array) {
+    $("#servicios").val().forEach(function (servicio, indice, array) {
         servicios.push(servicio);
     });
     var pri = document.querySelector('input[name="prioridad"]:checked').value;
@@ -325,7 +332,7 @@ function guardarSolicitud() {
     } else {
         var token = $('input[name="csrfToken"]').attr('value')
         $.ajaxSetup({
-            beforeSend: function(xhr) {
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader('Csrf-Token', token);
             }
         });
@@ -343,7 +350,7 @@ function guardarSolicitud() {
             type: 'POST',
             data: JSON.stringify(data),
             dataType: 'JSON',
-            success: function(data) {
+            success: function (data) {
                 Swal.fire("Respuesta", data.resultado, "success");
                 $("#cedulaB").val("");
                 $("#nombreB").val("");
@@ -353,7 +360,7 @@ function guardarSolicitud() {
                 $("#correoB").val("");
                 $("#servicios").val("");
             },
-            error: function(xhr, ajaxOptions, thrownError) {
+            error: function (xhr, ajaxOptions, thrownError) {
                 console.log(xhr.status);
                 console.log(xhr.responseText);
                 console.log(thrownError);
@@ -364,18 +371,52 @@ function guardarSolicitud() {
 }
 
 function confirmarCreacionSolicitud() {
-  Swal.fire({
-    title: 'Confirmar modificación',
-    text: "¿Seguro que deseas crear la solicitud?",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Crear',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.value) {
-      guardarSolicitud();
-    }
-  })
+    Swal.fire({
+        title: 'Confirmar modificación',
+        text: "¿Seguro que deseas crear la solicitud?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Crear',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            guardarSolicitud();
+        }
+    })
+};
+
+function confirmarAprobarSolicitud(id,e) {
+    Swal.fire({
+        title: 'Confirmar actualización',
+        text: "¿Seguro que deseas aprobar la solicitud?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aprobar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            location.href = "/gestionar/?id=" + id + e;
+        }
+    })
+};
+
+function confirmarNegarSolicitud(id,e) {
+    Swal.fire({
+        title: 'Confirmar actualización',
+        text: "¿Seguro que deseas negar la solicitud?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Negar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            location.href = "/gestionar/?id=" + id + e;
+        }
+    })
 };
