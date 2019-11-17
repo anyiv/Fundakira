@@ -293,6 +293,7 @@ function confirmarCreacionBeneficiario() {
     })
 };
 
+//FUNCIONES PARA LOS EMPLEADOS
 function confirmarCreacionEmpleado() {
     Swal.fire({
         title: 'Confirmar creación',
@@ -316,6 +317,40 @@ function confirmarCreacionEmpleado() {
             }
         }
     })
+};
+
+function confirmarEliminarEmpleado(id) {
+  Swal.fire({
+    title: 'Confirmar eliminación',
+    text: "¿Seguro que deseas eliminar al empleado?",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      location.href = "/eliminar_empleado/?id=" + id;
+    }
+  })
+};
+
+function confirmarModificarEmpleado() {
+  Swal.fire({
+    title: 'Confirmar modificación',
+    text: "¿Seguro que deseas modificar los datos del empleado?",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Modificar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      $('#formEmpleado').submit();
+    }
+  })
 };
 
 function guardarSolicitud() {

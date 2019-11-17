@@ -31,7 +31,7 @@ public class CEmpleado extends Controller{
         return ok(views.html.empleados.render());
     }
 
-    //Crear empleado
+    //CREAR EMPLEADO
     public Result incl_empleado() {
         return ok(views.html.incluir_empleado.render(empleadoForm, usuarioForm, Fundacion.buscador.listado()));
     }
@@ -78,8 +78,32 @@ public class CEmpleado extends Controller{
         return ok(views.html.consultar_empleado.render());
     }
 
+    public modificar_empleado(String cedulaE){
+        Form<Empleado> boundForm = empleadoForm.bindFromRequest();
+        if (boundForm.hasErrors()) { 
+            flash("error", "Por favor ingrese datos en los campos a modificar."); 
+            return badRequest(views.html.consultar_empleado.render(boundForm));
+        }
+        Empleado empleado = boundForm.get();
+        if (empleado.getCedulaE() != null){
+            Ebean.save(empleado);
+            flash("success",String.format("Los datos del empleado  %s han sido modificados con éxito.", empleado.getNombre()));
+        } else {
+        }
+        return redirect(routes.CEmpleado.listado_empleados());
+    }
+
     public Result inicio_admin() {
         return ok(views.html.inicio_admin.render());
+    }
+
+    // ELIMINAR EMPLEADO
+    public Result eliminar_empleado(String cedulaE) {
+        Empleado empleado = Emleado.buscador.porCedula(cedulaE);
+        empleado.setEstatus('I');
+        Ebean.update(empleado);
+        flash("success",String.format("EL empleado %s ha sido eliminado con éxito.", empleado.getNombre()));
+        return redirect(routes.CEmpleado.empleado());
     }
     
 }

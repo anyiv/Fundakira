@@ -16,6 +16,8 @@ POST   /ajax/crearSolicitud/        controllers.CSolicitud.crear_solicitud(reque
 POST   /beneficiario/crear/         controllers.CSolicitud.guardarB()
 POST   /empleado/incluir/           controllers.CEmpleado.guardarE()
 GET    /solicitud/gestionar/        controllers.CSolicitud.gestionarSolicitud(id : String, e : String)
+GET    /empleado/:id                controllers.CEmpleado.consultar_empleado(id : String)
+GET    /eliminar_empleado/           controllers.CEmpleado.eliminar_empleado(id : String)
 
 #Methods without csrf
 + nocsrf
