@@ -422,7 +422,7 @@ function confirmarCreacionSolicitud() {
     })
 };
 
-function confirmarAprobarSolicitud(id,e) {
+function confirmarAprobarSolicitud(id) {
     Swal.fire({
         title: 'Confirmar actualización',
         text: "¿Seguro que deseas aprobar la solicitud?",
@@ -434,12 +434,12 @@ function confirmarAprobarSolicitud(id,e) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.value) {
-            location.href = "/gestionar/?id=" + id + e;
+            location.href = "/solicitud/aprobar/" + id;
         }
     })
 };
 
-function confirmarNegarSolicitud(id,e) {
+function confirmarNegarSolicitud(id) {
     Swal.fire({
         title: 'Confirmar actualización',
         text: "¿Seguro que deseas negar la solicitud?",
@@ -451,7 +451,7 @@ function confirmarNegarSolicitud(id,e) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.value) {
-            location.href = "/gestionar/?id=" + id + e;
+            location.href = "/solicitud/rechazar/" + id;
         }
     })
 };

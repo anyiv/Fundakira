@@ -150,7 +150,7 @@ public class Solicitud extends Model{
 
     public String obtenerEstatus(){
         String p = "Pendiente";
-        String a = "Atendida";
+        String a = "Aprobada";
         String n = "Negada";
         if(this.estatus == 'P'){
             return p;

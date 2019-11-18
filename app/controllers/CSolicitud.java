@@ -16,6 +16,7 @@ import models.Usuario;
 import models.TipoUser;
 import models.Servicio;
 import models.Empleado;
+import models.Fundacion;
 import io.ebean.*;
 import play.libs.Json;
 import static play.libs.Json.toJson;
@@ -98,10 +99,20 @@ public class CSolicitud extends Controller{
         );
         try {
             Ebean.save(soli);
-            respuesta.put("resultado","La solicitud se ha creada con éxito.");
+            Fundacion f = soli.getEmpleado().getFundacion();
+            double presupuesto = 0;
             for (Servicio servicio : servicios) {
                 DetalleSolicitud ds = new DetalleSolicitud(soli, servicio, servicio.getCosto());
                 Ebean.save(ds);
+                presupuesto += ds.getCosto();
+            }
+            if (f.getMontoDisponible()-presupuesto<0){
+                respuesta.put("resultado","La solicitud ha sido rechazada automáticamente por falta de presupuesto.");
+                soli.setEstatus('N');
+                soli.setRazon("Falta de presupuesto.");
+                Ebean.update(soli);
+            } else {
+                respuesta.put("resultado","La solicitud se ha creado con éxito.");
             }
             return ok(respuesta);
         } catch (Exception e) {
@@ -133,20 +144,21 @@ public class CSolicitud extends Controller{
     }
 
     //GESTIONAR SOLICITUD(APROBAR O NEGAR)
-    public Result gestionarSolicitud(String cod, String estatus){
+    public Result aprobarSolicitud(String cod){
         UUID codigo = UUID.fromString(cod);
-        char e = estatus.charAt(0);
-        System.out.print(e);
         final Solicitud solicitud = Solicitud.buscador.porCodigo(codigo);
-        if(e == 'A'){
-            solicitud.setEstatus(e);
-            Ebean.update(solicitud);
-            flash("success",String.format("La solicitud ha sido aprobada con éxito."));
-        }else{
-            solicitud.setEstatus(e);
-            Ebean.update(solicitud);
-            flash("success",String.format("La solicitud ha sido negada con éxito."));
-        }
+        solicitud.setEstatus('A');
+        Ebean.update(solicitud);
+        flash("success",String.format("La solicitud ha sido aprobada con éxito."));
+        return redirect(routes.CSolicitud.solicitudes());
+    }
+
+    public Result rechazarSolicitud(String cod){
+        UUID codigo = UUID.fromString(cod);
+        final Solicitud solicitud = Solicitud.buscador.porCodigo(codigo);
+        solicitud.setEstatus('N');
+        Ebean.update(solicitud);
+        flash("success",String.format("La solicitud ha sido negada con éxito."));
         return redirect(routes.CSolicitud.solicitudes());
     }
 }

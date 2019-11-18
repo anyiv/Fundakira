@@ -11,8 +11,10 @@
                         <p><b>Cédula:</b> @solicitud.getBeneficiario.getCedulaB()</p>
                         <p><b>Prioridad:</b> @solicitud.getPrioridad()</p>
                         <p><b>Fecha de registro:</b> @solicitud.getFechaRegistro()</p>
-                        <p><b>Razón:</b> @solicitud.getRazon()</p>
                         <p><b>Estatus:</b> @solicitud.obtenerEstatus()</p>
+                        @if(solicitud.getEstatus()=='N') {
+                            <p><b>Razón de rechazo:</b> @solicitud.getRazon()</p>   
+                        }
                     </div>
                     <table class="ui basic table">
                         <thead>
@@ -33,20 +35,26 @@
                         </tbody>
                     </table>
                     <p><b>Presupuesto de la solicitud:</b> @solicitud.CalcularPresupuesto(solicitud.getCod_solicitud()) bs</p>
-                    <p><b>Presupuesto disponible:</b> 120.000bs</p>
+                    <p><b>Presupuesto disponible:</b> @solicitud.getEmpleado().getFundacion().getMontoDisponible() bs</p>
                 </div>
                 <div class="ui container ">
-                    <a href="@routes.CSolicitud.solicitudes" class="ui left floated blue button"
+                    <a href="@routes.CSolicitud.solicitudes" class="ui @if(solicitud.getEstatus()=='P') {left} else {center} floated blue button"
                         style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
-                        Cancelar
+                        @if(solicitud.getEstatus()=='P') {
+                            Cancelar
+                        } else {
+                            Aceptar
+                        }
                     </a>
-                    <a onclick="javascript:confirmarNegarSolicitud('@solicitud.getCod_solicitud().toString()','N');" class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em;">
-                        Rechazar
-                    </a>
-                    <a onclick="javascript:confirmarAprobarSolicitud('@solicitud.getCod_solicitud().toString()','A');" class="ui right floated green button"
-                        style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
-                        Aprobar
-                    </a>
+                    @if(solicitud.getEstatus()=='P') {
+                        <a onclick="javascript:confirmarNegarSolicitud('@solicitud.getCod_solicitud().toString()');" class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em;">
+                            Rechazar
+                        </a>
+                        <a onclick="javascript:confirmarAprobarSolicitud('@solicitud.getCod_solicitud().toString()');" class="ui right floated green button"
+                            style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                            Aprobar
+                        </a>
+                    }
                 </div>
             </div>
         </div>

@@ -170,10 +170,12 @@ public class Fundacion extends Model {
         List<Solicitud> solicitudes = bs.porFundacion(this.getCod_fundacion());
         double monto_gastado = 0;
         for (Solicitud sol : solicitudes) {
-          List<DetalleSolicitud> ds_porsolicitud = bd.listadoDet(sol.getCod_solicitud());
-          for (DetalleSolicitud detalleSolicitud : ds_porsolicitud) {
-            monto_gastado += detalleSolicitud.getCosto();
-          }
+            if(sol.getEstatus()=='A'){
+                List<DetalleSolicitud> ds_porsolicitud = bd.listadoDet(sol.getCod_solicitud());
+                for (DetalleSolicitud detalleSolicitud : ds_porsolicitud) {
+                    monto_gastado += detalleSolicitud.getCosto();
+                }
+            }
         }
         return monto_gastado;
     }

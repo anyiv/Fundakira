@@ -15,7 +15,8 @@ POST   /ajax/validarIdentidad/      controllers.CSolicitud.validar_beneficiario(
 POST   /ajax/crearSolicitud/        controllers.CSolicitud.crear_solicitud(request : play.mvc.Http.Request)
 POST   /beneficiario/crear/         controllers.CSolicitud.guardarB()
 POST   /empleado/incluir/           controllers.CEmpleado.guardarE()
-GET    /solicitud/gestionar/        controllers.CSolicitud.gestionarSolicitud(id : String, e : String)
+GET    /solicitud/aprobar/:id       controllers.CSolicitud.aprobarSolicitud(id : String)
+GET    /solicitud/rechazar/:id      controllers.CSolicitud.rechazarSolicitud(id : String)
 GET    /eliminar_empleado/          controllers.CEmpleado.eliminar_empleado(id : String)
 
 #Methods without csrf
