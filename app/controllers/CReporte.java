@@ -8,6 +8,7 @@ import java.lang.ProcessBuilder.Redirect;
 import javax.inject.Inject;
 
 import buscadores.BuscadorEmpleado;
+import buscadores.BuscadorSolicitud;
 import play.data.Form;
 import play.data.FormFactory;
 import models.Solicitud;
@@ -26,8 +27,22 @@ public class CReporte extends Controller{
     
     public Result rp_solicitantes(UUID codfund) {
         BuscadorEmpleado be = new BuscadorEmpleado();
-        //List<Empleado> empleados_fundacion = be.
-        return ok(views.html.reporte_solicitantes.render(Fundacion.buscador.listado()));
+        BuscadorSolicitud bs = new BuscadorSolicitud();
+        List<Empleado> empleados_fundacion = be.porFundacion(codfund);
+        List<Solicitud> solicitudes_fundacion = new ArrayList<Solicitud>();
+        List<Beneficiario> beneficiarios = new ArrayList<Beneficiario>();
+        for (Empleado empleado : empleados_fundacion) {
+            List<Solicitud> sol_empleado = bs.porEmpleado(empleado.getCedulaE());
+            for (Solicitud sol : sol_empleado) {
+                solicitudes_fundacion.add(sol);
+            }
+        }
+        for (Solicitud sol : solicitudes_fundacion) {
+            if(!beneficiarios.contains(sol.getBeneficiario())){
+                beneficiarios.add(sol.getBeneficiario());
+            }
+        }
+        return ok(views.html.reporte_solicitantes.render(Fundacion.buscador.listado(),beneficiarios));
     }
     
     public Result rp_presupuesto() {

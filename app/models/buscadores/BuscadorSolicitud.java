@@ -39,6 +39,10 @@ public class BuscadorSolicitud extends Finder<UUID,Solicitud> {
         return query().findList();
       }
 
+    public List<Solicitud> porEmpleado(String cedula){
+      return query().where().eq("cedulaE",cedula);
+    }
+
     public List<Solicitud> porFundacion(UUID codigo){
       BuscadorEmpleado be = new BuscadorEmpleado();
       List<Empleado> empleados_fundacion = be.porFundacion(codigo);
