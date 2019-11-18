@@ -16,8 +16,7 @@ POST   /ajax/crearSolicitud/        controllers.CSolicitud.crear_solicitud(reque
 POST   /beneficiario/crear/         controllers.CSolicitud.guardarB()
 POST   /empleado/incluir/           controllers.CEmpleado.guardarE()
 GET    /solicitud/gestionar/        controllers.CSolicitud.gestionarSolicitud(id : String, e : String)
-GET    /empleado/:id                controllers.CEmpleado.consultar_empleado(id : String)
-GET    /eliminar_empleado/           controllers.CEmpleado.eliminar_empleado(id : String)
+GET    /eliminar_empleado/          controllers.CEmpleado.eliminar_empleado(id : String)
 
 #Methods without csrf
 + nocsrf
@@ -32,9 +31,10 @@ GET     /servicios/                 controllers.CServicio.listado_servicios
 GET     /servicios/incluir          controllers.CServicio.incl_servicio(id: String)
 GET     /solicitudes/               controllers.CSolicitud.solicitudes
 GET     /solicitud/consulta         controllers.CSolicitud.consulta_solicitud(id : String)
-GET     /empleado/                  controllers.CEmpleado.listado_empleados
+GET     /empleado/:id               controllers.CEmpleado.consultar_empleado(id : String)
+GET     /empleados/                 controllers.CEmpleado.listado_empleados
 GET     /empleado/incluir/          controllers.CEmpleado.incl_empleado
-GET     /empleado/consultar/        controllers.CEmpleado.consultar_empleado
+GET     /empleados/modif/:id        controllers.CEmpleado.modif_empl(id : String)
 GET     /reportes/                  controllers.CReporte.lista_reportes
 GET     /reportes/solicitantes      controllers.CReporte.rp_solicitantes
 GET     /reportes/presupuesto       controllers.CReporte.rp_presupuesto

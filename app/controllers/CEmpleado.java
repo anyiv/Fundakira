@@ -28,7 +28,7 @@ public class CEmpleado extends Controller{
     }
     
     public Result listado_empleados() {
-        return ok(views.html.empleados.render());
+        return ok(views.html.empleados.render(Empleado.buscador.listado()));
     }
 
     //CREAR EMPLEADO
@@ -74,22 +74,23 @@ public class CEmpleado extends Controller{
         return redirect(routes.CEmpleado.listado_empleados());
     }
 
-    public Result consultar_empleado(){
-        return ok(views.html.consultar_empleado.render());
+    public Result consultar_empleado(String ce){
+        return ok(views.html.consultar_empleado.render(Empleado.buscador.porCedula(ce)));
     }
 
-    public modificar_empleado(String cedulaE){
-        Form<Empleado> boundForm = empleadoForm.bindFromRequest();
-        if (boundForm.hasErrors()) { 
+    public Result modif_empl(String ce) {
+        return ok(views.html.modificar_empleado.render(Empleado.buscador.porCedula(ce)));
+    }
+
+    public Result modificar_empleado(String cedulaE){
+        Empleado emp = Empleado.buscador.porCedula(cedulaE);
+        Form<Empleado> empfillform = empleadoForm.fill(emp);
+        if (empfillform.hasErrors()) { 
             flash("error", "Por favor ingrese datos en los campos a modificar."); 
-            return badRequest(views.html.consultar_empleado.render(boundForm));
+            return badRequest(views.html.consultar_empleado.render(emp));
         }
-        Empleado empleado = boundForm.get();
-        if (empleado.getCedulaE() != null){
-            Ebean.save(empleado);
-            flash("success",String.format("Los datos del empleado  %s han sido modificados con éxito.", empleado.getNombre()));
-        } else {
-        }
+        Ebean.update(emp);
+        flash("success",String.format("Los datos del empleado  %s han sido modificados con éxito.", emp.getNombre()));
         return redirect(routes.CEmpleado.listado_empleados());
     }
 
@@ -99,11 +100,11 @@ public class CEmpleado extends Controller{
 
     // ELIMINAR EMPLEADO
     public Result eliminar_empleado(String cedulaE) {
-        Empleado empleado = Emleado.buscador.porCedula(cedulaE);
+        Empleado empleado = Empleado.buscador.porCedula(cedulaE);
         empleado.setEstatus('I');
         Ebean.update(empleado);
         flash("success",String.format("EL empleado %s ha sido eliminado con éxito.", empleado.getNombre()));
-        return redirect(routes.CEmpleado.empleado());
+        return redirect(routes.CEmpleado.listado_empleados());
     }
     
 }

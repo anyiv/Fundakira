@@ -1,7 +1,7 @@
 @(empleado : Empleado)
 @main("Consultar empleado"){
-<!--PARA USUARIO ADMMINISTRADOR-->
-
+    <!--PARA USUARIO ADMMINISTRADOR-->
+    
 <div class="ui middle centered grid" style="margin-top: 50px">
     <div class="three wide tablet seven wide computer column">
         <div class="ui segment" style="background-color: #95bea5;">
@@ -10,14 +10,14 @@
                 <div class="column">
                     <p><b>Cédula:</b></p>
                     <div class="ui input">
-                        <input placeholder="Cédula" type="text" value="@empleado.getCedulaE()" readonly>
+                        <input placeholder="Cédula" type="text" value="0101001">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Fundación:</b></p>
-                    <select name="Fundación asociada" class="ui dropdown" disabled>
+                    <select name="Fundación asociada" class="ui dropdown">
                         <option value="">Fundación</option>
-                        <option value="@empleado.getFundacion().getCod_fundacion()" selected>@empleado.getFundacion().getNombre()</option>
+                        <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
                         <option value="2">Fundación de Atención al Discapacitado</option>
                         <option value="3">Fundación Regional de la Mujer</option>
                     </select>
@@ -25,42 +25,45 @@
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text" value="@empleado.getNombre()" readonly>
+                        <input placeholder="Nombre" type="text" value="01010101110001">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Apellido:</b></p>
                     <div class="ui input">
-                        <input placeholder="Apellido" type="text" value="@empleado.getApellido()" readonly>
+                        <input placeholder="Apellido" type="text" value="Villarreal">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Teléfono:</b></p>
                     <div class="ui input">
-                        <input placeholder="Teléfono" type="text" value="@empleado.getTelefono()" readonly>
+                        <input placeholder="Teléfono" type="text" value="0251-4242424">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Correo:</b></p>
                     <div class="ui input">
-                        <input placeholder="Correo" type="text" value="@empleado.getCorreo()" readonly>
+                        <input placeholder="Correo" type="text" value="anyi@@fundakira.com">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Dirección:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text" value="@empleado.getDireccion()" readonly>
+                        <input placeholder="Nombre" type="text" value="Barquisimeto, calle 14 con carrera 16.">
                     </div>
                 </div>
             </div>
             <div class="ui container ">
                 <a class="ui left floated blue button" href="@routes.CEmpleado.listado_empleados"
                     style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
-                    Atrás
+                    Cancelar
                 </a>
-                <a class="ui right floated green button" href="@routes.CEmpleado.modif_empl(empleado.getCedulaE())"
+                <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
+                    Limpiar
+                </button>
+                <a class="ui right floated green button" 
                     style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
-                    Modificar
+                    Guardar
                 </a>
             </div>
         </div>
