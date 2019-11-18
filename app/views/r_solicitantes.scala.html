@@ -1,0 +1,46 @@
+@(beneficiarios:List[Beneficiario])
+@main("Reporte Solicitantes"){
+<!--PARA USUARIOS EMPLEADO Y ADMIN-->
+<div class="row">
+    <div class="ui center aligned grid" >
+        <div class="four wide column">
+            <a href="@routes.CReporte.lista_reportes">
+                <button class="ui left floated blue button" style="margin-top:1em;margin-left: 2em;">Atrás</button>
+            </a>
+        </div>
+</div>
+<div class="row" style="margin-top: 2em;">
+    <div class="ui content center aligned" style="margin-right: 15em;margin-left: 15em;">
+        <table class="ui celled inverted grey table">
+            <thead>
+                <tr>
+                    <th>Nombre completo</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>María Paredes</td>
+                    <td>Barquisimeto</td>
+                    <td>mariap@@ggmail.com</td>
+                    <td>0424-9726541</td>
+                </tr>
+                <tr>
+                    <td>María Rico</td>
+                    <td>Barquisimeto</td>
+                    <td>mariar@@ggmail.com</td>
+                    <td>0424-9726541</td>
+                </tr>
+                <tr>
+                    <td>Omerly Mendoza</td>
+                    <td>Quibor</td>
+                    <td>omerlym@@ggmail.com</td>
+                    <td>0424-9726541</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+}
