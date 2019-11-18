@@ -10,6 +10,7 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.Solicitud;
 import models.Empleado;
+
 import buscadores.BuscadorEmpleado;
 
 public class BuscadorSolicitud extends Finder<UUID, Solicitud> {
@@ -44,21 +45,18 @@ public class BuscadorSolicitud extends Finder<UUID, Solicitud> {
     return query().where().eq("cedulaE", cedula).findList();
   }
 
-  public List<Solicitud> porFundacion(UUID codigo){
-      BuscadorEmpleado be = new BuscadorEmpleado();
-        BuscadorSolicitud bs = new BuscadorSolicitud();
-        List<Empleado> empleados_fundacion = be.porFundacion(codigo);
-        List<Solicitud> solicitudes_fundacion = new ArrayList<Solicitud>();
-        List<Beneficiario> beneficiarios = new ArrayList<Beneficiario>();
-        for (Empleado empleado : empleados_fundacion) {
-            List<Solicitud> sol_empleado = bs.porEmpleado(empleado.getCedulaE());
-            for (Solicitud sol : sol_empleado) {
-                solicitudes_fundacion.add(sol);
-            }
-        }
-        List<DetalleSolicitud> ds = new ArrayList<DetalleSolicitud>();
-        for (Solicitud sol : solicitudes_fundacion) {
-         
-        }
+  public List<Solicitud> porFundacion(UUID codigo) {
+    BuscadorEmpleado be = new BuscadorEmpleado();
+    BuscadorSolicitud bs = new BuscadorSolicitud();
+    BuscadorDetalleS bd = new BuscadorDetalleS();
+    List<Empleado> empleados_fundacion = be.porFundacion(codigo);
+    List<Solicitud> solicitudes_fundacion = new ArrayList<Solicitud>();
+    for (Empleado empleado : empleados_fundacion) {
+      List<Solicitud> sol_empleado = bs.porEmpleado(empleado.getCedulaE());
+      for (Solicitud sol : sol_empleado) {
+        solicitudes_fundacion.add(sol);
+      }
+    }
+    return solicitudes_fundacion;
   }
 }

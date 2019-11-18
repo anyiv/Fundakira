@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlID;
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import buscadores.BuscadorDetalleS;
 import buscadores.BuscadorFundacion;
 import buscadores.BuscadorGobernacion;
 import buscadores.BuscadorSolicitud;
@@ -163,8 +164,22 @@ public class Fundacion extends Model {
         return (monto_gobernacion*this.porcPartida/100);
     }
 
+    public double getMontoGastado(){
+        BuscadorSolicitud bs = new BuscadorSolicitud();
+        BuscadorDetalleS bd = new BuscadorDetalleS();
+        List<Solicitud> solicitudes = bs.porFundacion(this.getCod_fundacion());
+        double monto_gastado = 0;
+        for (Solicitud sol : solicitudes) {
+          List<DetalleSolicitud> ds_porsolicitud = bd.listadoDet(sol.getCod_solicitud());
+          for (DetalleSolicitud detalleSolicitud : ds_porsolicitud) {
+            monto_gastado += detalleSolicitud.getCosto();
+          }
+        }
+        return monto_gastado;
+    }
+
     public double getMontoDisponible(){
-    return 0;
+        return getMontoAsignado()-getMontoGastado();
     }
 
     public static final BuscadorFundacion buscador = new BuscadorFundacion();

@@ -52,5 +52,8 @@
     }
     @if(flash().get("error_login")!=null) {
       <script>imprimirError('@flash().get("error_login")');</script>
-  }
+    }
+    @if(flash().get("error")!=null) {
+      <script>imprimirError('@flash().get("error")');</script>
+    }
 </html>
