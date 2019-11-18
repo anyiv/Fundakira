@@ -54,6 +54,10 @@ public class CReporte extends Controller{
     }
 
     public Result rp_solicitudes() {
-        return ok(views.html.reporte_solicitudes.render());
+        return ok(views.html.reporte_solicitudes.render(Empleado.buscador.listado()));
+    }
+
+    public Result rp_respSol(String ce){
+        return ok(views.html.r_resp_solic.render(Solicitud.buscador.porEmpleado(ce)));
     }
 }
