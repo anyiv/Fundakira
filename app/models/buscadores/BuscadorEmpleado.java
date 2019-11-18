@@ -28,4 +28,8 @@ public class BuscadorEmpleado extends Finder<String,Empleado> {
     public List<Empleado> listado() {
       return query().where().eq("estatus", "A").findList();
     }
+
+    public List<Empleado> porFundacion(UUID codigo) {
+      return query().where().eq("codFundacion", codigo.toString()).and().eq("estatus","A").findList();
+    }
   }

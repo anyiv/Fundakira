@@ -8,6 +8,8 @@ import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
 import buscadores.BuscadorFundacion;
+import buscadores.BuscadorGobernacion;
+import buscadores.BuscadorSolicitud;
 
 @Entity
 @Table(name="Fundacion")
@@ -155,7 +157,15 @@ public class Fundacion extends Model {
              "}";
      }
 
+    public double getMontoAsignado(){
+        BuscadorGobernacion bg = new BuscadorGobernacion();
+        double monto_gobernacion = bg.porCodigo("1").getPartidaAnual();
+        return (monto_gobernacion*this.porcPartida/100);
+    }
 
+    public double getMontoDisponible(){
+
+    }
 
     public static final BuscadorFundacion buscador = new BuscadorFundacion();
 }
