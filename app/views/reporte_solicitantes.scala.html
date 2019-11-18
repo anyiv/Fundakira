@@ -1,3 +1,4 @@
+@(fundaciones:List[Fundacion])
 @main("Reporte Solicitantes"){
 <!--PARA USUARIOS EMPLEADO Y ADMIN-->
 <div class="row">
@@ -16,9 +17,9 @@
                 <select class="ui dropdown">
                     <option value="">Fundaciones</option>
                     <option value="0">Todos</option>
-                    <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
-                    <option value="2">Fundación de Atención al Discapacitado</option>
-                    <option value="3">Fundación Regional de la Mujer</option>
+                    @for(fundacion<-fundaciones){
+                        <option value="@fundacion.getCod_fundacion()">@fundacion.getNombre()</option>
+                    }
                 </select>
                 <div class="ui container center aligned">
                     <button class="ui green button" style="margin-top:1em;">Filtrar</button>
