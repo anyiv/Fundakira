@@ -455,3 +455,11 @@ function confirmarNegarSolicitud(id,e) {
         }
     })
 };
+
+function generarReporteSolicitantes(){
+    if($("#fundaciones_rs").val()!=""){
+        window.location.replace("/reporte/rsolicitantantes/" + $("#fundaciones_rs").val());
+    } else {
+        Swal.fire("Error","Seleccione una fundación para consultar.","errror");
+    }
+}

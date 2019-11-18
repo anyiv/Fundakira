@@ -9,7 +9,8 @@ import io.ebean.Finder;
 import play.data.format.*;
 import play.data.validation.*;
 import models.Solicitud;
-import BuscadorEmpleado;
+import models.Empleado;
+import buscadores.BuscadorEmpleado;
 
 public class BuscadorSolicitud extends Finder<UUID,Solicitud> {
 
@@ -40,13 +41,13 @@ public class BuscadorSolicitud extends Finder<UUID,Solicitud> {
       }
 
     public List<Solicitud> porEmpleado(String cedula){
-      return query().where().eq("cedulaE",cedula);
+      return query().where().eq("cedulaE",cedula).findList();
     }
 
-    public List<Solicitud> porFundacion(UUID codigo){
-      BuscadorEmpleado be = new BuscadorEmpleado();
-      List<Empleado> empleados_fundacion = be.porFundacion(codigo);
+    // public List<Solicitud> porFundacion(UUID codigo){
+    //   BuscadorEmpleado be = new BuscadorEmpleado();
+    //   List<Empleado> empleados_fundacion = be.porFundacion(codigo);
       
-      return query().where().eq("");
-    }
-  }
+    //   return query().where().eq("");
+    // }
+}

@@ -10,7 +10,7 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.Gobernacion;
 
-public class BuscadorGobernacion extends Finder<Sting,Gobernacion> {
+public class BuscadorGobernacion extends Finder<String,Gobernacion> {
 
     public BuscadorGobernacion() {
       super(Gobernacion.class);

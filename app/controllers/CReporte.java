@@ -16,7 +16,7 @@ import models.Beneficiario;
 import models.Empleado;
 import models.Servicio;
 import models.Fundacion;
-import models.buscadores.*;
+import buscadores.*;
 import io.ebean.*;
 
 public class CReporte extends Controller{
@@ -25,7 +25,11 @@ public class CReporte extends Controller{
         return ok(views.html.reportes.render());
     }
     
-    public Result rp_solicitantes(UUID codfund) {
+    public Result rp_solicitantes() {
+        return ok(views.html.reporte_solicitantes.render(Fundacion.buscador.listado()));
+    }
+
+    public Result repSoli(UUID codfund){
         BuscadorEmpleado be = new BuscadorEmpleado();
         BuscadorSolicitud bs = new BuscadorSolicitud();
         List<Empleado> empleados_fundacion = be.porFundacion(codfund);
@@ -42,7 +46,7 @@ public class CReporte extends Controller{
                 beneficiarios.add(sol.getBeneficiario());
             }
         }
-        return ok(views.html.reporte_solicitantes.render(Fundacion.buscador.listado(),beneficiarios));
+        return ok(views.html.r_solicitantes.render(beneficiarios));
     }
     
     public Result rp_presupuesto() {

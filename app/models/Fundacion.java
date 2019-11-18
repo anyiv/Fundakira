@@ -164,7 +164,7 @@ public class Fundacion extends Model {
     }
 
     public double getMontoDisponible(){
-
+    return 0;
     }
 
     public static final BuscadorFundacion buscador = new BuscadorFundacion();
