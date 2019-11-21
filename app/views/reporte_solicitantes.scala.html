@@ -1,8 +1,8 @@
-@(fundaciones:List[Fundacion])
+@(fundaciones:List[Fundacion],beneficiarios:List[Beneficiario])
 @main("Reporte Solicitantes"){
 <!--PARA USUARIOS EMPLEADO Y ADMIN-->
 <div class="row">
-    <div class="ui center aligned grid" >
+    <div class="ui center aligned grid">
         <div class="four wide column">
             <a href="@routes.CReporte.lista_reportes">
                 <button class="ui left floated blue button" style="margin-top:1em;margin-left: 2em;">Atrás</button>
@@ -10,23 +10,61 @@
         </div>
         <div class="five wide column">
             <div class="ui container center aligned">
-                <h2>Reporte Solicitantes por fundación</h2>
+                <h2>Reporte Solicitantes por fundación:</h2>
             </div>
             <div class="ui segment" style="background-color: #98db97;">
                 <h4>Fundaciones</h4>
                 <select class="ui dropdown" id="fundaciones_rs">
-                    <option value="">Fundaciones</option>
-                    @for(fundacion<-fundaciones){
-                        <option value="@fundacion.getCod_fundacion()">@fundacion.getNombre()</option>
-                    }
+                    <option value="">Todas</option>
+                    @for(fundacion<-fundaciones){ <option value="@fundacion.getCod_fundacion()">@fundacion.getNombre()
+                        </option>
+                        }
                 </select>
                 <div class="ui container center aligned">
-                    <a class="ui green button" onclick="generarReporteSolicitantes();" style="margin-top:1em;">Filtrar</a>
+                    <a class="ui green button" onclick="generarReporteSolicitantes();"
+                        style="margin-top:1em;">Filtrar</a>
                 </div>
             </div>
         </div>
         <div class="four wide column">
-          
+            <button class="ui right floated red button" style="margin-top:1em;margin-right: 3em;">Exportar
+                PDF</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="row" style="margin-top: 2em;">
+        <div class="ui content center aligned" style="margin-right: 15em;margin-left: 15em;">
+            <table id="tabla" class="ui celled inverted grey table">
+                <thead>
+                    <tr>
+                        <th>Nombre completo</th>
+                        <th>Dirección</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th style="display:none"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(beneficiarios.length!=0){
+                    @for(ben<-beneficiarios){ <tr>
+                        <td>@ben.getNombreB() @ben.getApellidoB()</td>
+                        <td>@ben.getDireccionB()</td>
+                        <td>@ben.getCorreoB()</td>
+                        <td>@ben.getTelefonoB()</td>
+                        <td style="display:none">
+                            @@ben.getSolicitud().get(0).getEmpleado().getFundacion().getCod_fundacion()</td>
+                        </tr>
+                        }
+                        }else{
+                        <tr>
+                            <td>
+                                <h4>No hay registros para mostrar</h4>
+                            </td>
+                        </tr>
+                        }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

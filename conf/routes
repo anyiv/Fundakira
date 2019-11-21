@@ -38,7 +38,6 @@ GET     /empleado/incluir/          controllers.CEmpleado.incl_empleado
 GET     /empleados/modif/:id        controllers.CEmpleado.modif_empl(id : String)
 GET     /reportes/                  controllers.CReporte.lista_reportes
 GET     /reportes/solicitantes      controllers.CReporte.rp_solicitantes        
-GET     /reporte/rsolicitudes/:id   controllers.CReporte.rp_respSol(id:String)
 GET     /reporte/rsolicitantantes/:id   controllers.CReporte.repSoli(id : java.util.UUID)
 GET     /reportes/presupuesto       controllers.CReporte.rp_presupuesto
 GET     /reporte/solicitudes        controllers.CReporte.rp_solicitudes

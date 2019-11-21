@@ -26,12 +26,13 @@ public class CReporte extends Controller{
     }
     
     public Result rp_solicitantes() {
-        return ok(views.html.reporte_solicitantes.render(Fundacion.buscador.listado()));
+        return ok(views.html.reporte_solicitantes.render(Fundacion.buscador.listado(),Beneficiario.buscador.listado()));
     }
 
     public Result repSoli(UUID codfund){
         BuscadorEmpleado be = new BuscadorEmpleado();
         BuscadorSolicitud bs = new BuscadorSolicitud();
+        Fundacion fun = Fundacion.buscador.porCodigo(codfund);
         List<Empleado> empleados_fundacion = be.porFundacion(codfund);
         List<Solicitud> solicitudes_fundacion = new ArrayList<Solicitud>();
         List<Beneficiario> beneficiarios = new ArrayList<Beneficiario>();
@@ -46,7 +47,7 @@ public class CReporte extends Controller{
                 beneficiarios.add(sol.getBeneficiario());
             }
         }
-        return ok(views.html.r_solicitantes.render(beneficiarios));
+        return ok(views.html.r_solicitantes.render(beneficiarios,Fundacion.buscador.listado(),fun));
     }
     
     public Result rp_presupuesto() {
@@ -54,10 +55,7 @@ public class CReporte extends Controller{
     }
 
     public Result rp_solicitudes() {
-        return ok(views.html.reporte_solicitudes.render(Empleado.buscador.listado()));
+        return ok(views.html.reporte_solicitudes.render(Empleado.buscador.listado(),Solicitud.buscador.listadoTodos()));
     }
 
-    public Result rp_respSol(String ce){
-        return ok(views.html.r_resp_solic.render(Solicitud.buscador.porEmpleado(ce)));
-    }
 }

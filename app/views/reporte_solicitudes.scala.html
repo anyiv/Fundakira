@@ -1,4 +1,4 @@
-@(empleados:List[Empleado])
+@(empleados:List[Empleado],solicitudes:List[Solicitud])
 @main("Reporte solicitudes"){
 <div class="row">
     <div class="ui center aligned grid">
@@ -16,16 +16,47 @@
                 <select class="ui dropdown" id="responsables">
                     <option value="">Empleados</option>
                     @for(emp<-empleados){
-                        <option value="@emp.getCedulaE()">@emp.getNombre() @emp.getApellido()</option>
+                        <option value="@emp.getNombre() @emp.getApellido()">@emp.getNombre() @emp.getApellido()</option>
                     }
                 </select>
-                <div class="ui container center aligned">
-                    <button class="ui green button" onclick="javascript:generarReporteSolicitudes();" style="margin-top:1em;">Filtrar</button>
-                </div>
             </div>
         </div>
         <div class="four wide column">
+                <button class="ui right floated red button" style="margin-top:1em;margin-right: 3em;">Exportar PDF</button>
         </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 2em;">
+    <div class="ui content center aligned" style="margin-right: 15em;margin-left: 15em;">
+        <table id="tabla" class="ui single line inverted grey table">
+            <thead>
+                <tr>
+                    <th>Nombre del Responsable</th>
+                    <th>Fecha de ingreso</th>
+                    <th>Estatus</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(solicitudes.length!=0){
+                @for(sol<-solicitudes){ <tr>
+                    <td>@sol.getEmpleado().getNombre() @sol.getEmpleado().getApellido()</td>
+                    <td>@sol.getFechaRegistro()</td>
+                    <td>@sol.obtenerEstatus()</td>
+                    <td><a @**href="@routes.CSolicitud.consulta_solicitud" **@ class="circular ui icon button">
+                            <i class="icon eye"></i>
+                        </a></td>
+                    </tr>
+                    }
+                    }else{
+                    <tr>
+                        <td>
+                            <h4>No hay registros para mostrar</h4>
+                        </td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
     </div>
 </div>
 }

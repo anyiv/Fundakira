@@ -51,6 +51,14 @@ $(document).ready(function () {
         }
     });
 
+    $('#responsables').on('change', function () {
+        if (this.value == '') {
+            tabla.search('').draw();
+        } else {
+            tabla.search(this.value).draw();
+        }
+    });
+
 });
 //Funciones para las Fundaciones
 function enviarFormularioFundacion() {
@@ -461,13 +469,5 @@ function generarReporteSolicitantes(){
         window.location.replace("/reporte/rsolicitantantes/" + $("#fundaciones_rs").val());
     } else {
         Swal.fire("Error","Seleccione una fundación para consultar.","error");
-    }
-}
-
-function generarReporteSolicitudes(){
-    if($("#responsables").val()!=""){
-        window.location.replace("/reporte/rsolicitudes/" + $("#responsables").val());
-    } else {
-        Swal.fire("Error","Seleccione un responsable para consultar.","error");
     }
 }

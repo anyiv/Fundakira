@@ -26,6 +26,6 @@ public class BuscadorBeneficiario extends Finder<String,Beneficiario> {
     }
   
     public List<Beneficiario> listado() {
-      return query().where().eq("estatus", "A").findList();
+      return query().where().eq("estatusB", "A").findList();
     }
   }
