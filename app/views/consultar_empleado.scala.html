@@ -17,9 +17,8 @@
                     <p><b>Fundación:</b></p>
                     <select name="Fundación asociada" class="ui dropdown" disabled>
                         <option value="">Fundación</option>
-                        <option value="@empleado.getFundacion().getCod_fundacion()" selected>@empleado.getFundacion().getNombre()</option>
-                        <option value="2">Fundación de Atención al Discapacitado</option>
-                        <option value="3">Fundación Regional de la Mujer</option>
+                        <option value="@empleado.getFundacion().getCod_fundacion()" selected>
+                            @empleado.getFundacion().getNombre()</option>
                     </select>
                 </div>
                 <div class="column">
@@ -52,17 +51,19 @@
                         <input placeholder="Nombre" type="text" value="@empleado.getDireccion()" readonly>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="ui container">
+                        <a class="ui left floated blue button" href="@routes.CEmpleado.listado_empleados">
+                            Atrás
+                        </a>
+                        <a class="ui right floated green button"
+                            href="@routes.CEmpleado.modif_empl(empleado.getCedulaE())" style="margin-right: 3em">
+                            Modificar
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="ui container ">
-                <a class="ui left floated blue button" href="@routes.CEmpleado.listado_empleados"
-                    style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
-                    Atrás
-                </a>
-                <a class="ui right floated green button" href="@routes.CEmpleado.modif_empl(empleado.getCedulaE())"
-                    style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
-                    Modificar
-                </a>
-            </div>
+
         </div>
     </div>
 </div>

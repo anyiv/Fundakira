@@ -13,6 +13,7 @@ GET    /esliminarS/                 controllers.CServicio.eliminarS(id : java.ut
 POST   /beneficiario/guardar        controllers.CBeneficiario.guardarB()
 POST   /ajax/validarIdentidad/      controllers.CSolicitud.validar_beneficiario(request : play.mvc.Http.Request)
 POST   /ajax/crearSolicitud/        controllers.CSolicitud.crear_solicitud(request : play.mvc.Http.Request)
+POST   /ajax/calcularPresup/        controllers.CReporte.calcularPresupuesto(request : play.mvc.Http.Request)
 POST   /beneficiario/crear/         controllers.CSolicitud.guardarB()
 POST   /empleado/incluir/           controllers.CEmpleado.guardarE()
 GET    /solicitud/aprobar/:id       controllers.CSolicitud.aprobarSolicitud(id : String)

@@ -59,6 +59,14 @@ $(document).ready(function () {
         }
     });
 
+    $('#estatus_pre').on('change', function () {
+        if (this.value == 'Todos') {
+            tabla.search('').draw();
+        } else {
+            tabla.search(this.value).draw();
+        }
+    });
+
 });
 //Funciones para las Fundaciones
 function enviarFormularioFundacion() {
@@ -469,5 +477,37 @@ function generarReporteSolicitantes(){
         window.location.replace("/reporte/rsolicitantantes/" + $("#fundaciones_rs").val());
     } else {
         Swal.fire("Error","Seleccione una fundación para consultar.","error");
+    }
+}
+
+function calcularPresupuesto() {
+    var fundacion = $("#fundacion").val();
+    if (fundacion == '') {
+        Swal.fire("Error", "Debe introducir una fundación.", "warning")
+    } else {
+        var token = $('input[name="csrfToken"]').attr('value')
+        $.ajaxSetup({
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Csrf-Token', token);
+            }
+        });
+        var data = { 'fundacion': fundacion };
+        $.ajax({
+            url: '/ajax/calcularPresup/',
+            contentType: 'application/json',
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType: 'JSON',
+            success: function (data) {
+                $("#bs").val(data.disponible);
+                $("#porcentaje").val(data.porcgastado);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+                console.log(thrownError);
+                Swal.fire("Error", "Error desconocido en el servidor.", "error");
+            }
+        });
     }
 }

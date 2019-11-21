@@ -4,7 +4,7 @@
 <!--Solo para el administrador-->
 <div class="row">
     <div class="ui middle centered grid">
-        @if(usuarioForm.hasGlobalErrors || empleadoForm.hasGlobalErrors){
+        @if(flash.containsKey("error")){
         <div class="row">
             <div class="ui error message">
                 <i class="close icon"></i>
@@ -26,7 +26,6 @@
         }
         <div class="five wide tablet seven wide computer column">
             <div class="ui segment" style="background-color: #95bea5;">
-
                 @helper.form(action = routes.CEmpleado.guardarE, 'id -> "fromEmpleado") {
                 @CSRF.formField
                 <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Empleados</h2>

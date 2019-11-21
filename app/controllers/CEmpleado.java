@@ -35,14 +35,15 @@ public class CEmpleado extends Controller{
     public Result incl_empleado() {
         return ok(views.html.incluir_empleado.render(empleadoForm, usuarioForm, Fundacion.buscador.listado()));
     }
+
     public Result guardarE() {
         Form<Empleado> boundFormE = empleadoForm.bindFromRequest();
         String cf = boundFormE.rawData().get("fundacion");
         Fundacion fundacion = Fundacion.buscador.porCodigo(UUID.fromString(cf));
         Form<Usuario> boundFormU = usuarioForm.bindFromRequest();
-        if (boundFormU.hasErrors() || boundFormE.hasErrors()) { 
+        if (boundFormU.hasErrors()) { 
             flash("Error", "Por favor ingrese de nuevo los datos"); 
-            return badRequest(views.html.incluir_empleado.render(boundFormE,boundFormU, Fundacion.buscador.listado()));
+            return badRequest(views.html.incluir_empleado.render(empleadoForm, boundFormU, Fundacion.buscador.listado()));
         }
         Empleado empleado = new Empleado(
             boundFormE.rawData().get("cedulaE"),
@@ -60,7 +61,7 @@ public class CEmpleado extends Controller{
         try{
             Empleado.buscador.porCedula(cedulae).getCedulaE();
             flash("error",String.format("El empleado ya existe."));
-            return badRequest(views.html.incluir_empleado.render(boundFormE,boundFormU, Fundacion.buscador.listado()));
+            return badRequest(views.html.incluir_empleado.render(empleadoForm, usuarioForm, Fundacion.buscador.listado()));
         } catch (Exception e){
             TipoUser tipUserEmp = TipoUser.buscador.porCodigo("2");
             usuario.setTipouser(tipUserEmp);

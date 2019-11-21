@@ -184,5 +184,9 @@ public class Fundacion extends Model {
         return getMontoAsignado()-getMontoGastado();
     }
 
+    public double getPorcGastado(){
+        return (( getMontoGastado()/getMontoAsignado() )*100);
+    }
+
     public static final BuscadorFundacion buscador = new BuscadorFundacion();
 }

@@ -1,7 +1,7 @@
 @(solicitud: Solicitud, detsolicitudes: List[DetalleSolicitud])
 @main("Consultar Solicitud"){
 <div class="ui middle centered grid" style="margin-top:60px;margin-bottom:30px;">
-    <div class="ui centered card" style="width:30%;background-color:#95bea5;margin-bottom: 70px;">
+    <div class="ui centered card" style="width:33%;background-color:#95bea5;margin-bottom: 50px;padding-left: 15px; padding-right: 15px">
         <div class="one column row">
             <div class="column ">
                 <div class="ui content">
@@ -11,6 +11,7 @@
                         <p><b>Cédula:</b> @solicitud.getBeneficiario.getCedulaB()</p>
                         <p><b>Prioridad:</b> @solicitud.getPrioridad()</p>
                         <p><b>Fecha de registro:</b> @solicitud.getFechaRegistro()</p>
+                        <p><b>Razón:</b> @solicitud.getRazon()</p>
                         <p><b>Estatus:</b> @solicitud.obtenerEstatus()</p>
                         @if(solicitud.getEstatus()=='N') {
                             <p><b>Razón de rechazo:</b> @solicitud.getRazon()</p>   
@@ -37,9 +38,9 @@
                     <p><b>Presupuesto de la solicitud:</b> @solicitud.CalcularPresupuesto(solicitud.getCod_solicitud()) bs</p>
                     <p><b>Presupuesto disponible:</b> @solicitud.getEmpleado().getFundacion().getMontoDisponible() bs</p>
                 </div>
-                <div class="ui container ">
+                <div class="ui container center aligned">
                     <a href="@routes.CSolicitud.solicitudes" class="ui @if(solicitud.getEstatus()=='P') {left} else {center} floated blue button"
-                        style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                        style="margin-top: 2em;margin-bottom: 1.5em;">
                         @if(solicitud.getEstatus()=='P') {
                             Cancelar
                         } else {
@@ -51,7 +52,7 @@
                             Rechazar
                         </a>
                         <a onclick="javascript:confirmarAprobarSolicitud('@solicitud.getCod_solicitud().toString()');" class="ui right floated green button"
-                            style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                            style="margin-top: 2em;margin-bottom: 1.5em;">
                             Aprobar
                         </a>
                     }

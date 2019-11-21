@@ -11,7 +11,7 @@
         <div class="five wide column">
             <div class="ui container center aligned">
                 <h2>Reporte Solicitantes por fundación</h2>
-                <h3>@fundacion.getNombre()</h3>
+                <h3 id="nombre_f">@fundacion.getNombre()</h3>
             </div>
             <div class="ui segment" style="background-color: #98db97;">
                 <h4>Fundaciones</h4>
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="four wide column">
-            <button class="ui right floated red button" style="margin-top:1em;margin-right: 3em;">Exportar
+            <button class="ui right floated red button" style="margin-top:1em;margin-right: 3em;" onclick="download('Reporte de solicitantes - ' + document.getElementById('nombre_f').innerHTML + '.pdf')">Exportar
                 PDF</button>
         </div>
     </div>

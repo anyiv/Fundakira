@@ -123,6 +123,14 @@ public class Solicitud extends Model{
         this.razon = razon;
     }
 
+    public List<DetalleSolicitud> getDetallesolicitud() {
+        return this.detallesolicitud;
+    }
+
+    public void setDetallesolicitud(List<DetalleSolicitud> detallesolicitud) {
+        this.detallesolicitud = detallesolicitud;
+    }
+
 
     public Solicitud(UUID cod_solicitud, Empleado empleado, Beneficiario beneficiario, List<DetalleSolicitud> detallesolicitud, String otrasDonaciones, String razon, String prioridad, Date fechaRegistro, String motivoRechazo, char estatus) {
         this.cod_solicitud = cod_solicitud;

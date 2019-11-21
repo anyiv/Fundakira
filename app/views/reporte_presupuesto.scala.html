@@ -1,3 +1,4 @@
+@(fundaciones: List[Fundacion],solicitudes:List[Solicitud])
 @main("Reporte presupuesto"){
 <div class="ui container center aligned">
     <h2>Reportes de Presupuesto</h2>
@@ -12,29 +13,26 @@
         <div class="four wide column">
             <div class="ui segment" style="background-color: #98db97;">
                 <h4>Estatus</h4>
-                <select class="ui dropdown">
-                    <option value="">Estatus</option>
-                    <option value="0">Todos</option>
-                    <option value="1">Pendiente</option>
-                    <option value="2">Aprobada</option>
-                    <option value="3">Negada</option>
+                <select class="ui dropdown" id="estatus_pre">
+                    <option>Todos</option>
+                    <option>Pendiente</option>
+                    <option>Aprobada</option>
+                    <option>Negada</option>
                 </select>
-                <div class="ui container center aligned">
-                    <button class="ui green button" style="margin-top:1em;">Filtrar</button>
-                </div>
             </div>
         </div>
         <div class="five wide column">
             <div class="ui segment" style="background-color: #98db97;">
                 <h4>Presupuesto por fundación</h4>
                 <div class="row">
-                    <select class="ui dropdown">
+                @helper.CSRF.formField
+                    <select class="ui dropdown" id="fundacion">
                         <option value="">Fundaciones</option>
-                        <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
-                        <option value="2">Fundación de Atención al Discapacitado</option>
-                        <option value="3">Fundación Regional de la Mujer</option>
+                    @for(fund<-fundaciones){
+                        <option value="@fund.getCod_fundacion()">@fund.getNombre()</option>
+                    }
                     </select>
-                    <button class="ui right floated green button">Calcular</button>
+                    <button onclick="javascript:calcularPresupuesto();" class="ui right floated green button">Calcular</button>
                 </div>
                 <div class="ui container" style="margin-top:10px;">
                     <div class="ui two column grid">
@@ -43,7 +41,7 @@
                         </div>
                         <div class="column">
                             <div class="ui input">
-                                <input placeholder="bs" type="text">
+                                <input placeholder="bs" id="bs" type="text">
                             </div>
                         </div>
                         <div class="column">
@@ -51,7 +49,7 @@
                         </div>
                         <div class="column">
                             <div class="ui input">
-                                <input placeholder="%" type="text">
+                                <input placeholder="%" id="porcentaje" type="text">
                             </div>
                         </div>
                     </div>
@@ -59,37 +57,31 @@
             </div>
         </div>
         <div class="four wide column">
-            <button class="ui right floated red button" style="margin-right: 4em;">Exportar
+            <button class="ui right floated red button" style="margin-right: 4em;" onclick="download('Reporte de presupuesto.pdf')">Exportar
                 PDF</button>
         </div>
     </div>
 </div>
 <div class="row" style="margin-top: 2em;">
     <div class="ui content center aligned" style="margin-right: 15em;margin-left: 15em;">
-        <table class="ui celled inverted grey table">
+        <table id="tabla" class="ui celled inverted grey table">
             <thead>
                 <tr>
                     <th>Nombre del Beneficiario</th>
                     <th>Cantidad de servicios prestados</th>
                     <th>Costo total</th>
+                    <th>Estatus</th>
                 </tr>
             </thead>
             <tbody>
+            @for(sol<-solicitudes){
                 <tr>
-                    <td>María Paredes</td>
-                    <td>2</td>
-                    <td>11000</td>
+                    <td>@sol.getBeneficiario().getNombreB() @sol.getBeneficiario().getApellidoB()</td>
+                    <td>@sol.getDetallesolicitud().length</td>
+                    <td>@sol.CalcularPresupuesto(sol.getCod_solicitud())</td>
+                    <td>@sol.obtenerEstatus()</td>
                 </tr>
-                <tr>
-                    <td>María Rico</td>
-                    <td>1</td>
-                    <td>23000</td>
-                </tr>
-                <tr>
-                    <td>Omerly Mendoza</td>
-                    <td>2</td>
-                    <td>30000</td>
-                </tr>
+            }
             </tbody>
         </table>
     </div>

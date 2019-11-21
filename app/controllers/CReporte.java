@@ -18,6 +18,10 @@ import models.Servicio;
 import models.Fundacion;
 import buscadores.*;
 import io.ebean.*;
+import play.libs.Json;
+import static play.libs.Json.toJson;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class CReporte extends Controller{
     
@@ -50,8 +54,20 @@ public class CReporte extends Controller{
         return ok(views.html.r_solicitantes.render(beneficiarios,Fundacion.buscador.listado(),fun));
     }
     
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result calcularPresupuesto(Http.Request request) {
+        JsonNode json = request.body().asJson();
+        ObjectNode respuesta = Json.newObject();
+        UUID codfun = UUID.fromString(json.findPath("fundacion").textValue());
+        Fundacion fund = Fundacion.buscador.porCodigo(codfun);
+        System.out.print(codfun);
+        respuesta.put("disponible",fund.getMontoDisponible());
+        respuesta.put("porcgastado",fund.getPorcGastado());
+        return ok(respuesta);
+    }
+
     public Result rp_presupuesto() {
-        return ok(views.html.reporte_presupuesto.render());
+        return ok(views.html.reporte_presupuesto.render(Fundacion.buscador.listado(),Solicitud.buscador.listadoTodos()));
     }
 
     public Result rp_solicitudes() {
