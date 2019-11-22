@@ -9,6 +9,10 @@ import io.ebean.Finder;
 import play.data.format.*;
 import play.data.validation.*;
 import models.Beneficiario;
+import models.Fundacion;
+import models.TipoUser;
+import models.Usuario;
+import models.Usuario_Beneficiario;
 
 public class BuscadorBeneficiario extends Finder<String,Beneficiario> {
 
@@ -23,6 +27,28 @@ public class BuscadorBeneficiario extends Finder<String,Beneficiario> {
               .where()
               .eq("cedulaB",cedula)
               .findOne();
+    }
+
+    public Beneficiario porCedulaValidado(String cedula){
+      Beneficiario ben = new Beneficiario();
+      try{
+          ben = query()
+          .where()
+          .eq("cedulaB",cedula)
+          .findOne();
+          ben.getNombreB();
+      } catch (Exception e){
+        ben = new Beneficiario();
+        ben.setNombreB("");
+        ben.setApellidoB("");
+        Usuario_Beneficiario ub = new Usuario_Beneficiario();
+        Usuario u = new Usuario();
+        TipoUser tu = new TipoUser("-1", "", 'A');
+        u.setTipouser(tu);
+        ub.setUsuario(u);
+        ben.setUsuario_beneficiario(ub);
+      }
+      return ben;
     }
   
     public List<Beneficiario> listado() {

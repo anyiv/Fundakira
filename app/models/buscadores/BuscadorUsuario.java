@@ -30,30 +30,59 @@ public class BuscadorUsuario extends Finder<String,Usuario> {
     // Add customer finder methods ...
   
     public Usuario login(String cedula, String contrasenna) {
-      Usuario_Empleado empleado = user_empleado.query().where().eq("cedulae",cedula).findOne();
-      Usuario user = empleado.getUsuario();
-      if (user.getContrasenna() == contrasenna && user.getEstatus() == 'A'){
-        return user;
+      Usuario user = new Usuario();
+      try{
+        System.out.print("Busco el empleado\n");
+        Usuario_Empleado empleado = user_empleado.query().where().eq("cedulae",cedula).findOne();
+        System.out.print("Encontre el empleado\n");
+        user = empleado.getUsuario();
+        System.out.print(contrasenna + "\n");
+        System.out.print(user.getContrasenna() + "\n");
+        System.out.print(user.getContrasenna().toString() == contrasenna.toString());
+        if (user.getContrasenna().equals(contrasenna) && user.getEstatus() == 'A'){
+          System.out.print("\nTodo bien, debería acceder el empleado");
+        } else {
+          user.setEstatus('D');
+        }
+      } catch (Exception e){
+        try{
+          System.out.print("Busco el beneficiario\n");
+          Usuario_Beneficiario uben = user_beneficiario.query().where().eq("cedulab",cedula).findOne();
+          System.out.print("Encontre el beneficiario\n");
+          user = uben.getUsuario();
+          System.out.print(contrasenna + "\n");
+          System.out.print(user.getContrasenna() + "\n");
+          System.out.print(user.getContrasenna().toString() == contrasenna.toString());
+          if (user.getContrasenna().equals(contrasenna) && user.getEstatus() == 'A'){
+            System.out.print("\nTodo bien, debería acceder el beneficiario");
+          } else {
+            user.setEstatus('D');
+          }
+        } catch (Exception f){
+          user.setEstatus('N');
+          return user;
+        }
       }
-      user = new Usuario();
-      /*return query()
-              .where()
-              .and()
-                .eq("codUsuario", user.getCodUsuario().toString())
-                .eq("contrasenna", contrasenna)
-                .eq("estatus","A")
-              .findOne();
-              */
       return user;
     }
 
-    public Usuario porCedula(String cedula){
-      return query()
-              .where()
-              .eq("cedula_Emp",cedula)
-              .findOne();
+    public Usuario loginB(String cedula, String cont){
+      Usuario_Beneficiario uben = user_beneficiario.query().where().eq("cedulab",cedula).findOne();
+      Usuario user = uben.getUsuario();
+      if (user.getContrasenna() == cont && user.getEstatus() == 'A'){
+        return user;
+      }
+      user = new Usuario();
+      return user;
     }
-  
+
+    // public Usuario porCedula(String cedula){
+    //   return query()
+    //           .where()
+    //           .eq("cedula_Emp",cedula)
+    //           .findOne();
+    // }
+    
     public List<Usuario> listado() {
       return query().where().eq("estatus", "A").findList();
     }

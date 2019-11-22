@@ -34,6 +34,12 @@ public class TipoUser extends Model {
         this.usuario = usuario;
     }
 
+    public TipoUser(String codTipoUser, String tipoUser, char estatus) {
+        this.codTipoUser = codTipoUser;
+        this.tipoUser = tipoUser;
+        this.estatus = estatus;
+    }
+
     public String getCodTipoUser() {
         return this.codTipoUser;
     }

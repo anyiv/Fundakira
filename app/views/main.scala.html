@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 @user = @{Empleado.buscador.porCedula(request.session().getOptional("user").orElse(""))}
 @fundacion = @{user.getFundacion().getNombre()}
+@tipouser = @{user.getTipoU()}
+@nombreE = @{user.getNombre()}
+@apellidoE = @{user.getApellido()}
 <html lang="es">
     <head>
         <title>@title</title>
@@ -21,9 +24,9 @@
             }
           </style>
     </head>
-    @if(user!=null || request.path=="/registrarse/") {
+    @if( user!=null || request.path=="/registrarse/") {
       @if(request.path!="/" && request.path!="/registrarse/") {
-        @topbar(user.toString(),fundacion.toString()) 
+        @topbar(nombreE.toString(), apellidoE.toString(), fundacion.toString(),tipouser.toString()) 
       }
       <body>
           @content

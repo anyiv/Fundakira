@@ -18,6 +18,7 @@ public class Usuario_Empleado extends Model {
     }
 
     public Usuario_Empleado() {
+        
     }
 
     @OneToOne(cascade = CascadeType.ALL)

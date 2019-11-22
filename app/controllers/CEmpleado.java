@@ -5,7 +5,7 @@ import java.util.*;
 
 import java.lang.ProcessBuilder.Redirect;
 
-import javax.inject.Inject;
+import javax.inject.*;
 import play.data.Form;
 import play.data.FormFactory;
 import models.Solicitud;
@@ -16,6 +16,7 @@ import models.Usuario_Empleado;
 import models.TipoUser;
 import io.ebean.*;
 
+@Singleton
 public class CEmpleado extends Controller{
     //Creacion de forms
     private Form<Empleado> empleadoForm;
@@ -102,8 +103,11 @@ public class CEmpleado extends Controller{
     // ELIMINAR EMPLEADO
     public Result eliminar_empleado(String cedulaE) {
         Empleado empleado = Empleado.buscador.porCedula(cedulaE);
+        Usuario us = empleado.getUsuario_empleado().getUsuario();
+        us.setEstatus('I');
         empleado.setEstatus('I');
         Ebean.update(empleado);
+        Ebean.update(us);
         flash("success",String.format("EL empleado %s ha sido eliminado con éxito.", empleado.getNombre()));
         return redirect(routes.CEmpleado.listado_empleados());
     }

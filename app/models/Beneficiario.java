@@ -102,5 +102,15 @@ public class Beneficiario extends Model {
     }
 
 
+    public Usuario_Beneficiario getUsuario_beneficiario() {
+        return this.usuario_beneficiario;
+    }
+
+    public void setUsuario_beneficiario(Usuario_Beneficiario usuario_beneficiario) {
+        this.usuario_beneficiario = usuario_beneficiario;
+    }
+
+
+
     public static final BuscadorBeneficiario buscador = new BuscadorBeneficiario();
 }

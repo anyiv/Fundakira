@@ -5,7 +5,7 @@ import java.util.*;
 
 import java.lang.ProcessBuilder.Redirect;
 
-import javax.inject.Inject;
+import javax.inject.*;
 
 import buscadores.BuscadorEmpleado;
 import buscadores.BuscadorSolicitud;
@@ -23,6 +23,7 @@ import static play.libs.Json.toJson;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+@Singleton
 public class CReporte extends Controller{
     
     public Result lista_reportes() {

@@ -5,12 +5,13 @@ import java.util.*;
 
 import java.lang.ProcessBuilder.Redirect;
 
-import javax.inject.Inject;
+import javax.inject.*;
 import play.data.Form;
 import play.data.FormFactory;
 import models.Beneficiario;
 import io.ebean.*;
 
+@Singleton
 public class CBeneficiario extends Controller {
 
     // CONSTRUCCION DE FORMULARIOS
@@ -19,6 +20,10 @@ public class CBeneficiario extends Controller {
     @Inject
     public CBeneficiario(FormFactory formFactory) {
         this.beneficiarioForm = formFactory.form(Beneficiario.class);
+    }
+
+    public Result inicio_ben() {
+        return ok(views.html.inicio_ben.render());
     }
 
     // REGISTRAR BENEFICIARIO

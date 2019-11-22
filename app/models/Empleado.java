@@ -7,6 +7,7 @@ import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
 import buscadores.BuscadorEmpleado;
+import buscadores.BuscadorUsuarioEmpleado;
 
 @Entity
 @Table(name="Empleado")
@@ -153,6 +154,12 @@ public class Empleado extends Model {
         this.telefono = telefono;
         this.estatus = estatus;
         this.fundacion = fundacion;
+    }
+
+    public String getTipoU(){
+        BuscadorUsuarioEmpleado bu = new BuscadorUsuarioEmpleado();
+        Usuario_Empleado ue = bu.porCedula(this.cedulaE);
+        return ue.getUsuario().getTipouser().getCodTipoUser();
     }
 
     @Override

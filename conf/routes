@@ -27,6 +27,7 @@ GET     /logout/                    controllers.CLogin.logout
 GET     /registrarse/               controllers.CBeneficiario.reg_beneficiario
 GET     /inicio/                    controllers.CSolicitud.inicio_empleado
 GET     /inicio/admin               controllers.CEmpleado.inicio_admin
+GET     /inicio/beneficiario        controllers.CBeneficiario.inicio_ben
 GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /fundaciones/incluir        controllers.CFundacion.incl_fundacion
 GET     /servicios/                 controllers.CServicio.listado_servicios

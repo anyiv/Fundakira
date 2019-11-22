@@ -5,12 +5,13 @@ import java.util.*;
 
 import java.lang.ProcessBuilder.Redirect;
 
-import javax.inject.Inject;
+import javax.inject.*;
 import play.data.Form;
 import play.data.FormFactory;
 import models.Fundacion;
 import io.ebean.*;
 
+@Singleton
 public class CFundacion extends Controller {
 
     //Creación de forms

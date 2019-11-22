@@ -5,7 +5,7 @@ import java.util.*;
 
 import java.lang.ProcessBuilder.Redirect;
 
-import javax.inject.Inject;
+import javax.inject.*;
 import play.data.Form;
 import play.data.FormFactory;
 import models.Solicitud;
@@ -23,6 +23,7 @@ import static play.libs.Json.toJson;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+@Singleton
 public class CSolicitud extends Controller{
 
     // CONSTRUCCION DE FORMULARIOS

@@ -9,6 +9,10 @@ import io.ebean.Finder;
 import play.data.format.*;
 import play.data.validation.*;
 import models.Empleado;
+import models.Fundacion;
+import models.Usuario_Empleado;
+import models.Usuario;
+import models.TipoUser;
 
 public class BuscadorEmpleado extends Finder<String,Empleado> {
 
@@ -24,7 +28,7 @@ public class BuscadorEmpleado extends Finder<String,Empleado> {
               .eq("cedula_e",cedula)
               .findOne();
     }
-  
+
     public List<Empleado> listado() {
       return query().where().eq("estatus", "A").findList();
     }

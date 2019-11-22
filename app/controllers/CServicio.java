@@ -5,7 +5,7 @@ import java.util.*;
 
 import java.lang.ProcessBuilder.Redirect;
 
-import javax.inject.Inject;
+import javax.inject.*;
 import play.data.Form;
 import play.data.FormFactory;
 import models.Solicitud;
@@ -13,6 +13,7 @@ import models.Servicio;
 import models.Fundacion;
 import io.ebean.*;
 
+@Singleton
 public class CServicio extends Controller{
     
     private Form<Servicio> servicioForm;
