@@ -27,9 +27,8 @@
         <div class="seven wide tablet seven wide computer column">
             <div class="ui segment" style="background-color: #aae1a9;">
                 <h2 class="ui header" style="margin-top:10px; margin-left: 20px;">¡Registrate!</h2>
-                <form class="ui form">
                     <h4 class="ui horizontal divider header" style="margin-top:1em;">Datos del Beneficiario</h4>
-                    @helper.form(action = routes.CBeneficiario.guardarBen, 'id -> "formBeneficiario") {
+                    @helper.form(action = routes.CBeneficiario.guardarBen, 'id -> "formBeneficiario", 'class -> "ui form") {
                     @CSRF.formField
                     <div class="column" style="margin-left: 25px;margin-right: 25px;">
                         <div class="field">
@@ -83,12 +82,12 @@
                         </div>
                     </div>
                     <input  id="estatusB" name="estatusB" type="hidden" value="A">
+                    <input  id="estatus" name="estatus" type="hidden" value="A">
                     <a class="ui green button"
                     style="margin-top: 1em; margin-left: 14em"                    
                     onclick="javascript:confirmarCreacionBeneficiario()">
                     Registrarse
                     </a>
-                </form>
             </div>
             <div class="ui center aligned segment" style="background-color:#aae1a9;">
                 <a href="@routes.CLogin.index"><b>¡Inicia Sesión!</b></a>
