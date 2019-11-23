@@ -91,7 +91,6 @@ public class CEmpleado extends Controller{
             flash("error", "Por favor ingrese datos en los campos a modificar."); 
             return badRequest(views.html.consultar_empleado.render(emp));
         }
-        Ebean.update(emp);
         flash("success",String.format("Los datos del empleado  %s han sido modificados con éxito.", emp.getNombre()));
         return redirect(routes.CEmpleado.listado_empleados());
     }
