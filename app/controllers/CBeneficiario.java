@@ -9,6 +9,9 @@ import javax.inject.*;
 import play.data.Form;
 import play.data.FormFactory;
 import models.Beneficiario;
+import models.Usuario;
+import models.Usuario_Beneficiario;
+import models.TipoUser;
 import models.Solicitud;
 import io.ebean.*;
 
@@ -17,10 +20,12 @@ public class CBeneficiario extends Controller {
 
     // CONSTRUCCION DE FORMULARIOS
     private Form<Beneficiario> beneficiarioForm;
+    private Form<Usuario> usuarioForm;
 
     @Inject
     public CBeneficiario(FormFactory formFactory) {
         this.beneficiarioForm = formFactory.form(Beneficiario.class);
+        this.usuarioForm = formFactory.form(Usuario.class);
     }
 
     public Result inicio_ben(String ced) {
@@ -29,21 +34,30 @@ public class CBeneficiario extends Controller {
 
     // REGISTRAR BENEFICIARIO
     public Result reg_beneficiario() {
-        return ok(views.html.registro_beneficiario.render(beneficiarioForm));
+        return ok(views.html.registro_beneficiario.render(beneficiarioForm, usuarioForm));
     }
 
-    public Result guardarB() {
+    public Result guardarBen() {
         Form<Beneficiario> boundForm = beneficiarioForm.bindFromRequest();
-        String mensaje;
-        if (boundForm.hasErrors()) { 
+        Form<Usuario> boundFormU = usuarioForm.bindFromRequest();
+        if (boundForm.hasErrors() || boundFormU.hasErrors() )
+        { 
             flash("error", "Por favor ingrese de nuevo los datos del formulario."); 
-            return badRequest(views.html.registro_beneficiario.render(boundForm));
+            return badRequest(views.html.registro_beneficiario.render(boundForm, boundFormU));
         }
+        System.out.print(boundForm);
+        System.out.print(boundFormU);
         Beneficiario beneficiario = boundForm.get();
-        if (beneficiario.getCedulaB() == null){
-            Ebean.save(beneficiario);
-            flash("success",String.format("Registro exitoso"));
-        }
-        return redirect(routes.CLogin.index());       
+        Usuario usuario = boundFormU.get();
+        Usuario_Beneficiario ub = new Usuario_Beneficiario();
+        TipoUser tp = TipoUser.buscador.porCodigo("3");
+        ub.setUsuario(usuario);
+        ub.setBeneficiario(beneficiario);
+        usuario.setTipouser(tp);
+        Ebean.save(beneficiario);
+        Ebean.save(usuario);
+        Ebean.save(ub);
+        flash("success",String.format("El beneficiario %s %s ha sido incluido con éxito.", beneficiario.getNombreB(), beneficiario.getApellidoB()));        
+        return redirect(routes.CLogin.index());   
     }
 }
