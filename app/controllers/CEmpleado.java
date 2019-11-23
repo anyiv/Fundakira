@@ -81,19 +81,29 @@ public class CEmpleado extends Controller{
     }
 
     public Result modif_empl(String ce) {
-        return ok(views.html.modificar_empleado.render(Empleado.buscador.porCedula(ce)));
+        Empleado emp = Empleado.buscador.porCedula(ce);
+        Form<Empleado> empfillform = empleadoForm.fill(emp);
+        return ok(views.html.modificar_empleado.render(empfillform, Empleado.buscador.porCedula(ce)));
     }
 
     public Result modificar_empleado(String cedulaE){
         Empleado emp = Empleado.buscador.porCedula(cedulaE);
-        Form<Empleado> empfillform = empleadoForm.fill(emp);
+        Form<Empleado> empfillform = empleadoForm.bindFromRequest();
         if (empfillform.hasErrors()) { 
             flash("error", "Por favor ingrese datos en los campos a modificar."); 
-            return badRequest(views.html.consultar_empleado.render(emp));
+            return badRequest(views.html.modificar_empleado.render(empfillform,emp));
         }
-        Ebean.update(emp);
-        flash("success",String.format("Los datos del empleado  %s han sido modificados con éxito.", emp.getNombre()));
-        return redirect(routes.CEmpleado.listado_empleados());
+        Empleado empleado = empfillform.get();
+        empleado.setCedulaE(cedulaE);
+        System.out.print(empfillform);
+        Ebean.update(empleado);
+        try{
+            Ebean.update(empleado);
+            flash("success",String.format("Los datos del empleado  %s han sido modificados con éxito.", empleado.getNombre()));
+        }catch (Exception f){
+            flash("error",String.format("No se pudo modificar."));
+        }
+        return redirect(routes.CEmpleado.consultar_empleado(emp.getCedulaE()));
     }
 
     public Result inicio_admin() {

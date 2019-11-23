@@ -1,71 +1,85 @@
-@(empleado : Empleado)
+@import helper._
+@(empleadoform: Form[Empleado], empleado : Empleado)
 @main("Consultar empleado"){
     <!--PARA USUARIO ADMMINISTRADOR-->
     
 <div class="ui middle centered grid" style="margin-top: 50px">
+    @* @if(flash.containsKey("error")){
+        <div class="row">
+            <div class="ui error message">
+                <i class="close icon"></i>
+                <div class="header">Hay algunos errores con tu formulario. </div>
+                <ul class="list">
+                    @for(error <- empleadoForm.errors()){ 
+                        @if(error.message !="error.invalid" ){ 
+                            <li>@error.message</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        } *@
     <div class="three wide tablet seven wide computer column">
         <div class="ui segment" style="background-color: #95bea5;">
             <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Modificar Empleado</h2>
+            @helper.form(action = routes.CEmpleado.modificar_empleado(empleado.getCedulaE()), 'id -> "formodifemp") {
+            @CSRF.formField
             <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Cédula:</b></p>
                     <div class="ui input">
-                        <input placeholder="Cédula" type="text" value="0101001">
+                        <input placeholder="Cédula"  type="text" readonly value="@empleado.getCedulaE()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Fundación:</b></p>
-                    <select name="Fundación asociada" class="ui dropdown">
-                        <option value="">Fundación</option>
-                        <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
-                        <option value="2">Fundación de Atención al Discapacitado</option>
-                        <option value="3">Fundación Regional de la Mujer</option>
+                    <select name="Fundación asociada" class="ui dropdown" disabled>
+                        <option value="">@empleado.getFundacion().getNombre()</option>
                     </select>
                 </div>
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text" value="01010101110001">
+                        <input placeholder="Nombre" type="text" name="nombre" value="@empleadoform("nombre").value.get()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Apellido:</b></p>
                     <div class="ui input">
-                        <input placeholder="Apellido" type="text" value="Villarreal">
+                        <input placeholder="Apellido" type="text" name="apellido" value="@empleadoform("apellido").value.get()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Teléfono:</b></p>
                     <div class="ui input">
-                        <input placeholder="Teléfono" type="text" value="0251-4242424">
+                        <input placeholder="Teléfono" type="text" name="telefono" value="@empleadoform("telefono").value.get()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Correo:</b></p>
                     <div class="ui input">
-                        <input placeholder="Correo" type="text" value="anyi@@fundakira.com">
+                        <input placeholder="Correo" type="text" name="correo" value="@empleadoform("correo").value.get()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Dirección:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text" value="Barquisimeto, calle 14 con carrera 16.">
+                        <input placeholder="Nombre" type="text" name="direccion" value="@empleadoform("direccion").value.get()">
                     </div>
                 </div>
             </div>
             <div class="ui container ">
-                <a class="ui left floated blue button" @*href="@routes.CEmpleado.consultar_empleado()*@"
+                <a class="ui left floated blue button" href="@routes.CEmpleado.consultar_empleado(empleado.getCedulaE())"
                     style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
                     Cancelar
                 </a>
-                <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
+                <button class="ui teal button" type="reset" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
                     Limpiar
                 </button>
-                <a class="ui right floated green button" 
-                    style="margin-top: 2em;margin-bottom: 1.5em; margin-right: 2em;">
+                <a class="ui right floated green button" onclick="javascript:confirmarModificarEmpleado('@empleado.getCedulaE()')" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
                     Guardar
                 </a>
-            </div>
+            </div>}
         </div>
     </div>
 </div>

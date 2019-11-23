@@ -1,3 +1,48 @@
+@(solicitudes:List[Solicitud])
 @main("Bienvenido!"){
-    
+<div class="row">
+    <div class="ui center aligned grid">
+        <div class="four wide column">
+            <div class="ui segment" style="background-color: #98db97;">
+                <h4>Filtrar por estatus</h4>
+                <select class="ui dropdown" id="filtroSolicitudes">
+                    <option>Todos</option>
+                    <option>Pendiente</option>
+                    <option>Aprobada</option>
+                    <option>Negada</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 2em;">
+    <div class="ui content center aligned" style="margin-right: 10em;margin-left: 10em;">
+        <table id="tabla" class="ui single line inverted grey table">
+            <thead>
+                <tr>
+                    <th>Fecha de registro</th>
+                    <th>Prioridad</th>
+                    <th>Presupuesto</th>
+                    <th>Cantidad de servicios asociados</th>
+                    <th>Estatus</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(solicitud<-solicitudes){ <tr>
+                    <td>@solicitud.getFechaRegistro()</td>
+                    <td>@solicitud.getPrioridad()</td>
+                    <td>@solicitud.CalcularPresupuesto(solicitud.getCod_solicitud())</td>
+                    <td>@solicitud.getDetallesolicitud().length </td>
+                    <td>@solicitud.obtenerEstatus() </td>
+                    <td><a href="@routes.CSolicitud.consulta_solicitud(solicitud.getCod_solicitud().toString())"
+                            class="circular ui icon button">
+                            <i class="icon eye"></i>
+                        </a></td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+</div>
 }
