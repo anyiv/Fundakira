@@ -34,7 +34,7 @@ GET     /servicios/                 controllers.CServicio.listado_servicios
 GET     /servicios/incluir          controllers.CServicio.incl_servicio(id: String)
 GET     /solicitudes/               controllers.CSolicitud.solicitudes
 GET     /solicitud/consulta         controllers.CSolicitud.consulta_solicitud(id : String)
-GET     /empleado/:id               controllers.CEmpleado.consultar_empleado(id : String)
+GET     /empleado/consultar/:id     controllers.CEmpleado.consultar_empleado(id : String)
 GET     /empleados/                 controllers.CEmpleado.listado_empleados
 GET     /empleado/incluir/          controllers.CEmpleado.incl_empleado
 GET     /empleados/modif/:id        controllers.CEmpleado.modif_empl(id : String)

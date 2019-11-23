@@ -3,6 +3,21 @@
     <!--PARA USUARIO ADMMINISTRADOR-->
     
 <div class="ui middle centered grid" style="margin-top: 50px">
+    @if(flash.containsKey("error")){
+        <div class="row">
+            <div class="ui error message">
+                <i class="close icon"></i>
+                <div class="header">Hay algunos errores con tu formulario. </div>
+                <ul class="list">
+                    @for(error <- empleadoForm.errors()){ 
+                        @if(error.message !="error.invalid" ){ 
+                            <li>@error.message</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        }
     <div class="three wide tablet seven wide computer column">
         <div class="ui segment" style="background-color: #95bea5;">
             <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Modificar Empleado</h2>
@@ -51,7 +66,7 @@
                 </div>
             </div>
             <div class="ui container ">
-                <a class="ui left floated blue button" @*href="@routes.CEmpleado.consultar_empleado()*@"
+                <a class="ui left floated blue button" href="@routes.CEmpleado.consultar_empleado(empleado.getCedulaE())"
                     style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
                     Cancelar
                 </a>

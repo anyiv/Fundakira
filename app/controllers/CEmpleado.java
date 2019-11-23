@@ -89,10 +89,12 @@ public class CEmpleado extends Controller{
         Form<Empleado> empfillform = empleadoForm.fill(emp);
         if (empfillform.hasErrors()) { 
             flash("error", "Por favor ingrese datos en los campos a modificar."); 
-            return badRequest(views.html.consultar_empleado.render(emp));
+            return badRequest(views.html.modificar_empleado.render(empfillform));
         }
+        Empleado empleado = empfillform.get();
+        Ebean.update(Empleado);
         flash("success",String.format("Los datos del empleado  %s han sido modificados con éxito.", emp.getNombre()));
-        return redirect(routes.CEmpleado.listado_empleados());
+        return redirect(routes.CEmpleado.consultar_empleado());
     }
 
     public Result inicio_admin() {
