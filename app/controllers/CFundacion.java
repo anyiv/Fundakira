@@ -9,10 +9,13 @@ import javax.inject.*;
 import play.data.Form;
 import play.data.FormFactory;
 import models.Fundacion;
+import models.CaretakerFundacion;
+import models.MementoFundacion;
 import io.ebean.*;
 
 @Singleton
 public class CFundacion extends Controller {
+    private CaretakerFundacion cuidador = new CaretakerFundacion();
 
     //Creación de forms
     private Form<Fundacion> fundacionForm;
@@ -38,6 +41,7 @@ public class CFundacion extends Controller {
             return badRequest(views.html.incluir_fundacion.render(boundForm));
         }
         Fundacion fundacion = boundForm.get();
+        cuidador.setMemento(Fundacion.buscador.porCodigo(fundacion.getCod_fundacion()).crearMemento());
         if (fundacion.getCod_fundacion() == null){
             double porc = 0;
             for (Fundacion f : Fundacion.buscador.listado()) {
@@ -61,6 +65,18 @@ public class CFundacion extends Controller {
             }
             Ebean.update(fundacion);
             flash("success",String.format("La fundación %s ha sido modificada con éxito.", fundacion.getNombre()));
+        }
+        return redirect(routes.CFundacion.fundaciones());
+    }
+
+    public Result deshacerModificacion(){
+        try{
+            Fundacion f = new Fundacion();
+            f.setMemento(cuidador.getMemento());
+            Ebean.update(f);
+            flash("success",String.format("Los cambios sobre la fundación %s han sido devueltos con éxito.", f.getNombre()));
+        } catch (Exception e){
+            flash("error",String.format("Error deshaciendo los cambios. (¿Quizás no has modificado ninguna fundación?)"));
         }
         return redirect(routes.CFundacion.fundaciones());
     }
