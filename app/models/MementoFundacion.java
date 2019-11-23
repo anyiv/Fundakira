@@ -12,7 +12,6 @@ public class MementoFundacion{
     private String tipo;
     private char estatus;
 
-
     public MementoFundacion() {
     }
 
