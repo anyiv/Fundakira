@@ -49,9 +49,9 @@ public class CLogin extends Controller {
                         flash("success",String.format("Bienvenido, %s.",Empleado.buscador.porCedula(login.getCedula()).toString()));
                         return redirect(routes.CSolicitud.inicio_empleado()).addingToSession(request, "user", login.getCedula());
 
-                    case 3:
-                        flash("success",String.format("Bienvenido, %s.",Beneficiario.buscador.porCedula(login.getCedula()).toString()));
-                        return redirect(routes.CBeneficiario.inicio_ben()).addingToSession(request, "user", login.getCedula());
+                    // case 3:
+                    //     flash("success",String.format("Bienvenido, %s.",Beneficiario.buscador.porCedula(login.getCedula()).toString()));
+                    //     return redirect(routes.CBeneficiario.inicio_ben()).addingToSession(request, "user", login.getCedula());
 
                     default:
                         break;
