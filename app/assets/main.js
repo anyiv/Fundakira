@@ -299,8 +299,7 @@ function confirmarCreacionBeneficiario() {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.value) {
-            if ($('#contrasenna').val() ==
-                $('#conf_contrasenna').val()) {
+            if ($('#contrasenna').val() == $('#conf_contrasenna').val()) {
                 $('#formBeneficiario').submit();
             } else {
                 Swal.fire("Error", "Las contraseñas no coinciden.", "error");
