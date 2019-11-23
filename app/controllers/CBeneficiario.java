@@ -12,6 +12,7 @@ import models.Beneficiario;
 import models.Usuario;
 import models.Usuario_Beneficiario;
 import models.TipoUser;
+import models.Solicitud;
 import io.ebean.*;
 
 @Singleton
@@ -27,8 +28,8 @@ public class CBeneficiario extends Controller {
         this.usuarioForm = formFactory.form(Usuario.class);
     }
 
-    public Result inicio_ben() {
-        return ok(views.html.inicio_ben.render());
+    public Result inicio_ben(String ced) {
+        return ok(views.html.inicio_ben.render(Solicitud.buscador.porBeneficiario(ced)));
     }
 
     // REGISTRAR BENEFICIARIO

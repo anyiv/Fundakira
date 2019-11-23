@@ -19,6 +19,7 @@ POST   /empleado/incluir/           controllers.CEmpleado.guardarE()
 GET    /solicitud/aprobar/:id       controllers.CSolicitud.aprobarSolicitud(id : String)
 GET    /solicitud/rechazar/:id      controllers.CSolicitud.rechazarSolicitud(id : String)
 GET    /eliminar_empleado/          controllers.CEmpleado.eliminar_empleado(id : String)
+POST   /empleados/modificar/:id     controllers.CEmpleado.modificar_empleado(id : String)
 
 #Methods without csrf
 + nocsrf
@@ -27,14 +28,14 @@ GET     /logout/                    controllers.CLogin.logout
 GET     /registrarse/               controllers.CBeneficiario.reg_beneficiario
 GET     /inicio/                    controllers.CSolicitud.inicio_empleado
 GET     /inicio/admin               controllers.CEmpleado.inicio_admin
-GET     /inicio/beneficiario        controllers.CBeneficiario.inicio_ben
+GET     /inicio/beneficiario/:id    controllers.CBeneficiario.inicio_ben(id: String)
 GET     /fundaciones/               controllers.CFundacion.fundaciones
 GET     /fundaciones/incluir        controllers.CFundacion.incl_fundacion
 GET     /servicios/                 controllers.CServicio.listado_servicios
 GET     /servicios/incluir          controllers.CServicio.incl_servicio(id: String)
 GET     /solicitudes/               controllers.CSolicitud.solicitudes
 GET     /solicitud/consulta         controllers.CSolicitud.consulta_solicitud(id : String)
-GET     /empleado/:id               controllers.CEmpleado.consultar_empleado(id : String)
+GET     /empleado/consultar/:id     controllers.CEmpleado.consultar_empleado(id : String)
 GET     /empleados/                 controllers.CEmpleado.listado_empleados
 GET     /empleado/incluir/          controllers.CEmpleado.incl_empleado
 GET     /empleados/modif/:id        controllers.CEmpleado.modif_empl(id : String)
@@ -43,6 +44,7 @@ GET     /reportes/solicitantes      controllers.CReporte.rp_solicitantes
 GET     /reporte/rsolicitantantes/:id   controllers.CReporte.repSoli(id : java.util.UUID)
 GET     /reportes/presupuesto       controllers.CReporte.rp_presupuesto
 GET     /reporte/solicitudes        controllers.CReporte.rp_solicitudes
+GET     /memento_deshacer/          controllers.CFundacion.deshacerModificacion
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
