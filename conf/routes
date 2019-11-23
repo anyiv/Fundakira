@@ -19,6 +19,7 @@ POST   /empleado/incluir/           controllers.CEmpleado.guardarE()
 GET    /solicitud/aprobar/:id       controllers.CSolicitud.aprobarSolicitud(id : String)
 GET    /solicitud/rechazar/:id      controllers.CSolicitud.rechazarSolicitud(id : String)
 GET    /eliminar_empleado/          controllers.CEmpleado.eliminar_empleado(id : String)
+POST   /empleados/modificar/:id     controllers.CEmpleado.modificar_empleado(id : String)
 
 #Methods without csrf
 + nocsrf

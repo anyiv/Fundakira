@@ -364,7 +364,7 @@ function confirmarModificarEmpleado() {
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.value) {
-      $('#formEmpleado').submit();
+      $('#formodifemp').submit();
     }
   })
 };

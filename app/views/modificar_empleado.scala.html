@@ -1,9 +1,10 @@
-@(empleado : Empleado)
+@import helper._
+@(empleadoform: Form[Empleado], empleado : Empleado)
 @main("Consultar empleado"){
     <!--PARA USUARIO ADMMINISTRADOR-->
     
 <div class="ui middle centered grid" style="margin-top: 50px">
-    @if(flash.containsKey("error")){
+    @* @if(flash.containsKey("error")){
         <div class="row">
             <div class="ui error message">
                 <i class="close icon"></i>
@@ -17,10 +18,12 @@
                 </ul>
             </div>
         </div>
-        }
+        } *@
     <div class="three wide tablet seven wide computer column">
         <div class="ui segment" style="background-color: #95bea5;">
             <h2 class="ui header" style="margin-top:10px; margin-left: 15px;">Modificar Empleado</h2>
+            @helper.form(action = routes.CEmpleado.modificar_empleado(empleado.getCedulaE()), 'id -> "formodifemp") {
+            @CSRF.formField
             <div class="ui two column grid" style="margin-left: 30px;">
                 <div class="column">
                     <p><b>Cédula:</b></p>
@@ -37,31 +40,31 @@
                 <div class="column">
                     <p><b>Nombre:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text" name="Nombre" value="@empleado.getNombre()">
+                        <input placeholder="Nombre" type="text" name="nombre" value="@empleadoform("nombre").value.get()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Apellido:</b></p>
                     <div class="ui input">
-                        <input placeholder="Apellido" type="text" name="Apellido" value="@empleado.getApellido()">
+                        <input placeholder="Apellido" type="text" name="apellido" value="@empleadoform("apellido").value.get()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Teléfono:</b></p>
                     <div class="ui input">
-                        <input placeholder="Teléfono" type="text" name="Teléfono" value="@empleado.getTelefono()">
+                        <input placeholder="Teléfono" type="text" name="telefono" value="@empleadoform("telefono").value.get()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Correo:</b></p>
                     <div class="ui input">
-                        <input placeholder="Correo" type="text" name="Correo" value="@empleado.getCorreo">
+                        <input placeholder="Correo" type="text" name="correo" value="@empleadoform("correo").value.get()">
                     </div>
                 </div>
                 <div class="column">
                     <p><b>Dirección:</b></p>
                     <div class="ui input">
-                        <input placeholder="Nombre" type="text" name="Dirección" value="@empleado.getDireccion()">
+                        <input placeholder="Nombre" type="text" name="direccion" value="@empleadoform("direccion").value.get()">
                     </div>
                 </div>
             </div>
@@ -70,12 +73,13 @@
                     style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
                     Cancelar
                 </a>
-                <button class="ui teal button" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
+                <button class="ui teal button" type="reset" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 8em;">
                     Limpiar
                 </button>
-                <a class="ui right floated green button" onclick="javascript:confirmarModificarEmpleado('@empleado.getCedulaE()')"></a>
-                    Modificar
-            </div>
+                <a class="ui right floated green button" onclick="javascript:confirmarModificarEmpleado('@empleado.getCedulaE()')" style="margin-top: 2em;margin-bottom: 1.5em; margin-left: 2em;">
+                    Guardar
+                </a>
+            </div>}
         </div>
     </div>
 </div>
