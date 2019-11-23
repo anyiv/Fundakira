@@ -52,6 +52,9 @@ public class Fundacion extends Model {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "fundacion",fetch = FetchType.LAZY) //el que da la clave foranea
     public Empleado empleado;
 
+    public Fundacion() {
+    }
+    
     public UUID getCod_fundacion() {
         return this.cod_fundacion;
     }
@@ -186,6 +189,21 @@ public class Fundacion extends Model {
 
     public double getPorcGastado(){
         return (( getMontoGastado()/getMontoAsignado() )*100);
+    }
+
+    public void setMemento(MementoFundacion m){
+        this.cod_fundacion = m.getCod_fundacion();
+        this.nombre = m.getNombre();
+        this.porcPartida = m.getPorcPartida();
+        this.direccion = m.getDireccion();
+        this.correo = m.getCorreo();
+        this.telefono = m.getTelefono();
+        this.tipo = m.getTipo();
+        this.estatus = m.getEstatus();
+    }
+
+    public MementoFundacion crearMemento(){
+        return new MementoFundacion(this.cod_fundacion,this.nombre,this.porcPartida,this.direccion,this.correo,this.telefono,this.tipo,this.estatus);
     }
 
     public static final BuscadorFundacion buscador = new BuscadorFundacion();
