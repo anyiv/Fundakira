@@ -51,6 +51,10 @@ public class Solicitud extends Model{
     @Column(length=1)
     private char estatus;
 
+    public Solicitud(){
+        
+    }
+
     public UUID getCod_solicitud() {
         return this.cod_solicitud;
     }

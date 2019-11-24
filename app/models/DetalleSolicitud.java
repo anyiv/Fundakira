@@ -56,5 +56,9 @@ public class DetalleSolicitud extends Model {
         this.costo = costo;
     }
 
+    public DetalleSolicitud(){
+        
+    }
+
     public static final BuscadorDetalleS buscador = new BuscadorDetalleS();
 }

@@ -50,6 +50,9 @@ public class Empleado extends Model {
     @OneToOne (mappedBy = "empleado", fetch = FetchType.LAZY)
     public Usuario_Empleado usuario_empleado;
 
+    public Empleado(){
+        
+    }
 
     public String getCedulaE() {
         return this.cedulaE;

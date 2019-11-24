@@ -32,7 +32,7 @@
           @content
       </body>
     } else {
-      @if(request.path!="/") {
+      @if(request.path!="/" && request.path!="/beneficiario/guardar") {
         <body>
           <div class="ui segment">
             <p>INICIA SESION!!!!</p>
