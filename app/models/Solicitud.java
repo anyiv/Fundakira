@@ -185,5 +185,19 @@ public class Solicitud extends Model{
         return montototal;
     }
 
+    public boolean verificarEstSol(List<Solicitud> sol){
+        boolean ok=false;
+        int i=0;
+        int cant_sol = sol.size();
+        do {
+            Solicitud soli = sol.get(i);
+            if(soli.getEstatus()=='P' || soli.getEstatus()=='A'){
+                ok = true;
+            }
+            i++;
+        } while (ok == false && i < cant_sol);
+        return ok;
+    }
+
     public static final BuscadorSolicitud buscador = new BuscadorSolicitud();
 }

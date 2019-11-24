@@ -63,4 +63,5 @@ public class BuscadorSolicitud extends Finder<UUID, Solicitud> {
     }
     return solicitudes_fundacion;
   }
+
 }

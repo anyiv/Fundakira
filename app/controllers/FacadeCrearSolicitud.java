@@ -43,6 +43,8 @@ public class FacadeCrearSolicitud extends Controller{
         String razon = json.findPath("razon").textValue();
         ben = Beneficiario.buscador.porCedula(cedulab);
         emp = Empleado.buscador.porCedula(cedulae);
+        List<Solicitud> soliben = Solicitud.buscador.porBeneficiario(cedulab);
+        boolean verificar = soli.verificarEstSol(soliben);
         Date fechaRegistro = new Date();
         soli = new Solicitud(
             UUID.randomUUID(),
@@ -63,13 +65,17 @@ public class FacadeCrearSolicitud extends Controller{
                 Ebean.save(ds);
                 presupuesto += ds.getCosto();
             }
-            if (f.getMontoDisponible()-presupuesto<0){
-                respuesta.put("resultado","La solicitud ha sido rechazada automáticamente por falta de presupuesto.");
-                soli.setEstatus('N');
-                soli.setRazon("Falta de presupuesto.");
-                Ebean.update(soli);
-            } else {
-                respuesta.put("resultado","La solicitud se ha creado con éxito.");
+            if(verificar == false){
+                if (f.getMontoDisponible()-presupuesto<0 || f.getPorcGastado() > 75){
+                    respuesta.put("resultado","La solicitud ha sido rechazada automáticamente por falta de presupuesto.");
+                    soli.setEstatus('N');
+                    soli.setRazon("Falta de presupuesto.");
+                    Ebean.update(soli);
+                } else {
+                    respuesta.put("resultado","La solicitud se ha creado con éxito.");
+                }
+            }else{
+                respuesta.put("resultado","La solicitud ha sido rechazada, el beneficiario ya tiene una solicitud pendiente o aprobada durante los últimos 6 meses.");
             }
             return ok(respuesta);
         } catch (Exception e) {
