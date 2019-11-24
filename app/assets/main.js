@@ -433,6 +433,8 @@ function confirmarCreacionSolicitud() {
     }).then((result) => {
         if (result.value) {
             guardarSolicitud();
+            $("#razon").val("");
+            $("#otrasDonaciones").val("");
         }
     })
 };
