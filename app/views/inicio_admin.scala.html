@@ -1,35 +1,40 @@
+@(fundaciones: List[Fundacion],solicitudes:List[Solicitud])
 @main("¡Bienvenido!"){
 <div class="ui content" style="margin-top:20px;margin-left: 90px;margin-right: 90px;">
     <div class="ui two column grid">
         <div class="ui column">
             <div class="ui segment" style="background-color: #95bea5;">
                 <h3>Costo de las solicitudes aprobadas</h3>
-                <select class="ui dropdown">
-                    <option value="">Fundaciones</option>
-                    <option value="0">Todos</option>
-                    <option value="1">Fundación de Ayuda a Niños, Niñas y Adolescentes</option>
-                    <option value="2">Fundación de Atención al Discapacitado</option>
-                    <option value="3">Fundación Regional de la Mujer</option>
-                </select>
+                    @helper.CSRF.formField
+                    <select class="ui dropdown" id="fundacion">
+                        <option value="">Fundaciones</option>
+                    @for(fund<-fundaciones){
+                        <option value="@fund.getCod_fundacion()">@fund.getNombre()</option>
+                    }
+                    </select>
                 <div class="ui two column grid">
                     <div class="ui column" style="margin-top: 10px;">
                         <p><b>Desde:</b></p>
                         <div class="ui input">
-                            <input placeholder="Ej: 01/12/2018" type="text">
+                            <input placeholder="Ej: 01/12/2018" id="fechaDesde" type="text">
                         </div>
                     </div>
                     <div class="ui column" style="margin-top: 10px;">
                         <p><b>Hasta:</b></p>
                         <div class="ui input">
-                            <input placeholder="Ej: 31/12/2018" type="text">
+                            <input placeholder="Ej: 31/12/2018" id="fechaHasta" type="text">
                         </div>
                     </div>
                     <div class="ui column">
                         <p><b>Costo:</b></p>
-                        <label>379.000 Bs</label>
+                        <div class="ui input">
+                            <input placeholder="Bs" id="bs" type="text">
+                        </div>
                     </div>
                     <div class="ui column">
-                        <button class="ui green button" style="margin-top:2em;">Calcular</button>
+                        <button onclick="javascript:calcularSoliAp();" class="ui green button" style="margin-top:2em;">
+                            Calcular
+                        </button>
                     </div>
                 </div>
             </div>
@@ -41,21 +46,25 @@
                     <div class="ui column" style="margin-top: 10px;">
                         <p><b>Desde:</b></p>
                         <div class="ui input">
-                            <input placeholder="Ej: 01/12/2018" type="text">
+                            <input placeholder="Ej: 01/12/2018" id="fdesde" type="text">
                         </div>
                     </div>
                     <div class="ui column" style="margin-top: 10px;">
                         <p><b>Hasta:</b></p>
                         <div class="ui input">
-                            <input placeholder="Ej: 31/12/2018" type="text">
+                            <input placeholder="Ej: 31/12/2018" id="fhasta" type="text">
                         </div>
                     </div>
                     <div class="ui column">
                         <p><b>Costo:</b></p>
-                        <label>379.000 Bs</label>
+                        <div class="ui input">
+                            <input placeholder="Bs" id="bs1" type="text">
+                        </div>
                     </div>
                     <div class="ui column">
-                        <button class="ui green button" style="margin-top:2em;">Calcular</button>
+                        <button onclick="javascript:calcPres();" class="ui green button" style="margin-top:2em;">
+                            Calcular
+                        </button>
                     </div>
                 </div>
             </div>

@@ -16,6 +16,7 @@ import models.Beneficiario;
 import models.Empleado;
 import models.Servicio;
 import models.Fundacion;
+import models.Gobernacion;
 import buscadores.*;
 import io.ebean.*;
 import play.libs.Json;
@@ -75,4 +76,25 @@ public class CReporte extends Controller{
         return ok(views.html.reporte_solicitudes.render(Empleado.buscador.listado(),Solicitud.buscador.listadoTodos()));
     }
 
+    public Result calcularSoliAp(Http.Request request) throws Exception{
+        JsonNode json = request.body().asJson();
+        ObjectNode respuesta = Json.newObject();
+        UUID codfun = UUID.fromString(json.findPath("fundacion").textValue());
+        String fechaDesde = json.findPath("fechaDesde").textValue();
+        String fechaHasta = json.findPath("fechaHasta").textValue();
+        Fundacion fund = Fundacion.buscador.porCodigo(codfun);
+        System.out.print(codfun);
+        respuesta.put("costo",fund.getCostoSolAp(fechaDesde, fechaHasta));
+        return ok(respuesta);
+    }
+
+    public Result costoPreGenerado(Http.Request request) throws Exception{
+        JsonNode json = request.body().asJson();
+        ObjectNode respuesta = Json.newObject();
+        String fdesde = json.findPath("fdesde").textValue();
+        String fhasta = json.findPath("fhasta").textValue();
+        Gobernacion gob = new Gobernacion();
+        respuesta.put("presupuesto",gob.calPresupuesto(fdesde, fhasta));
+        return ok(respuesta);
+    }
 }

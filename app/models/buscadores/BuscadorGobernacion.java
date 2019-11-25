@@ -21,4 +21,8 @@ public class BuscadorGobernacion extends Finder<String,Gobernacion> {
     public Gobernacion porCodigo(String codigo) {
       return query().where().eq("codGobernacion", codigo).findOne();
     }
+
+    public List<Gobernacion> listado() {
+      return query().findList();
+    }
   }

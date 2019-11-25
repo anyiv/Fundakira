@@ -8,10 +8,9 @@ $('.item')
     .popup({
         inline: true,
         hoverable: true
-    })
-    ;
+    });
 
-$(document).ready(function () {
+$(document).ready(function() {
     var tabla = $('#tabla').DataTable({
         "language": {
             "sProcessing": "Procesando...",
@@ -43,7 +42,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#filtroSolicitudes').on('change', function () {
+    $('#filtroSolicitudes').on('change', function() {
         if (this.value == 'Todos') {
             tabla.search('').draw();
         } else {
@@ -51,7 +50,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#responsables').on('change', function () {
+    $('#responsables').on('change', function() {
         if (this.value == '') {
             tabla.search('').draw();
         } else {
@@ -59,7 +58,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#estatus_pre').on('change', function () {
+    $('#estatus_pre').on('change', function() {
         if (this.value == 'Todos') {
             tabla.search('').draw();
         } else {
@@ -224,7 +223,7 @@ function imprimirError(mensaje) {
 };
 
 $('.message .close')
-    .on('click', function () {
+    .on('click', function() {
         $(this)
             .closest('.message')
             .transition('fade');
@@ -244,7 +243,7 @@ function validarIdentidad() {
     } else {
         var token = $('input[name="csrfToken"]').attr('value')
         $.ajaxSetup({
-            beforeSend: function (xhr) {
+            beforeSend: function(xhr) {
                 xhr.setRequestHeader('Csrf-Token', token);
             }
         });
@@ -255,7 +254,7 @@ function validarIdentidad() {
             type: 'POST',
             data: JSON.stringify(data),
             dataType: 'JSON',
-            success: function (data) {
+            success: function(data) {
                 if (data.error == true) {
                     $("#crearbeneficiario").css("display", "");
                     Swal.fire("Erorr", "El beneficiario no existe. Introduzca sus datos para registrarlo.", "error");
@@ -277,7 +276,7 @@ function validarIdentidad() {
                     Swal.fire("Éxito", "El beneficiario " + data.nombre + " " + data.apellido + " ha sido encontrado.", "success");
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: function(xhr, ajaxOptions, thrownError) {
                 console.log(xhr.status);
                 console.log(xhr.responseText);
                 console.log(thrownError);
@@ -335,43 +334,43 @@ function confirmarCreacionEmpleado() {
 };
 
 function confirmarEliminarEmpleado(id) {
-  Swal.fire({
-    title: 'Confirmar eliminación',
-    text: "¿Seguro que deseas eliminar al empleado?",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Eliminar',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.value) {
-      location.href = "/eliminar_empleado/?id=" + id;
-    }
-  })
+    Swal.fire({
+        title: 'Confirmar eliminación',
+        text: "¿Seguro que deseas eliminar al empleado?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            location.href = "/eliminar_empleado/?id=" + id;
+        }
+    })
 };
 
 function confirmarModificarEmpleado() {
-  Swal.fire({
-    title: 'Confirmar modificación',
-    text: "¿Seguro que deseas modificar los datos del empleado?",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Modificar',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.value) {
-      $('#formodifemp').submit();
-    }
-  })
+    Swal.fire({
+        title: 'Confirmar modificación',
+        text: "¿Seguro que deseas modificar los datos del empleado?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Modificar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            $('#formodifemp').submit();
+        }
+    })
 };
 
 function guardarSolicitud() {
     var cedulab = $("#cedulaB").val();
     var servicios = [];
-    $("#servicios").val().forEach(function (servicio, indice, array) {
+    $("#servicios").val().forEach(function(servicio, indice, array) {
         servicios.push(servicio);
     });
     var pri = document.querySelector('input[name="prioridad"]:checked').value;
@@ -382,7 +381,7 @@ function guardarSolicitud() {
     } else {
         var token = $('input[name="csrfToken"]').attr('value')
         $.ajaxSetup({
-            beforeSend: function (xhr) {
+            beforeSend: function(xhr) {
                 xhr.setRequestHeader('Csrf-Token', token);
             }
         });
@@ -400,7 +399,7 @@ function guardarSolicitud() {
             type: 'POST',
             data: JSON.stringify(data),
             dataType: 'JSON',
-            success: function (data) {
+            success: function(data) {
                 Swal.fire("Respuesta", data.resultado, "success");
                 $("#cedulaB").val("");
                 $("#nombreB").val("");
@@ -410,7 +409,7 @@ function guardarSolicitud() {
                 $("#correoB").val("");
                 $("#servicios").val("");
             },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: function(xhr, ajaxOptions, thrownError) {
                 console.log(xhr.status);
                 console.log(xhr.responseText);
                 console.log(thrownError);
@@ -473,11 +472,11 @@ function confirmarNegarSolicitud(id) {
     })
 };
 
-function generarReporteSolicitantes(){
-    if($("#fundaciones_rs").val()!=""){
+function generarReporteSolicitantes() {
+    if ($("#fundaciones_rs").val() != "") {
         window.location.replace("/reporte/rsolicitantantes/" + $("#fundaciones_rs").val());
     } else {
-        Swal.fire("Error","Seleccione una fundación para consultar.","error");
+        Swal.fire("Error", "Seleccione una fundación para consultar.", "error");
     }
 }
 
@@ -488,7 +487,7 @@ function calcularPresupuesto() {
     } else {
         var token = $('input[name="csrfToken"]').attr('value')
         $.ajaxSetup({
-            beforeSend: function (xhr) {
+            beforeSend: function(xhr) {
                 xhr.setRequestHeader('Csrf-Token', token);
             }
         });
@@ -499,11 +498,87 @@ function calcularPresupuesto() {
             type: 'POST',
             data: JSON.stringify(data),
             dataType: 'JSON',
-            success: function (data) {
+            success: function(data) {
                 $("#bs").val(data.disponible);
                 $("#porcentaje").val(data.porcgastado);
             },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+                console.log(thrownError);
+                Swal.fire("Error", "Error desconocido en el servidor.", "error");
+            }
+        });
+    }
+}
+
+function calcularSoliAp() {
+    var fundacion = $("#fundacion").val();
+    var fechaDesde = $("#fechaDesde").val();
+    var fechaHasta = $("#fechaHasta").val();
+    if (fundacion == '' || fechaDesde == '' || fechaHasta == '') {
+        Swal.fire("Error", "Debe introducir una fundación y las fechas.", "warning")
+    } else {
+        var token = $('input[name="csrfToken"]').attr('value')
+        $.ajaxSetup({
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Csrf-Token', token);
+            }
+        });
+        var data = {
+            'fundacion': fundacion,
+            'fechaDesde': fechaDesde,
+            'fechaHasta': fechaHasta
+        };
+        console.log(data);
+        $.ajax({
+            url: '/ajax/calcularSoliAp/',
+            contentType: 'application/json',
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType: 'JSON',
+
+            success: function(data) {
+                $("#bs").val(data.costo);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+                console.log(thrownError);
+                Swal.fire("Error", "Error desconocido en el servidor.", "error");
+            }
+        });
+    }
+}
+
+function calcPres() {
+    var fdesde = $("#fdesde").val();
+    var fhasta = $("#fhasta").val();
+    if (fechaDesde == '' || fechaHasta == '') {
+        Swal.fire("Error", "Debe introducir una fundación y las fechas.", "warning")
+    } else {
+        var token = $('input[name="csrfToken"]').attr('value')
+        $.ajaxSetup({
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Csrf-Token', token);
+            }
+        });
+        var data = {
+            'fdesde': fdesde,
+            'fhasta': fhasta
+        };
+        console.log(data);
+        $.ajax({
+            url: '/ajax/calcPres/',
+            contentType: 'application/json',
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType: 'JSON',
+
+            success: function(data) {
+                $("#bs1").val(data.presupuesto);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
                 console.log(xhr.status);
                 console.log(xhr.responseText);
                 console.log(thrownError);

@@ -107,7 +107,7 @@ public class CEmpleado extends Controller{
     }
 
     public Result inicio_admin() {
-        return ok(views.html.inicio_admin.render());
+        return ok(views.html.inicio_admin.render(Fundacion.buscador.listado(), Solicitud.buscador.listadoTodos()));
     }
 
     // ELIMINAR EMPLEADO

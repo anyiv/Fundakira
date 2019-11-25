@@ -3,6 +3,7 @@ package models;
 import java.util.*;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlID;
+import java.text.SimpleDateFormat;
 
 import io.ebean.*;
 import play.data.format.*;
@@ -189,6 +190,24 @@ public class Fundacion extends Model {
 
     public double getPorcGastado(){
         return (( getMontoGastado()/getMontoAsignado() )*100);
+    }
+
+    public double getCostoSolAp(String fechaDesde, String fechaHasta) throws Exception{
+        BuscadorSolicitud bs = new BuscadorSolicitud();
+        BuscadorDetalleS bd = new BuscadorDetalleS();
+        List<Solicitud> solicitudes = bs.porFundacion(this.getCod_fundacion());
+        double costoSolicitudesAp = 0;
+        Date fD = new SimpleDateFormat("dd/MM/yyyy").parse(fechaDesde);
+        Date fH = new SimpleDateFormat("dd/MM/yyyy").parse(fechaHasta);
+        for (Solicitud sol : solicitudes) {
+            if(sol.getEstatus()=='A'&& sol.getFechaRegistro().after(fD) && sol.getFechaRegistro().before(fH)){
+                List<DetalleSolicitud> ds_porsolicitud = bd.listadoDet(sol.getCod_solicitud());
+                for (DetalleSolicitud detalleSolicitud : ds_porsolicitud) {
+                    costoSolicitudesAp += detalleSolicitud.getCosto();
+                }
+            }
+        }
+        return costoSolicitudesAp;
     }
 
     public void setMemento(MementoFundacion m){

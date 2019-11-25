@@ -20,6 +20,8 @@ GET    /solicitud/aprobar/:id       controllers.CSolicitud.aprobarSolicitud(id :
 GET    /solicitud/rechazar/:id      controllers.CSolicitud.rechazarSolicitud(id : String)
 GET    /eliminar_empleado/          controllers.CEmpleado.eliminar_empleado(id : String)
 POST   /empleados/modificar/:id     controllers.CEmpleado.modificar_empleado(id : String)
+POST   /ajax/calcularSoliAp/        controllers.CReporte.calcularSoliAp(request : play.mvc.Http.Request)
+POST   /ajax/calcPres/              controllers.CReporte.costoPreGenerado(request : play.mvc.Http.Request)
 
 #Methods without csrf
 + nocsrf
