@@ -4,6 +4,7 @@ import javax.inject.*;
 
 @Singleton
 public class CaretakerFundacion{
+    
     private MementoFundacion memento;
 
     public CaretakerFundacion() {
